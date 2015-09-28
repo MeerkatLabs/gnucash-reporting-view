@@ -1,0 +1,15 @@
+<md-toolbar class="md-toolbar-tools">
+    <h2>
+        <span>
+            {{displayController.page_definition.name}}
+        </span>
+    </h2>
+</md-toolbar>
+
+<md-content layout-padding flex layout-fill>
+    <div ng-repeat="report in displayController.page_definition.reports" >
+        <h2>{{report.name}}</h2>
+
+        <gnucash-report report-type="report.type" report-data="report.data"></gnucash-report>
+    </div>
+</md-content>

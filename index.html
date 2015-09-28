@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="bower_components/angular-material/angular-material.css">
+    <title>GNU Cash Display</title>
+</head>
+<body ng-app="gnucash-reports-view" layout="row">
+
+    <section layout="row" flex>
+        <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="true">
+            <md-toolbar class="md-theme-indigo">
+                <h1 class="md-toolbar-tools">Reports</h1>
+            </md-toolbar>
+            <md-content ng-controller="SideMenuController as controller">
+                <md-button ng-repeat="report in controller.reports" ui-sref="report({report: report.file})">
+                    {{report.name}}
+                </md-button>
+            </md-content>
+        </md-sidenav>
+
+
+        <md-content layout="column" flex ui-view layout-align="start start">
+
+        </md-content>
+
+    </section>
+
+</body>
+<script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/angular-aria/angular-aria.js"></script>
+<script src="bower_components/angular-animate/angular-animate.js"></script>
+<script src="bower_components/angular-material/angular-material.js"></script>
+<script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+<script src="dist/gnucash-reports-view.js"></script>
+
+<script language="JavaScript">
+    angular.module('gnucash-reports-view').config(['ReportsServiceProvider', function(provider) {
+        provider.configureReportFile('data/__reports.json');
+    }]);
+</script>
+</html>

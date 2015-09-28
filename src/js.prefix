@@ -1,0 +1,5 @@
+/**
+ * Prefix for all of the code in order to isolate all of the modules and namespaces.
+ */
+
+(function(window, angular, undefined) {
