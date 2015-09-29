@@ -35,5 +35,5 @@ var ReportsManagementProvider = function() {
 
 };
 
-angular.module('gnucash-reports-view.reports.base', [])
+angular.module('gnucash-reports-view.reports.base')
     .provider('ReportsManagement', ReportsManagementProvider);
