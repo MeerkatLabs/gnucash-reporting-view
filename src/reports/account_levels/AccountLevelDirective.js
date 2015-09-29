@@ -17,7 +17,7 @@ var AccountLevelDirectiveGenerator = function() {
                 }
             };
 
-            var graphMargin = (1 + Math.sqrt(5)) / 2;
+            var graphMargin = 1.1;
 
             var maximum_value = Math.max(data.good_value*graphMargin, data.balance*graphMargin);
 

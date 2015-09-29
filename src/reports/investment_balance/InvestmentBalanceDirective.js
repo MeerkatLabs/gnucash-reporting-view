@@ -12,27 +12,26 @@ var InvestmentBalanceDirectiveGenerator = function() {
 
             $scope.options = {
                 chart: {
-                    type: 'stackedAreaChart',
-                    height: 300,
+                    type: 'multiChart',
+                    height: 450,
                     margin : {
-                        top: 20,
-                        right: 20,
-                        bottom: 60,
+                        top: 30,
+                        right: 60,
+                        bottom: 50,
                         left: 70
                     },
-                    x: function(d){return d[0];},
-                    y: function(d){return d[1];},
-                    useVoronoi: false,
-                    clipEdge: true,
-                    transitionDuration: 500,
+                    color: d3.scale.category10().range(),
                     useInteractiveGuideline: true,
+                    useVoronoi: false,
+                    interpolate: false,
+                    transitionDuration: 500,
                     xAxis: {
                         showMaxMin: false,
                         tickFormat: function(d) {
                             return d3.time.format('%x')(new Date(d));
                         }
                     },
-                    yAxis: {
+                    yAxis1: {
                         tickFormat: function(d){
                             return d3.format(',.2f')(d);
                         }
@@ -42,13 +41,41 @@ var InvestmentBalanceDirectiveGenerator = function() {
 
             $scope.data = [
                 {
+                    "type": "area",
+                    "yAxis": 1,
                     "key" : "Dividend" ,
-                    "values" : data.dividend
+                    "values" : function() {
+                        var results = [];
+                        data.dividend.forEach(function(element) {
+                            results.push({x: element[0], y: element[1]});
+                        });
+                        return results;
+                    }()
                 },
 
                 {
+                    "type": "area",
+                    "yAxis": 1,
                     "key" : "Purchases" ,
-                    "values" : data.purchases
+                    "values" : function() {
+                        var results = [];
+                        data.purchases.forEach(function(element) {
+                            results.push({x: element[0], y: element[1]});
+                        });
+                        return results;
+                    }()
+                },
+                {
+                    "type": "line",
+                    "yAxis": 1,
+                    "key": "Value",
+                    "values": function() {
+                        var results = [];
+                        data.value.forEach(function(element) {
+                            results.push({x: element[0], y: element[1]});
+                        });
+                        return results;
+                    }()
                 }
 
             ];
