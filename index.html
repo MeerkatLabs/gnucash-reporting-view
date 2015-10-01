@@ -43,6 +43,9 @@
     angular.module('gnucash-reports-view').config(['ReportsServiceProvider', function(provider) {
         provider.configureReportFile('data/__reports.json');
     }]).run(['$animate', function($animate) {
+        // Have to turn off the animations for now because ui router is animating the transitions of states
+        // and it is causing the graphs to not be rendered correctly because the size of the divs are not
+        // set when the graph is being rendered and nvd3 is not listening for the div to stop changing sizes.
         $animate.enabled(false);
     }]);
 </script>
