@@ -17,11 +17,12 @@ var CashFlowDirectiveGenerator = function() {
                     margin : {
                         top: 20,
                         right: 20,
-                        bottom: 70,
-                        left: 75
+                        bottom: 100,
+                        left: 100
                     },
                     x: function(d){return d[0];},
                     y: function(d){return d[1];},
+                    showControls: false,
                     showValues: true,
                     valueFormat: function(d){
                         return d3.format(',.2f')(d);
@@ -29,7 +30,7 @@ var CashFlowDirectiveGenerator = function() {
                     stacked: true,
                     transitionDuration: 500,
                     xAxis: {
-                        axisLabel: 'X Axis',
+                        axisLabel: 'Date',
                         tickFormat: function(d) {
                             return d3.time.format('%x')(new Date(d));
                         },
@@ -37,7 +38,7 @@ var CashFlowDirectiveGenerator = function() {
                         showMaxMin: false
                     },
                     yAxis: {
-                        axisLabel: 'Y Axis',
+                        axisLabel: 'USD',
                         axisLabelDistance: 35,
                         tickFormat: function(d){
                             return d3.format(',.2f')(d);
