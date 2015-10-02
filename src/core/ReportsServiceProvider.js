@@ -1,17 +1,31 @@
 // Service provider responsible for loading the reports and creating the pages.
-var ReportsService = function($http, reportFile) {
+var ReportsService = function($http, $q, reportFile) {
 
     var service = this;
 
+    var my_data = null;
+
     service.reportsContent = $http.get(reportFile).then(function(res) {
+        my_data = res.data;
         return res.data;
     });
 
     service.loadPage = function(page) {
-        return $http.get('data/' + page).then(function(res) {
-            console.log('res.data', res.data);
-            return res.data;
+        var found = false;
+        angular.forEach(my_data.reports, function(report) {
+            if (report.file === page) {
+                found = true;
+            }
         });
+
+        if (found) {
+            return $http.get('data/' + page).then(function(res) {
+                console.log('res.data', res.data);
+                return res.data;
+            });
+        } else {
+            return $q.reject('Couldn"t find page definition');
+        }
     };
 
     return service;
@@ -30,8 +44,8 @@ var ReportsServiceProvider = function() {
         provider.reportFile = path;
     };
 
-    this.$get = ['$http', function($http) {
-        return ReportsService($http, provider.reportFile);
+    this.$get = ['$http', '$q', function($http, $q) {
+        return ReportsService($http, $q, provider.reportFile);
     }];
 
 };
