@@ -14,10 +14,15 @@
             <md-toolbar class="md-theme-indigo">
                 <h1 class="md-toolbar-tools">Reports</h1>
             </md-toolbar>
-            <md-content ng-controller="SideMenuController as controller" layout="column">
-                <md-button ng-repeat="report in controller.reports" ui-sref="report({report: report.file})">
-                    {{report.name}}
-                </md-button>
+            <md-content ng-controller="SideMenuController as controller" layout="column" flex>
+                <div layout="column" flex>
+                    <md-button ng-repeat="report in controller.reports" ui-sref="report({report: report.file})">
+                        {{report.name}}
+                    </md-button>
+                </div>
+                <div>
+                    <p><small>Last Updated: {{controller.lastUpdated}}</small></p>
+                </div>
             </md-content>
         </md-sidenav>
 
