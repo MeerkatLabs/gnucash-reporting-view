@@ -1,7 +1,7 @@
 /**
  * Created by rerobins on 9/29/15.
  */
-var Contribution401kDirectiveGenerator = function() {
+var Contribution401kDirectiveGenerator = function(formatters) {
     return {
         scope: {
             reportData: '&'
@@ -13,7 +13,11 @@ var Contribution401kDirectiveGenerator = function() {
             $scope.options = {
                 chart: {
                     type: 'bulletChart',
-                    transitionDuration: 500
+                    transitionDuration: 500,
+                    tooltip: {
+                        valueFormatter: formatters.currency
+                    },
+                    tickFormat: formatters.currencyNoParts
                 }
             };
 
@@ -35,4 +39,4 @@ var Contribution401kDirectiveGenerator = function() {
 };
 
 angular.module('gnucash-reports-view.reports.account_levels')
-    .directive('contribution401k', [Contribution401kDirectiveGenerator]);
+    .directive('contribution401k', ['formatters', Contribution401kDirectiveGenerator]);

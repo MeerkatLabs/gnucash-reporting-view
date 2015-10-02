@@ -1,7 +1,7 @@
 /**
  * Created by rerobins on 9/29/15.
  */
-var BudgetlevelDirectiveGenerator = function() {
+var BudgetlevelDirectiveGenerator = function(formatters) {
     return {
         scope: {
             reportData: '&'
@@ -13,7 +13,11 @@ var BudgetlevelDirectiveGenerator = function() {
             $scope.options = {
                 chart: {
                     type: 'bulletChart',
-                    transitionDuration: 500
+                    transitionDuration: 500,
+                    tooltip: {
+                        valueFormatter: formatters.currency
+                    },
+                    tickFormat: formatters.currencyNoParts
                 }
             };
 
@@ -37,4 +41,4 @@ var BudgetlevelDirectiveGenerator = function() {
 };
 
 angular.module('gnucash-reports-view.reports.budget_level')
-    .directive('budgetLevel', [BudgetlevelDirectiveGenerator]);
+    .directive('budgetLevel', ['formatters', BudgetlevelDirectiveGenerator]);

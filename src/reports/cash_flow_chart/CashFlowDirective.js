@@ -1,7 +1,7 @@
 /**
  * Created by rerobins on 9/29/15.
  */
-var CashFlowDirectiveGenerator = function() {
+var CashFlowDirectiveGenerator = function(formatters) {
     return {
         scope: {
             reportData: '&'
@@ -20,60 +20,47 @@ var CashFlowDirectiveGenerator = function() {
                         bottom: 100,
                         left: 100
                     },
-                    x: function(d){return d[0];},
-                    y: function(d){return d[1];},
+                    x: function(d){return d.date;},
+                    y: function(d){return d.value;},
                     showControls: false,
                     showValues: true,
-                    valueFormat: function(d){
-                        return d3.format(',.2f')(d);
-                    },
+                    valueFormat: formatters.currency,
                     stacked: true,
                     transitionDuration: 500,
                     xAxis: {
                         axisLabel: 'Date',
-                        tickFormat: function(d) {
-                            return d3.time.format('%x')(new Date(d));
-                        },
-                        rotateLabels: 50,
+                        tickFormat: formatters.date,
+                        rotateLabels: 35,
                         showMaxMin: false
                     },
                     yAxis: {
                         axisLabel: 'USD',
                         axisLabelDistance: 35,
-                        tickFormat: function(d){
-                            return d3.format(',.2f')(d);
-                        }
+                        tickFormat: formatters.currencyNoParts
                     }
                 }
             };
 
-            var creditValues = [];
-            var debitValues = [];
-            var grossValues = [];
-            data.credits.forEach(function(dataValue) {
-                creditValues.push([dataValue.date * 1000, dataValue.value]);
-            });
-
             data.debits.forEach(function(dataValue) {
-                debitValues.push([dataValue.date * 1000, dataValue.value]);
+                if (dataValue.value === 0) {
+                    // TODO: Figure out how to do this so that it doesn't display as -0.0001 in the graph.
+                    dataValue.value = -0.00001;
+                }
             });
 
-            data.gross.forEach(function(dataValue) {
-                grossValues.push([dataValue.date * 1000, dataValue.value]);
-            });
 
             $scope.data = [
                 {
                     "key" : "Credits" ,
                     "bar": true,
                     "color": "#007700",
-                    "values" : creditValues
+                    "values" : data.credits
                 },
                 {
                     "key" : "Debits" ,
                     "bar": true,
                     "color": "#770000",
-                    "values" : debitValues
+                    "values" : data.debits
                 }
             ];
         }
@@ -81,4 +68,4 @@ var CashFlowDirectiveGenerator = function() {
 };
 
 angular.module('gnucash-reports-view.reports.cash_flow')
-    .directive('cashFlow', [CashFlowDirectiveGenerator]);
+    .directive('cashFlow', ['formatters', CashFlowDirectiveGenerator]);

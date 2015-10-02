@@ -1,7 +1,7 @@
 /**
  * Created by rerobins on 9/29/15.
  */
-var ExpensesMonthlyDirectiveGenerator = function() {
+var ExpensesMonthlyDirectiveGenerator = function(formatters) {
     return {
         scope: {
             reportData: '&'
@@ -17,45 +17,35 @@ var ExpensesMonthlyDirectiveGenerator = function() {
                     margin : {
                         top: 20,
                         right: 20,
-                        bottom: 70,
-                        left: 50
+                        bottom: 100,
+                        left: 100
                     },
-                    x: function(d){return d[0];},
-                    y: function(d){return d[1];},
+                    x: function(d){return d.date;},
+                    y: function(d){return d.value;},
                     showValues: true,
-                    valueFormat: function(d){
-                        return d3.format(',.2f')(d);
-                    },
-                    stacked: true,
+                    valueFormat: formatters.currency,
+                    showControls: false,
                     transitionDuration: 500,
                     xAxis: {
-                        axisLabel: 'X Axis',
-                        tickFormat: function(d) {
-                            return d3.time.format('%x')(new Date(d));
-                        },
-                        rotateLabels: 50,
-                        showMaxMin: false
+                        axisLabel: '',
+                        tickFormat: formatters.date,
+                        rotateLabels: 30,
+                        showMaxMin: true
                     },
                     yAxis: {
-                        axisLabel: 'Y Axis',
+                        axisLabel: 'Total Expenses',
                         axisLabelDistance: 35,
-                        tickFormat: function(d){
-                            return d3.format(',.2f')(d);
-                        }
+                        tickFormat: formatters.currencyNoParts,
+                        showMaxMin: true
                     }
                 }
             };
 
-            var dataValues = [];
-            data.expenses.forEach(function(dataValue) {
-                dataValues.push([dataValue.date * 1000, dataValue.value]);
-            });
-
             $scope.data = [
                 {
                     "key" : "Expenses" ,
-                    "bar": true,
-                    "values" : dataValues
+                    "bar": false,
+                    "values" : data.expenses
                 }
             ];
         }
@@ -63,4 +53,4 @@ var ExpensesMonthlyDirectiveGenerator = function() {
 };
 
 angular.module('gnucash-reports-view.reports.expenses_monthly')
-    .directive('expensesMonthly', [ExpensesMonthlyDirectiveGenerator]);
+    .directive('expensesMonthly', ['formatters', ExpensesMonthlyDirectiveGenerator]);

@@ -1,7 +1,7 @@
 /**
  * Created by rerobins on 9/29/15.
  */
-var BoxPlotDirectiveGenerator = function() {
+var BoxPlotDirectiveGenerator = function(formatters) {
     return {
         scope: {
             reportData: '&'
@@ -17,14 +17,17 @@ var BoxPlotDirectiveGenerator = function() {
                     margin : {
                         top: 20,
                         right: 20,
-                        bottom: 60,
-                        left: 40
+                        bottom: 100,
+                        left: 100
                     },
                     color:['darkblue', 'darkorange', 'green', 'darkred', 'darkviolet'],
                     x: function(d){return d.label;},
-                    // y: function(d){return d.values.Q3;},
                     maxBoxWidth: 75,
-                    yDomain: [0, data.high]
+                    yDomain: [0, data.high],
+                    yAxis: {
+                        tickFormat: formatters.currencyNoParts
+                    },
+
                 }
             };
 
@@ -46,4 +49,4 @@ var BoxPlotDirectiveGenerator = function() {
 };
 
 angular.module('gnucash-reports-view.reports.box_plot')
-    .directive('boxPlot', [BoxPlotDirectiveGenerator]);
+    .directive('boxPlot', ['formatters', BoxPlotDirectiveGenerator]);

@@ -1,7 +1,7 @@
 /**
  * Created by rerobins on 9/29/15.
  */
-var CreditUsageDirectiveGenerator = function() {
+var CreditUsageDirectiveGenerator = function(formatters) {
     return {
         scope: {
             reportData: '&'
@@ -29,7 +29,8 @@ var CreditUsageDirectiveGenerator = function() {
                     },
                     labelType: "value",
                     donut: true,
-                    donutLabelsOutside: true
+                    donutLabelsOutside: true,
+                    labelFormat: formatters.currency
                 }
             };
 
@@ -48,4 +49,4 @@ var CreditUsageDirectiveGenerator = function() {
 };
 
 angular.module('gnucash-reports-view.reports.credit_usage')
-    .directive('creditUsage', [CreditUsageDirectiveGenerator]);
+    .directive('creditUsage', ['formatters', CreditUsageDirectiveGenerator]);

@@ -1,7 +1,7 @@
 /**
  * Created by rerobins on 9/29/15.
  */
-var SavingsGoalDirectiveGenerator = function() {
+var SavingsGoalDirectiveGenerator = function(formatters) {
     return {
         scope: {
             reportData: '&'
@@ -13,7 +13,12 @@ var SavingsGoalDirectiveGenerator = function() {
             $scope.options = {
                 chart: {
                     type: 'bulletChart',
-                    transitionDuration: 500
+                    transitionDuration: 500,
+                    tooltip: {
+                        valueFormatter: formatters.currency
+                    },
+                    tickFormat: formatters.currencyNoParts
+
                 }
             };
 
@@ -33,4 +38,4 @@ var SavingsGoalDirectiveGenerator = function() {
 };
 
 angular.module('gnucash-reports-view.reports.savings_goal')
-    .directive('savingsGoal', [SavingsGoalDirectiveGenerator]);
+    .directive('savingsGoal', ['formatters', SavingsGoalDirectiveGenerator]);

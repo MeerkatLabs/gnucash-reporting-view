@@ -1,7 +1,7 @@
 /**
  * Created by rerobins on 9/29/15.
  */
-var AccountLevelDirectiveGenerator = function() {
+var AccountLevelDirectiveGenerator = function(formatters) {
     return {
         scope: {
             reportData: '&'
@@ -13,7 +13,11 @@ var AccountLevelDirectiveGenerator = function() {
             $scope.options = {
                 chart: {
                     type: 'bulletChart',
-                    transitionDuration: 500
+                    transitionDuration: 500,
+                    tooltip: {
+                        valueFormatter: formatters.currency
+                    },
+                    tickFormat: formatters.currencyNoParts
                 }
             };
 
@@ -33,4 +37,4 @@ var AccountLevelDirectiveGenerator = function() {
 };
 
 angular.module('gnucash-reports-view.reports.account_levels')
-    .directive('accountLevel', [AccountLevelDirectiveGenerator]);
+    .directive('accountLevel', ['formatters', AccountLevelDirectiveGenerator]);
