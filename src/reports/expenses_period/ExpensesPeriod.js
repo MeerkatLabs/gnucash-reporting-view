@@ -1,12 +1,12 @@
 /**
  * Created by rerobins on 9/29/15.
  */
-var ExpensesMonthlyDirectiveGenerator = function(formatters) {
+var ExpensesPeriodDirectiveGenerator = function(formatters) {
     return {
         scope: {
             reportData: '&'
         },
-        templateUrl: 'src/reports/expenses_monthly/expensesMonthlyDirective.html',
+        templateUrl: 'src/reports/expenses_period/expensesPeriodDirective.html',
         link: function($scope) {
             var data = $scope.reportData();
 
@@ -52,5 +52,5 @@ var ExpensesMonthlyDirectiveGenerator = function(formatters) {
     };
 };
 
-angular.module('gnucash-reports-view.reports.expenses_monthly')
-    .directive('expensesMonthly', ['formatters', ExpensesMonthlyDirectiveGenerator]);
+angular.module('gnucash-reports-view.reports.expenses_period')
+    .directive('expensesPeriod', ['formatters', ExpensesPeriodDirectiveGenerator]);
