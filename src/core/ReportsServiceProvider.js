@@ -11,21 +11,29 @@ var ReportsService = function($http, $q, reportFile) {
     });
 
     service.loadPage = function(page) {
-        var found = false;
-        angular.forEach(my_data.reports, function(report) {
-            if (report.file === page) {
-                found = true;
-            }
+
+        return $q(function(resolve, reject) {
+
+            service.reportsContent.then(function(data) {
+                var found = false;
+                angular.forEach(data.reports, function(report) {
+                    if (report.file === page) {
+                        found = true;
+                    }
+                });
+
+                if (found) {
+                    return $http.get('data/' + page).then(function(res) {
+                        console.log('res.data', res.data);
+                        resolve(res.data);
+                    });
+                } else {
+                    reject('Couldn"t find page definition');
+                }
+            });
+
         });
 
-        if (found) {
-            return $http.get('data/' + page).then(function(res) {
-                console.log('res.data', res.data);
-                return res.data;
-            });
-        } else {
-            return $q.reject('Couldn"t find page definition');
-        }
     };
 
     return service;
