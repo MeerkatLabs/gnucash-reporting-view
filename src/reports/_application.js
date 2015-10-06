@@ -11,5 +11,6 @@ angular.module('gnucash-reports-view.reports', [
     'gnucash-reports-view.reports.multi_report',
     'gnucash-reports-view.reports.credit_usage',
     'gnucash-reports-view.reports.net_worth',
-    'gnucash-reports-view.reports.category'
+    'gnucash-reports-view.reports.category',
+    'gnucash-reports-view.reports.net_worth_table'
 ]);

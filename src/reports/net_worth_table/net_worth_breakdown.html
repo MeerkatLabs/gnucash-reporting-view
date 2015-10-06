@@ -1,0 +1,28 @@
+
+<md-data-table-container>
+    <table md-data-table>
+        <thead>
+            <tr>
+                <th width="30%">{{tableName()}}</th>
+                <th name="{{date*1000 | date : 'MMM yyyy'}}" ng-repeat="date in trends()"></th>
+                <th name="Current"></th>
+                <th name="{{delta}} Months" ng-repeat="delta in deltas()"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="row in data()">
+                <td>{{row.name}}</td>
+                <td ng-repeat="value in row.trend">{{value | currency: '$' : 2 }}</td>
+                <td>{{row.current_data | currency: '$' : 2 }}</td>
+                <td ng-repeat="value in row.deltas">{{value*100 | number: 2}}%</td>
+            </tr>
+
+            <tr>
+                <td>TOTALS</td>
+                <td ng-repeat="value in total.trends">{{value}}</td>
+                <td>{{row.current_data | currency: '$' : 2 }}</td>
+                <td ng-repeat="value in total.deltas">{{value}}</td>
+            </tr>
+        </tbody>
+    </table>
+</md-data-table-container>
