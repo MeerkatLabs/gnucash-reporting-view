@@ -3,6 +3,7 @@
  */
 var NetworthDirectiveGenerator = function(formatters) {
     return {
+        restrict: 'E',
         scope: {
             reportData: '&'
         },

@@ -1,5 +1,12 @@
-<net-worth-breakdown table-name="ASSETS" data="reportData().assets" deltas="reportData().deltas"
+<net-worth-breakdown header="'ASSETS'" data="reportData().assets" deltas="reportData().deltas"
         trends="reportData().trend"></net-worth-breakdown>
 
-<net-worth-breakdown table-name="LIABILITIES" data="reportData().liability" deltas="reportData().deltas"
+<div><p>&nbsp;</p></div>
+
+<net-worth-breakdown header="'LIABILITIES'" data="reportData().liability" deltas="reportData().deltas"
                      trends="reportData().trend"></net-worth-breakdown>
+
+<div><p>&nbsp;</p></div>
+
+<net-worth-summary assets="reportData().assets" liabilities="reportData().liability" deltas="reportData().deltas"
+                   trends="reportData().trend" net-worth="reportData().net_worth"></net-worth-summary>

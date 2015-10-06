@@ -12,7 +12,10 @@ var _formatters = {
     currencyNoParts: d3.format('$,'),
 
     // Date formatter %x
-    date: d3.time.format('%x')
+    date: d3.time.format('%x'),
+
+    // Percentage formatter
+    percentage: d3.format('.02%')
 
 };
 
@@ -44,5 +47,12 @@ angular.module('gnucash-reports-view.reports.base')
          */
         date: function(timeInSeconds) {
             return _formatters.date(new Date(timeInSeconds*1000));
+        },
+
+        /**
+         * Converts the value into a percentage.
+         */
+        percentage: function(value) {
+            return _formatters.percentage(value);
         }
     });

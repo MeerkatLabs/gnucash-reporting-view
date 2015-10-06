@@ -3,15 +3,16 @@
  */
 var NetworthBreakdownDirectiveGenerator = function(formatters) {
     return {
+        restrict: 'E',
         scope: {
             data: '&',
             deltas: '&',
             trends: '&',
-            tableName: '&'
+            header: '&'
         },
         templateUrl: 'src/reports/net_worth_table/net_worth_breakdown.html',
         link: function($scope) {
-            console.log('Scope', $scope);
+            console.log($scope);
         }
     };
 };
