@@ -1,4 +1,7 @@
 <md-toolbar class="md-toolbar-tools">
+    <md-button class="md-icon-button" aria-label="Settings" ng-click="displayController.toggleLeft()" hide-gt-lg>
+        <ng-md-icon icon="menu" style="fill: white"></ng-md-icon>
+    </md-button>
     <h2>
         <span>
             {{displayController.page_definition.name}}
@@ -7,9 +10,6 @@
 </md-toolbar>
 
 <md-content layout-padding flex layout-fill>
-    <div ng-repeat="report in displayController.page_definition.reports" >
-        <h2>{{report.name}}</h2>
-
-        <gnucash-report report-type="report.type" report-data="report.data"></gnucash-report>
-    </div>
+    <gnucash-report ng-repeat="report in displayController.page_definition.reports"
+                    report="report"></gnucash-report>
 </md-content>

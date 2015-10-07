@@ -12,7 +12,7 @@
 <body ng-app="gnucash-reports-view" layout="row">
 
     <section layout="row" flex>
-        <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="true">
+        <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-lg')">
             <md-toolbar class="md-theme-indigo">
                 <h1 class="md-toolbar-tools">Reports</h1>
             </md-toolbar>
@@ -45,6 +45,7 @@
 <script src="bower_components/nvd3/build/nv.d3.js"></script>
 <script src="bower_components/angular-nvd3/dist/angular-nvd3.min.js"></script>
 <script src="bower_components/angular-material-data-table/dist/md-data-table.js"></script>
+<script src="bower_components/angular-material-icons/angular-material-icons.min.js"></script>
 <script src="dist/gnucash-reports-view.js"></script>
 
 <script language="JavaScript">

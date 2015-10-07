@@ -1,1 +1,15 @@
-<div ng-include="template"></div>
+<div layout="column">
+    <div layout="row">
+        <div flex>
+            <h2>{{report().name}}</h2>
+        </div>
+        <div>
+            <md-button aria-label="Description" ng-if="report().description">
+                <ng-md-icon icon="info_outline" size="36" ng-click="displayDescription()"></ng-md-icon>
+            </md-button>
+        </div>
+    </div>
+
+    <div ng-include="template"></div>
+</div>
+

@@ -1,13 +1,5 @@
 <div flex layout="row">
-    <div ng-repeat="report in reportData().reports" flex>
-        <h3>
-            <span>
-                {{report.name}}
-            </span>
-        </h3>
-        <gnucash-report report-type="report.type" report-data="report.data" flex>
+    <gnucash-report report="report" ng-repeat="report in reportData().reports"flex>
 
-        </gnucash-report>
-    </div>
-
+    </gnucash-report>
 </div>
