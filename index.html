@@ -18,6 +18,10 @@
             </md-toolbar>
             <md-content ng-controller="SideMenuController as controller" layout="column" flex>
                 <div layout="column" flex>
+                    <md-button ui-sref="main">
+                        <ng-md-icon icon="home" style="fill: gray"></ng-md-icon>
+                        Home
+                    </md-button>
                     <md-button ng-repeat="report in controller.reports" ui-sref="report({report: report.file})">
                         {{report.name}}
                     </md-button>
