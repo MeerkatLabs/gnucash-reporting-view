@@ -25,7 +25,7 @@ var ExpensesPeriodDirectiveGenerator = function(formatters) {
                     showValues: true,
                     valueFormat: formatters.currency,
                     showControls: false,
-                    transitionDuration: 500,
+                    transitionDuration: 0,
                     xAxis: {
                         axisLabel: '',
                         tickFormat: formatters.date,

@@ -1,3 +1,35 @@
+
 <div flex>
-    <nvd3 options="options" data="data"></nvd3>
+    <md-tabs md-dynamic-height md-border-bottom>
+        <md-tab label="graph">
+            <md-content class="md-padding">
+                <nvd3 options="options" data="data"></nvd3>
+            </md-content>
+        </md-tab>
+
+        <md-tab label="table">
+            <md-content class="md-padding">
+
+
+                <md-data-table-container>
+                    <table md-data-table>
+                        <thead>
+                        <tr>
+                            <th name="Category"></th>
+                            <th name="Value" ></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="dataset in data">
+                            <td>{{dataset[0]}}</td>
+                            <td>{{dataset[1] | currency}}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </md-data-table-container>
+
+            </md-content>
+        </md-tab>
+
+    </md-tabs>
 </div>

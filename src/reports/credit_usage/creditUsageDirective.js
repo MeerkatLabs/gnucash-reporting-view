@@ -17,7 +17,7 @@ var CreditUsageDirectiveGenerator = function(formatters) {
                     x: function(d){return d.key;},
                     y: function(d){return d.y;},
                     showLabels: true,
-                    transitionDuration: 500,
+                    transitionDuration: 0,
                     labelThreshold: 0.01,
                     legend: {
                         margin: {
@@ -29,8 +29,8 @@ var CreditUsageDirectiveGenerator = function(formatters) {
                     },
                     labelType: "value",
                     donut: true,
-                    donutLabelsOutside: true,
-                    labelFormat: formatters.currency
+                    labelsOutside: true,
+                    valueFormat: formatters.currency
                 }
             };
 

@@ -17,7 +17,7 @@ var CategoryGraphDirectiveGenerator = function(formatters) {
                     x: function(d){return d[0];},
                     y: function(d){return d[1];},
                     showLabels: true,
-                    transitionDuration: 500,
+                    transitionDuration: 0,
                     labelThreshold: 0.01,
                     legend: {
                         margin: {
@@ -29,8 +29,8 @@ var CategoryGraphDirectiveGenerator = function(formatters) {
                     },
                     labelType: "value",
                     donut: true,
-                    donutLabelsOutside: true,
-                    labelFormat: formatters.currency,
+                    labelsOutside: true,
+                    valueFormat: formatters.currency,
                     labelSunbeamLayout: true
                 }
             };

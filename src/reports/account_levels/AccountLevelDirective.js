@@ -13,7 +13,7 @@ var AccountLevelDirectiveGenerator = function(formatters) {
             $scope.options = {
                 chart: {
                     type: 'bulletChart',
-                    transitionDuration: 500,
+                    transitionDuration: 0,
                     tooltip: {
                         valueFormatter: formatters.currency
                     },

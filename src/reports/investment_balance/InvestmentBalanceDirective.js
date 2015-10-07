@@ -24,7 +24,7 @@ var InvestmentBalanceDirectiveGenerator = function(formatters) {
                     useInteractiveGuideline: true,
                     useVoronoi: false,
                     interpolate: false,
-                    transitionDuration: 500,
+                    transitionDuration: 0,
                     xAxis: {
                         showMaxMin: false,
                         tickFormat: formatters.date

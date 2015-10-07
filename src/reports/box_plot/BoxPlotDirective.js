@@ -27,7 +27,7 @@ var BoxPlotDirectiveGenerator = function(formatters) {
                     yAxis: {
                         tickFormat: formatters.currencyNoParts
                     },
-
+                    transitionDuration: 0
                 }
             };
 

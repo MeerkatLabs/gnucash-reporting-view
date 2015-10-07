@@ -26,7 +26,7 @@ var IncomeVsExpenseDirectiveGenerator = function(formatters) {
                     showValues: true,
                     valueFormat: formatters.currency,
                     stacked: true,
-                    transitionDuration: 500,
+                    transitionDuration: 0,
                     xAxis: {
                         axisLabel: 'Date',
                         tickFormat: formatters.date,

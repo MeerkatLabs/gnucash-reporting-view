@@ -27,7 +27,7 @@ var NetworthDirectiveGenerator = function(formatters) {
                     useInteractiveGuideline: true,
                     useVoronoi: false,
                     interpolate: false,
-                    transitionDuration: 500,
+                    transitionDuration: 0,
                     xAxis: {
                         showMaxMin: false,
                         tickFormat: formatters.date
@@ -49,14 +49,13 @@ var NetworthDirectiveGenerator = function(formatters) {
                     "values" : data.liabilities
                 },
                 {
-                    "key": "Net",
-                    "values": data.net
-                },
-                {
                     "key": "Inflation",
                     "values": data.inflation
+                },
+                {
+                    "key": "Net",
+                    "values": data.net
                 }
-
             ];
         }
     };

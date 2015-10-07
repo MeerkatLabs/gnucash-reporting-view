@@ -17,7 +17,7 @@ var BudgetPlanningDirectiveGenerator = function(formatters) {
                     x: function(d){return d.name;},
                     y: function(d){return d.value;},
                     showLabels: true,
-                    transitionDuration: 500,
+                    transitionDuration: 0,
                     labelThreshold: 0.01,
                     legend: {
                         margin: {
@@ -29,8 +29,8 @@ var BudgetPlanningDirectiveGenerator = function(formatters) {
                     },
                     labelType: "value",
                     donut: true,
-                    donutLabelsOutside: true,
-                    labelFormat: formatters.currency,
+                    labelsOutside: true,
+                    valueFormat: formatters.currency,
                     labelSunbeamLayout: true
                 }
             };
@@ -53,5 +53,5 @@ var BudgetPlanningDirectiveGenerator = function(formatters) {
     };
 };
 
-angular.module('gnucash-reports-view.reports.category')
+angular.module('gnucash-reports-view.reports.budget_planning')
     .directive('budgetPlanning', ['formatters', BudgetPlanningDirectiveGenerator]);
