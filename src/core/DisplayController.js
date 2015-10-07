@@ -13,9 +13,7 @@ var DisplayController = function($mdUtil, $mdSidenav, content) {
     function buildToggler(navID) {
         var debounceFn =  $mdUtil.debounce(function(){
             $mdSidenav(navID)
-                .toggle().then(function() {
-                    console.log('Side navigation is toggled.');
-                });
+                .toggle();
         }, 200);
         return debounceFn;
     }

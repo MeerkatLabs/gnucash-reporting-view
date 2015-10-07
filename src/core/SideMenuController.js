@@ -7,7 +7,6 @@ var SideMenuController = function(ReportsService) {
 
     ReportsService.reportsContent.then(function(results) {
         controller.reports = results.reports;
-        controller.lastUpdated = results.last_updated;
     });
 
 };
