@@ -27,8 +27,8 @@ module.exports = function(grunt) {
                 sourceMap: true
             },
             build: {
-                src: 'app/build/<%= pkg.name %>.js',
-                dest: 'app/build/<%= pkg.name %>.min.js'
+                src: 'dist/<%= pkg.name %>.js',
+                dest: 'dist/<%= pkg.name %>.min.js'
             }
         },
         jshint: {
@@ -80,7 +80,7 @@ module.exports = function(grunt) {
     });
 
     // Load the plugin that provides the "uglify" task.
-    //grunt.loadNpmTasks('grunt-contrib-uglify');
+    grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-concat');
@@ -90,7 +90,7 @@ module.exports = function(grunt) {
 
     // Default task(s).
     grunt.registerTask('development_js', ['jshint', 'concat']);
-    grunt.registerTask('development', ['development_js']);
+    grunt.registerTask('development', ['development_js', 'uglify']);
     grunt.registerTask('default', ['development']);
 
 };
