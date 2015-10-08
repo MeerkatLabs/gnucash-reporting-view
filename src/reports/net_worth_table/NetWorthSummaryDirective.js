@@ -1,7 +1,7 @@
 /**
  * Created by rerobins on 10/6/15.
  */
-var NetworthSummaryDirectiveGenerator = function(formatters) {
+var NetworthSummaryDirectiveGenerator = function() {
     return {
         restrict: 'E',
         scope: {
@@ -11,12 +11,9 @@ var NetworthSummaryDirectiveGenerator = function(formatters) {
             deltas: '&',
             trends: '&'
         },
-        templateUrl: 'src/reports/net_worth_table/net_worth_summary.html',
-        link: function($scope) {
-            console.log($scope);
-        }
+        templateUrl: 'src/reports/net_worth_table/net_worth_summary.html'
     };
 };
 
 angular.module('gnucash-reports-view.reports.net_worth_table')
-    .directive('netWorthSummary', ['formatters', NetworthSummaryDirectiveGenerator]);
+    .directive('netWorthSummary', [NetworthSummaryDirectiveGenerator]);

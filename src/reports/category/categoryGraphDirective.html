@@ -3,11 +3,14 @@
     <md-tabs md-dynamic-height md-border-bottom>
         <md-tab label="graph">
             <md-content class="md-padding">
-                <nvd3 options="options" data="data"></nvd3>
+                <nvd3 options="options" data="data" ng-if="data"></nvd3>
+                <div layout="row" layout-sm="column" layout-align="space-around" ng-hide="data">
+                    <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+                </div>
             </md-content>
         </md-tab>
 
-        <md-tab label="table">
+        <md-tab label="table" ng-if="data">
             <md-content class="md-padding">
 
 
@@ -20,9 +23,9 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr ng-repeat="dataset in data track by $index">
-                            <td>{{dataset[0]}}</td>
-                            <td>{{dataset[1] | currency}}</td>
+                        <tr ng-repeat="dataset in data track by dataset[0]">
+                            <td>{{::dataset[0]}}</td>
+                            <td>{{::dataset[1] | currency}}</td>
                         </tr>
                         </tbody>
                     </table>

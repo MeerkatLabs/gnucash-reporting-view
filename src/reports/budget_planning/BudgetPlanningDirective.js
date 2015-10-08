@@ -1,7 +1,7 @@
 /**
  * Created by rerobins on 9/29/15.
  */
-var BudgetPlanningDirectiveGenerator = function(formatters) {
+var BudgetPlanningDirectiveGenerator = function($timeout, formatters) {
     return {
         scope: {
             reportData: '&'
@@ -54,4 +54,4 @@ var BudgetPlanningDirectiveGenerator = function(formatters) {
 };
 
 angular.module('gnucash-reports-view.reports.budget_planning')
-    .directive('budgetPlanning', ['formatters', BudgetPlanningDirectiveGenerator]);
+    .directive('budgetPlanning', ['$timeout', 'formatters', BudgetPlanningDirectiveGenerator]);

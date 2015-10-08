@@ -1,7 +1,7 @@
 /**
  * Created by rerobins on 9/29/15.
  */
-var NetworthDirectiveGenerator = function(formatters) {
+var NetworthDirectiveGenerator = function($timeout, formatters) {
     return {
         restrict: 'E',
         scope: {
@@ -11,55 +11,58 @@ var NetworthDirectiveGenerator = function(formatters) {
         link: function($scope) {
             var data = $scope.reportData();
 
-            $scope.options = {
-                chart: {
-                    type: 'lineChart',
-                    height: 450,
-                    margin : {
-                        top: 30,
-                        right: 60,
-                        bottom: 100,
-                        left: 100
-                    },
-                    x: function(d){return d.date;},
-                    y: function(d){return d.value;},
-                    color: d3.scale.category10().range(),
-                    useInteractiveGuideline: true,
-                    useVoronoi: false,
-                    interpolate: false,
-                    transitionDuration: 0,
-                    xAxis: {
-                        showMaxMin: false,
-                        tickFormat: formatters.date
-                    },
-                    yAxis: {
-                        tickFormat: formatters.currency
+            $timeout(function() {
+
+                $scope.options = {
+                    chart: {
+                        type: 'lineChart',
+                        height: 450,
+                        margin : {
+                            top: 30,
+                            right: 60,
+                            bottom: 100,
+                            left: 100
+                        },
+                        x: function(d){return d.date;},
+                        y: function(d){return d.value;},
+                        color: d3.scale.category10().range(),
+                        useInteractiveGuideline: true,
+                        useVoronoi: false,
+                        interpolate: false,
+                        transitionDuration: 0,
+                        xAxis: {
+                            showMaxMin: false,
+                            tickFormat: formatters.date
+                        },
+                        yAxis: {
+                            tickFormat: formatters.currency
+                        }
                     }
-                }
-            };
+                };
 
-            $scope.data = [
-                {
-                    "key" : "Assets" ,
-                    "values" : data.assets
-                },
+                $scope.data = [
+                    {
+                        "key" : "Assets" ,
+                        "values" : data.assets
+                    },
 
-                {
-                    "key" : "Liabilities" ,
-                    "values" : data.liabilities
-                },
-                {
-                    "key": "Inflation",
-                    "values": data.inflation
-                },
-                {
-                    "key": "Net",
-                    "values": data.net
-                }
-            ];
+                    {
+                        "key" : "Liabilities" ,
+                        "values" : data.liabilities
+                    },
+                    {
+                        "key": "Inflation",
+                        "values": data.inflation
+                    },
+                    {
+                        "key": "Net",
+                        "values": data.net
+                    }
+                ];
+            });
         }
     };
 };
 
 angular.module('gnucash-reports-view.reports.net_worth')
-    .directive('netWorth', ['formatters', NetworthDirectiveGenerator]);
+    .directive('netWorth', ['$timeout', 'formatters', NetworthDirectiveGenerator]);

@@ -1,8 +1,10 @@
-var DisplayController = function($mdUtil, $mdSidenav, content) {
+var DisplayController = function($mdUtil, $mdSidenav, $timeout, content) {
 
     var controller = this;
 
-    controller.page_definition = content;
+    $timeout(function() {
+        controller.page_definition = content;
+    });
 
     controller.toggleLeft = buildToggler('left');
 
@@ -20,7 +22,7 @@ var DisplayController = function($mdUtil, $mdSidenav, content) {
 };
 
 angular.module('gnucash-reports-view')
-    .controller('DisplayController', ['$mdUtil', '$mdSidenav', 'content', DisplayController])
+    .controller('DisplayController', ['$mdUtil', '$mdSidenav', '$timeout', 'content', DisplayController])
     .config(['$stateProvider', function($stateProvider) {
         $stateProvider.state('report', {
             url: '/report/:report',

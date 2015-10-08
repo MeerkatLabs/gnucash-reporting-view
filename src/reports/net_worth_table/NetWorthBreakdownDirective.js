@@ -10,10 +10,7 @@ var NetworthBreakdownDirectiveGenerator = function(formatters) {
             trends: '&',
             header: '&'
         },
-        templateUrl: 'src/reports/net_worth_table/net_worth_breakdown.html',
-        link: function($scope) {
-            console.log($scope);
-        }
+        templateUrl: 'src/reports/net_worth_table/net_worth_breakdown.html'
     };
 };
 
