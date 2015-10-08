@@ -4,11 +4,11 @@
 </md-toolbar>
 <md-content layout="column" flex>
     <div layout="column" flex>
-        <md-button md-no-ink class="md-raised" ui-sref="main" ui-sref-active="md-primary">
+        <md-button md-no-ink ui-sref="main" ui-sref-active="md-primary">
             <ng-md-icon icon="home" style="fill: gray"></ng-md-icon>
             Home
         </md-button>
-        <md-button md-no-ink class="md-raised" ng-repeat="report in controller.reports"
+        <md-button md-no-ink ng-repeat="report in controller.reports"
                    ui-sref="report({report: report.file})" ui-sref-active="md-primary">
             {{report.name}}
         </md-button>

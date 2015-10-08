@@ -23,7 +23,7 @@ var Contribution401kDirectiveGenerator = function(formatters) {
 
             var graphMargin = 1.1;
 
-            var maximum_value = Math.max(data.contribution*graphMargin, data.contributionLimit*graphMargin);
+            var maximum_value = Math.max(data.contribution * graphMargin, data.contributionLimit * graphMargin);
 
             var currentContributionPoint = (data.dayOfYear / data.daysInYear) * data.contributionLimit;
 

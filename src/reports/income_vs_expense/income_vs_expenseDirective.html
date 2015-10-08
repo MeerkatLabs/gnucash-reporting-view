@@ -10,17 +10,16 @@
         <md-tab label="table">
             <md-content class="md-padding">
 
-
                 <md-data-table-container>
                     <table md-data-table>
                         <thead>
                         <tr>
                             <th name="Date"></th>
-                            <th name="{{dataset.key}}" ng-repeat="dataset in data"></th>
+                            <th name="{{dataset.key}}" ng-repeat="dataset in data track by $index"></th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr ng-repeat="firstDataSet in data[0].values" ng-init="i = $index">
+                        <tr ng-repeat="firstDataSet in data[0].values track by $index" ng-init="i = $index">
                             <td>{{firstDataSet.date * 1000 | date}}</td>
                             <td ng-repeat="dataSet in data">{{dataSet.values[i].value | currency}}</td>
                         </tr>

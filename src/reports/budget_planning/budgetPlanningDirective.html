@@ -14,7 +14,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr ng-repeat="item in budget">
+                <tr ng-repeat="item in budget track by $index">
                     <td>{{item.name}}</td>
                     <td>{{item.value | currency}}</td>
                 </tr>

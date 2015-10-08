@@ -20,7 +20,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr ng-repeat="dataset in data">
+                        <tr ng-repeat="dataset in data track by $index">
                             <td>{{dataset[0]}}</td>
                             <td>{{dataset[1] | currency}}</td>
                         </tr>
