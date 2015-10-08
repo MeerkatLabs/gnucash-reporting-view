@@ -18,6 +18,7 @@ var MainDisplayController = function($mdUtil, $mdSidenav, ReportsService) {
 
     ReportsService.reportsContent.then(function(results) {
         controller.lastUpdated = results.last_updated;
+        controller.modificationDate = results.modification_time;
     });
 };
 
