@@ -56,7 +56,7 @@ var BudgetlevelDirectiveGenerator = function($timeout, formatters) {
                     ]
                 },
                 {
-                    "key": "Budget",
+                    "key": "Budget Remaining Today",
                     "color": "LightSteelBlue",
                     "values" : [
                         {
@@ -66,7 +66,7 @@ var BudgetlevelDirectiveGenerator = function($timeout, formatters) {
                     ]
                 },
                 {
-                    "key": "Overage",
+                    "key": "Budget Overage",
                     "color": "LightCoral",
                     "values" : [
                         {
@@ -90,7 +90,7 @@ var BudgetlevelDirectiveGenerator = function($timeout, formatters) {
                     ]
                 },
                 {
-                    "key": "Overage",
+                    "key": "Today Overage",
                     "color": "SandyBrown",
                     "values" : [
                         {
@@ -100,7 +100,7 @@ var BudgetlevelDirectiveGenerator = function($timeout, formatters) {
                     ]
                 },
                 {
-                    "key" : "Budget",
+                    "key" : "Budget Remaining",
                     "color": "LightSteelBlue",
                     "values": [
                         {
@@ -125,7 +125,7 @@ var BudgetlevelDirectiveGenerator = function($timeout, formatters) {
                     ]
                 },
                 {
-                    "key": "Goal",
+                    "key": "Today",
                     "color": "DarkSeaGreen",
                     "values" : [
                         {
@@ -135,7 +135,7 @@ var BudgetlevelDirectiveGenerator = function($timeout, formatters) {
                     ]
                 },
                 {
-                    "key" : "Budget",
+                    "key" : "Today Budget Remaining",
                     "color": "LightSteelBlue",
                     "values": [
                         {
