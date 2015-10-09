@@ -1,7 +1,7 @@
 /**
  * Created by rerobins on 9/29/15.
  */
-var BudgetlevelDirectiveGenerator = function($timeout, formatters) {
+var BudgetlevelDirectiveGenerator = function($timeout, colorDefinitions, formatters) {
 
     //"ranges": [data.error_value, data.warn_value, data.good_value], data.balance
 
@@ -46,32 +46,32 @@ var BudgetlevelDirectiveGenerator = function($timeout, formatters) {
         if (data.balance > data.budgetValue) {
             $scope.data = [
                 {
-                    "key": "Today",
-                    "color": "Green",
-                    "values" : [
+                    key: 'Today',
+                    color: colorDefinition.good,
+                    values : [
                         {
-                            "label": label,
-                            "value": todayValue
+                            label: label,
+                            value: todayValue
                         }
                     ]
                 },
                 {
-                    "key": "Budget Remaining Today",
-                    "color": "LightSteelBlue",
-                    "values" : [
+                    key: 'Budget Remaining Today',
+                    color: colorDefinitions.base,
+                    values : [
                         {
-                            "label": label,
-                            "value": data.budgetValue - todayValue
+                            label: label,
+                            value: data.budgetValue - todayValue
                         }
                     ]
                 },
                 {
-                    "key": "Budget Overage",
-                    "color": "LightCoral",
-                    "values" : [
+                    key: 'Budget Overage',
+                    color: colorDefinitions.error,
+                    values : [
                         {
-                            "label": label,
-                            "value": data.balance - data.budgetValue
+                            label: label,
+                            value: data.balance - data.budgetValue
                         }
                     ]
                 }
@@ -80,32 +80,32 @@ var BudgetlevelDirectiveGenerator = function($timeout, formatters) {
             // Build underage Chart
             $scope.data = [
                 {
-                    "key": "Today",
-                    "color": "DarkSeaGreen",
-                    "values" : [
+                    key: 'Today',
+                    color: colorDefinitions.good,
+                    values : [
                         {
-                            "label": label,
-                            "value": todayValue
+                            label: label,
+                            value: todayValue
                         }
                     ]
                 },
                 {
-                    "key": "Today Overage",
-                    "color": "SandyBrown",
-                    "values" : [
+                    key: 'Today Overage',
+                    color: colorDefinitions.warning,
+                    values : [
                         {
-                            "label": label,
-                            "value": data.balance - todayValue
+                            label: label,
+                            value: data.balance - todayValue
                         }
                     ]
                 },
                 {
-                    "key" : "Budget Remaining",
-                    "color": "LightSteelBlue",
-                    "values": [
+                    key: 'Budget Remaining',
+                    color: colorDefinitions.base,
+                    values: [
                         {
-                            "label": label,
-                            "value": data.budgetValue - data.balance
+                            label: label,
+                            value: data.budgetValue - data.balance
                         }
                     ]
                 }
@@ -115,32 +115,32 @@ var BudgetlevelDirectiveGenerator = function($timeout, formatters) {
             // Build overage Chart
             $scope.data = [
                 {
-                    "key": "Balance",
-                    "color": "ForestGreen",
-                    "values" : [
+                    key: 'Balance',
+                    color: colorDefinitions.best,
+                    values : [
                         {
-                            "label": label,
-                            "value": data.balance
+                            label: label,
+                            value: data.balance
                         }
                     ]
                 },
                 {
-                    "key": "Today",
-                    "color": "DarkSeaGreen",
-                    "values" : [
+                    key: 'Today',
+                    color: colorDefinitions.good,
+                    values : [
                         {
-                            "label": label,
-                            "value": todayValue - data.balance
+                            label: label,
+                            value: todayValue - data.balance
                         }
                     ]
                 },
                 {
-                    "key" : "Today Budget Remaining",
-                    "color": "LightSteelBlue",
-                    "values": [
+                    key : 'Today Budget Remaining',
+                    color: colorDefinitions.base,
+                    values: [
                         {
-                            "label": label,
-                            "value": data.budgetValue - todayValue
+                            label: label,
+                            value: data.budgetValue - todayValue
                         }
                     ]
                 }
@@ -162,4 +162,4 @@ var BudgetlevelDirectiveGenerator = function($timeout, formatters) {
 };
 
 angular.module('gnucash-reports-view.reports.budget_level')
-    .directive('budgetLevel', ['$timeout', 'formatters', BudgetlevelDirectiveGenerator]);
+    .directive('budgetLevel', ['$timeout', 'colorDefinitions', 'formatters', BudgetlevelDirectiveGenerator]);

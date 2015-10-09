@@ -1,7 +1,7 @@
 /**
  * Created by rerobins on 9/29/15.
  */
-var BudgetPlanningDirectiveGenerator = function($timeout, formatters) {
+var BudgetPlanningDirectiveGenerator = function($timeout, colorDefinitions, formatters) {
     return {
         scope: {
             reportData: '&'
@@ -27,7 +27,7 @@ var BudgetPlanningDirectiveGenerator = function($timeout, formatters) {
                             left: 0
                         }
                     },
-                    labelType: "value",
+                    labelType: 'value',
                     donut: true,
                     labelsOutside: true,
                     valueFormat: formatters.currency,
@@ -42,9 +42,9 @@ var BudgetPlanningDirectiveGenerator = function($timeout, formatters) {
             $scope.data = angular.copy(data.categories);
 
             // Manipulate the data set and tye style based on the amount of remaining value that is in the accounts.
-            $scope.remainingStyle = {background: 'lightcyan'};
+            $scope.remainingStyle = {background: colorDefinitions.totalGood};
             if ($scope.remaining < 0) {
-                $scope.remainingStyle = {background: 'lightsalmon'};
+                $scope.remainingStyle = {background: colorDefinitions.totalBad};
             } else {
                 $scope.data.push({name: 'Remaining', value: data.remaining});
             }
@@ -54,4 +54,4 @@ var BudgetPlanningDirectiveGenerator = function($timeout, formatters) {
 };
 
 angular.module('gnucash-reports-view.reports.budget_planning')
-    .directive('budgetPlanning', ['$timeout', 'formatters', BudgetPlanningDirectiveGenerator]);
+    .directive('budgetPlanning', ['$timeout', 'colorDefinitions', 'formatters', BudgetPlanningDirectiveGenerator]);

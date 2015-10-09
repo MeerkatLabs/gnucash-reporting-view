@@ -1,7 +1,7 @@
 /**
  * Created by rerobins on 9/29/15.
  */
-var IncomeVsExpenseDirectiveGenerator = function(formatters) {
+var IncomeVsExpenseDirectiveGenerator = function(colorDefinitions, formatters) {
     return {
         scope: {
             reportData: '&'
@@ -51,16 +51,16 @@ var IncomeVsExpenseDirectiveGenerator = function(formatters) {
 
             $scope.data = [
                 {
-                    "key" : "Income" ,
-                    "bar": true,
-                    "color": "#007700",
-                    "values" : data.income
+                    key : 'Income',
+                    bar: true,
+                    color: colorDefinitions.credit,
+                    values : data.income
                 },
                 {
-                    "key" : "Expenses" ,
-                    "bar": true,
-                    "color": "#770000",
-                    "values" : data.expenses
+                    key : "Expenses" ,
+                    bar: true,
+                    color: colorDefinitions.debit,
+                    values : data.expenses
                 }
             ];
         }
@@ -68,4 +68,4 @@ var IncomeVsExpenseDirectiveGenerator = function(formatters) {
 };
 
 angular.module('gnucash-reports-view.reports.cash_flow')
-    .directive('incomeVsExpense', ['formatters', IncomeVsExpenseDirectiveGenerator]);
+    .directive('incomeVsExpense', ['colorDefinitions', 'formatters', IncomeVsExpenseDirectiveGenerator]);

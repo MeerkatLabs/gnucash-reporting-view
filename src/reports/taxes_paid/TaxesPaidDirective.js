@@ -1,7 +1,7 @@
 /**
  * Created by rerobins on 9/29/15.
  */
-var TaxesPaidDirectiveGenerator = function($timeout, formatters) {
+var TaxesPaidDirectiveGenerator = function($timeout, colorDefinitions, formatters) {
 
     var createTaxesPaidGraph = function($scope) {
         var data = $scope.reportData();
@@ -39,22 +39,22 @@ var TaxesPaidDirectiveGenerator = function($timeout, formatters) {
         if (data.taxes_paid > data.tax_value) {
             $scope.data = [
                 {
-                    "key": "Today",
-                    "color": "Green",
-                    "values" : [
+                    key: 'Taxes Owed',
+                    color: colorDefinitions.good,
+                    values: [
                         {
-                            "label": label,
-                            "value": data.tax_value
+                            label: label,
+                            value: data.tax_value
                         }
                     ]
                 },
                 {
-                    "key": "Overpayment",
-                    "color": "LightCoral",
-                    "values" : [
+                    key: 'Overpayment',
+                    color: colorDefinitions.error,
+                    values: [
                         {
-                            "label": label,
-                            "value": data.taxes_paid - data.tax_value
+                            label: label,
+                            value: data.taxes_paid - data.tax_value
                         }
                     ]
                 }
@@ -64,12 +64,12 @@ var TaxesPaidDirectiveGenerator = function($timeout, formatters) {
             // Build underage Chart
             $scope.data = [
                 {
-                    "key": "Taxes Paid",
-                    "color": "DarkSeaGreen",
-                    "values" : [
+                    key: 'Taxes Paid',
+                    color: colorDefinitions.good,
+                    values: [
                         {
-                            "label": label,
-                            "value": data.taxes_paid
+                            label: label,
+                            value: data.taxes_paid
                         }
                     ]
                 }];
@@ -77,12 +77,12 @@ var TaxesPaidDirectiveGenerator = function($timeout, formatters) {
             if (data.tax_value > data.taxes_paid)
             {
                 $scope.data.push({
-                    "key": "Taxes Owed",
-                    "color": "Khaki",
-                    "values" : [
+                    key: 'Taxes Owed',
+                    color: colorDefinitions.warning,
+                    values: [
                         {
-                            "label": label,
-                            "value": data.tax_value - data.taxes_paid
+                            label: label,
+                            value: data.tax_value - data.taxes_paid
                         }
                     ]
                 });
@@ -105,4 +105,4 @@ var TaxesPaidDirectiveGenerator = function($timeout, formatters) {
 };
 
 angular.module('gnucash-reports-view.reports.account_levels')
-    .directive('taxesPaid', ['$timeout', 'formatters', TaxesPaidDirectiveGenerator]);
+    .directive('taxesPaid', ['$timeout', 'colorDefinitions', 'formatters', TaxesPaidDirectiveGenerator]);

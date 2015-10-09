@@ -1,7 +1,7 @@
 /**
  * Created by rerobins on 9/29/15.
  */
-var CashFlowDirectiveGenerator = function($timeout, formatters) {
+var CashFlowDirectiveGenerator = function($timeout, colorDefinitions, formatters) {
     return {
         scope: {
             reportData: '&'
@@ -52,16 +52,16 @@ var CashFlowDirectiveGenerator = function($timeout, formatters) {
 
                 $scope.data = [
                     {
-                        "key" : "Credits" ,
-                        "bar": true,
-                        "color": "#007700",
-                        "values" : data.credits
+                        key: 'Credits',
+                        bar: true,
+                        color: colorDefinitions.credit,
+                        values: data.credits
                     },
                     {
-                        "key" : "Debits" ,
-                        "bar": true,
-                        "color": "#770000",
-                        "values" : data.debits
+                        key: 'Debits',
+                        bar: true,
+                        color: colorDefinitions.debit,
+                        values: data.debits
                     }
                 ];
             });
@@ -71,4 +71,4 @@ var CashFlowDirectiveGenerator = function($timeout, formatters) {
 };
 
 angular.module('gnucash-reports-view.reports.cash_flow')
-    .directive('cashFlow', ['$timeout', 'formatters', CashFlowDirectiveGenerator]);
+    .directive('cashFlow', ['$timeout', 'colorDefinitions', 'formatters', CashFlowDirectiveGenerator]);

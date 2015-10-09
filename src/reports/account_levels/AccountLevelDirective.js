@@ -1,10 +1,12 @@
 /**
- * Created by rerobins on 9/29/15.
+ * Directive that will display the account level information on the display.
  */
-var AccountLevelDirectiveGenerator = function($timeout, formatters) {
+var AccountLevelDirectiveGenerator = function($timeout, colorDefinitions, formatters) {
 
-    //"ranges": [data.error_value, data.warn_value, data.good_value], data.balance
-
+    /**
+     * Translate the values of the data report into something that can be rendered.
+     * @param $scope
+     */
     var createAccountLevelGraph = function($scope) {
         var data = $scope.reportData();
 
@@ -44,22 +46,22 @@ var AccountLevelDirectiveGenerator = function($timeout, formatters) {
             // Build underage Chart
             $scope.data = [
                 {
-                    "key": "Balance",
-                    "color": "Khaki",
-                    "values" : [
+                    key: 'Balance',
+                    color: colorDefinitions.info,
+                    values : [
                         {
-                            "label": label,
-                            "value": data.balance
+                            label: label,
+                            value: data.balance
                         }
                     ]
                 },
                 {
-                    "key": "Underage",
-                    "color": "LightSteelBlue",
-                    "values" : [
+                    key: 'Underage',
+                    color: colorDefinitions.base,
+                    values : [
                         {
-                            "label": label,
-                            "value": data.good_value - data.balance
+                            label: label,
+                            value: data.good_value - data.balance
                         }
                     ]
                 }
@@ -67,31 +69,31 @@ var AccountLevelDirectiveGenerator = function($timeout, formatters) {
             $scope.options.chart.stacked = true;
 
             if (data.balance < data.error_value) {
-                $scope.data[0].color = 'LightCoral';
+                $scope.data[0].color = colorDefinitions.error;
             } else if (data.balance < data.warn_value) {
-                $scope.data[0].color = 'SandyBrown';
+                $scope.data[0].color = colorDefinitions.warning;
             }
 
         } else {
             // Build overage Chart
             $scope.data = [
                 {
-                    "key": "Goal",
-                    "color": "DarkSeaGreen",
+                    "key": 'Goal',
+                    "color": colorDefinitions.good,
                     "values" : [
                         {
-                            "label": label,
-                            "value": data.good_value
+                            label: label,
+                            value: data.good_value
                         }
                     ]
                 },
                 {
-                    "key": "Overage",
-                    "color": "ForestGreen",
-                    "values" : [
+                    key: 'Overage',
+                    color: colorDefinitions.best,
+                    values : [
                         {
-                            "label": label,
-                            "value": data.balance - data.good_value
+                            label: label,
+                            value: data.balance - data.good_value
                         }
                     ]
                 }
@@ -112,4 +114,4 @@ var AccountLevelDirectiveGenerator = function($timeout, formatters) {
 };
 
 angular.module('gnucash-reports-view.reports.account_levels')
-    .directive('accountLevel', ['$timeout', 'formatters', AccountLevelDirectiveGenerator]);
+    .directive('accountLevel', ['$timeout', 'colorDefinitions', 'formatters', AccountLevelDirectiveGenerator]);

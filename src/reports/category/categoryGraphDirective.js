@@ -1,7 +1,7 @@
 /**
  * Created by rerobins on 9/29/15.
  */
-var CategoryGraphDirectiveGenerator = function($timeout, formatters) {
+var CategoryGraphDirectiveGenerator = function($timeout, colorDefinitions, formatters) {
 
     var createCategoryChart = function($scope) {
         var data = $scope.reportData();
@@ -33,7 +33,8 @@ var CategoryGraphDirectiveGenerator = function($timeout, formatters) {
 
         $scope.data = [
             {
-                "key": "",
+                key: '',
+                color: colorDefinitions.base,
                 values: function() {
                     var result = [];
 
@@ -69,4 +70,4 @@ var CategoryGraphDirectiveGenerator = function($timeout, formatters) {
 };
 
 angular.module('gnucash-reports-view.reports.category')
-    .directive('categoryGraph', ['$timeout', 'formatters', CategoryGraphDirectiveGenerator]);
+    .directive('categoryGraph', ['$timeout', 'colorDefinitions', 'formatters', CategoryGraphDirectiveGenerator]);

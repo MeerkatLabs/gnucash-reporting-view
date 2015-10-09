@@ -1,7 +1,7 @@
 /**
  * Created by rerobins on 9/29/15.
  */
-var Contribution401kDirectiveGenerator = function($timeout, formatters) {
+var Contribution401kDirectiveGenerator = function($timeout, colorDefinitions, formatters) {
 
     var create401kContributionGraph = function($scope) {
         var data = $scope.reportData();
@@ -43,22 +43,22 @@ var Contribution401kDirectiveGenerator = function($timeout, formatters) {
         if (data.contribution > data.contributionLimit) {
             $scope.data = [
                 {
-                    "key": "Today",
-                    "color": "Green",
-                    "values" : [
+                    key: 'Today',
+                    color: colorDefinitions.good,
+                    values: [
                         {
-                            "label": label,
-                            "value": data.contributionLimit
+                            label: label,
+                            value: data.contributionLimit
                         }
                     ]
                 },
                 {
-                    "key": "Contribution Overage",
-                    "color": "LightCoral",
-                    "values" : [
+                    key: 'Contribution Overage',
+                    color: colorDefinitions.error,
+                    values: [
                         {
-                            "label": label,
-                            "value": data.contribution - data.contributionLimit
+                            label: label,
+                            value: data.contribution - data.contributionLimit
                         }
                     ]
                 }
@@ -68,32 +68,32 @@ var Contribution401kDirectiveGenerator = function($timeout, formatters) {
             // Build underage Chart
             $scope.data = [
                 {
-                    "key": "Today",
-                    "color": "DarkSeaGreen",
-                    "values" : [
+                    key: 'Today',
+                    color: colorDefinitions.good,
+                    values: [
                         {
-                            "label": label,
-                            "value": todayValue
+                            label: label,
+                            value: todayValue
                         }
                     ]
                 },
                 {
-                    "key": "Today Overage",
-                    "color": "ForestGreen",
-                    "values" : [
+                    key: 'Today Overage',
+                    color: colorDefinitions.best,
+                    values: [
                         {
-                            "label": label,
-                            "value": data.contribution - todayValue
+                            label: label,
+                            value: data.contribution - todayValue
                         }
                     ]
                 },
                 {
-                    "key" : "Budget Remaining",
-                    "color": "LightSteelBlue",
-                    "values": [
+                    key: 'Budget Remaining',
+                    color: colorDefinitions.base,
+                    values: [
                         {
-                            "label": label,
-                            "value": data.contributionLimit - data.contribution
+                            label: label,
+                            value: data.contributionLimit - data.contribution
                         }
                     ]
                 }
@@ -104,32 +104,32 @@ var Contribution401kDirectiveGenerator = function($timeout, formatters) {
             // Build underage Chart
             $scope.data = [
                 {
-                    "key": "Balance",
-                    "color": "ForestGreen",
-                    "values" : [
+                    key: 'Balance',
+                    color: colorDefinitions.best,
+                    values : [
                         {
-                            "label": label,
-                            "value": data.contribution
+                            label: label,
+                            value: data.contribution
                         }
                     ]
                 },
                 {
-                    "key": "Today",
-                    "color": "Khaki",
-                    "values" : [
+                    key: 'Today',
+                    color: colorDefinitions.warning,
+                    values: [
                         {
-                            "label": label,
-                            "value": todayValue - data.contribution
+                            label: label,
+                            value: todayValue - data.contribution
                         }
                     ]
                 },
                 {
-                    "key" : "Today Budget Remaining",
-                    "color": "LightSteelBlue",
-                    "values": [
+                    key: 'Today Budget Remaining',
+                    color: colorDefinitions.base,
+                    values: [
                         {
-                            "label": label,
-                            "value": data.contributionLimit - todayValue
+                            label: label,
+                            value: data.contributionLimit - todayValue
                         }
                     ]
                 }
@@ -151,4 +151,4 @@ var Contribution401kDirectiveGenerator = function($timeout, formatters) {
 };
 
 angular.module('gnucash-reports-view.reports.account_levels')
-    .directive('contribution401k', ['$timeout', 'formatters', Contribution401kDirectiveGenerator]);
+    .directive('contribution401k', ['$timeout', 'colorDefinitions', 'formatters', Contribution401kDirectiveGenerator]);

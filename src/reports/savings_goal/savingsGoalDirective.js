@@ -1,7 +1,7 @@
 /**
  * Created by rerobins on 9/29/15.
  */
-var SavingsGoalDirectiveGenerator = function($timeout, formatters) {
+var SavingsGoalDirectiveGenerator = function($timeout, colorDefinitions, formatters) {
 
     var createSavingsGoalChart = function($scope) {
         var data = $scope.reportData();
@@ -42,22 +42,22 @@ var SavingsGoalDirectiveGenerator = function($timeout, formatters) {
             // Build underage Chart
             $scope.data = [
                 {
-                    "key": "Balance",
-                    "color": "DarkSeaGreen",
-                    "values" : [
+                    key: 'Balance',
+                    color: colorDefinitions.good,
+                    values : [
                         {
-                            "label": label,
-                            "value": data.balance
+                            label: label,
+                            value: data.balance
                         }
                     ]
                 },
                 {
-                    "key": "To Go",
-                    "color": "LightCoral",
-                    "values" : [
+                    key: 'To Go',
+                    color: colorDefinitions.error,
+                    values : [
                         {
-                            "label": label,
-                            "value": data.goal - data.balance
+                            label: label,
+                            value: data.goal - data.balance
                         }
                     ]
                 }
@@ -67,22 +67,22 @@ var SavingsGoalDirectiveGenerator = function($timeout, formatters) {
             // Build overage Chart
             $scope.data = [
                 {
-                    "key": "Goal",
-                    "color": "DarkSeaGreen",
-                    "values" : [
+                    key: 'Goal',
+                    color: colorDefinitions.good,
+                    values: [
                         {
-                            "label": label,
-                            "value": data.goal
+                            label: label,
+                            value: data.goal
                         }
                     ]
                 },
                 {
-                    "key": "Overage",
-                    "color": "ForestGreen",
-                    "values" : [
+                    key: 'Overage',
+                    color: colorDefinitions.best,
+                    values: [
                         {
-                            "label": label,
-                            "value": data.balance - data.goal
+                            label: label,
+                            value: data.balance - data.goal
                         }
                     ]
                 }
@@ -104,4 +104,4 @@ var SavingsGoalDirectiveGenerator = function($timeout, formatters) {
 };
 
 angular.module('gnucash-reports-view.reports.savings_goal')
-    .directive('savingsGoal', ['$timeout', 'formatters', SavingsGoalDirectiveGenerator]);
+    .directive('savingsGoal', ['$timeout', 'colorDefinitions', 'formatters', SavingsGoalDirectiveGenerator]);

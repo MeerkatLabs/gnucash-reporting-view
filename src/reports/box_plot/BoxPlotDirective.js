@@ -1,7 +1,7 @@
 /**
  * Created by rerobins on 9/29/15.
  */
-var BoxPlotDirectiveGenerator = function($timeout, formatters) {
+var BoxPlotDirectiveGenerator = function($timeout, colorDefinitions, formatters) {
 
     var buildChartConfiguration = function($scope) {
         var data = $scope.reportData();
@@ -16,7 +16,7 @@ var BoxPlotDirectiveGenerator = function($timeout, formatters) {
                     bottom: 100,
                     left: 100
                 },
-                color:['darkblue', 'darkorange', 'green', 'darkred', 'darkviolet'],
+                color:[colorDefinitions.base],
                 x: function(d){return d.label;},
                 maxBoxWidth: 75,
                 yDomain: [0, data.high],
@@ -29,7 +29,7 @@ var BoxPlotDirectiveGenerator = function($timeout, formatters) {
 
         $scope.data = [
             {
-                label: "Data",
+                label: 'Data',
                 values: {
                     Q1: data.q1,
                     Q2: data.q2,
@@ -54,4 +54,4 @@ var BoxPlotDirectiveGenerator = function($timeout, formatters) {
 };
 
 angular.module('gnucash-reports-view.reports.box_plot')
-    .directive('boxPlot', ['$timeout', 'formatters', BoxPlotDirectiveGenerator]);
+    .directive('boxPlot', ['$timeout', 'colorDefinitions', 'formatters', BoxPlotDirectiveGenerator]);

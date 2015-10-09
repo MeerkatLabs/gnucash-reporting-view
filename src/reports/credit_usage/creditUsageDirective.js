@@ -1,7 +1,7 @@
 /**
  * Created by rerobins on 9/29/15.
  */
-var CreditUsageDirectiveGenerator = function($timeout, formatters) {
+var CreditUsageDirectiveGenerator = function($timeout, colorDefinitions, formatters) {
 
     var createCreditUsageChart = function($scope) {
         var data = $scope.reportData();
@@ -39,7 +39,8 @@ var CreditUsageDirectiveGenerator = function($timeout, formatters) {
 
         $scope.data = [
             {
-                key: "Used",
+                key: 'Used',
+                color: colorDefinitions.debit,
                 values: [
                     {
                         label: label,
@@ -48,7 +49,8 @@ var CreditUsageDirectiveGenerator = function($timeout, formatters) {
                 ]
             },
             {
-                key: "Available",
+                key: 'Available',
+                color: colorDefinitions.credit,
                 values: [
                     {
                         label: label,
@@ -71,4 +73,4 @@ var CreditUsageDirectiveGenerator = function($timeout, formatters) {
 };
 
 angular.module('gnucash-reports-view.reports.credit_usage')
-    .directive('creditUsage', ['$timeout', 'formatters', CreditUsageDirectiveGenerator]);
+    .directive('creditUsage', ['$timeout', 'colorDefinitions', 'formatters', CreditUsageDirectiveGenerator]);

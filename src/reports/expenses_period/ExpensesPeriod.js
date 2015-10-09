@@ -1,7 +1,7 @@
 /**
  * Created by rerobins on 9/29/15.
  */
-var ExpensesPeriodDirectiveGenerator = function($timeout, formatters) {
+var ExpensesPeriodDirectiveGenerator = function($timeout, colorDefinitions, formatters) {
     return {
         scope: {
             reportData: '&'
@@ -44,9 +44,10 @@ var ExpensesPeriodDirectiveGenerator = function($timeout, formatters) {
 
                 $scope.data = [
                     {
-                        "key" : "Expenses" ,
-                        "bar": false,
-                        "values" : data.expenses
+                        key : 'Expenses',
+                        bar: false,
+                        values : data.expenses,
+                        color: colorDefinitions.base
                     }
                 ];
 
@@ -57,4 +58,4 @@ var ExpensesPeriodDirectiveGenerator = function($timeout, formatters) {
 };
 
 angular.module('gnucash-reports-view.reports.expenses_period')
-    .directive('expensesPeriod', ['$timeout', 'formatters', ExpensesPeriodDirectiveGenerator]);
+    .directive('expensesPeriod', ['$timeout', 'colorDefinitions', 'formatters', ExpensesPeriodDirectiveGenerator]);
