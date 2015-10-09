@@ -11,7 +11,7 @@
         </thead>
         <tbody>
             <tr>
-                <td width="30%">ASSETS</td>
+                <td width="30%" style="text-transform: uppercase;">Assets</td>
                 <td ng-repeat="value in assets().trend track by $index">
                     <currency-format value="value"></currency-format>
                 </td>
@@ -24,7 +24,7 @@
             </tr>
 
             <tr>
-                <td>LIABILITIES</td>
+                <td style="text-transform: uppercase;">Liabilities</td>
                 <td ng-repeat="value in liabilities().trend track by $index">
                     <currency-format value="value"></currency-format>
                 </td>
@@ -38,7 +38,7 @@
 
 
             <tr style="background-color: lightblue;">
-                <td><strong>TOTALS</strong></td>
+                <td style="text-transform: uppercase;"><strong>Totals</strong></td>
                 <td ng-repeat="value in netWorth().trend track by $index">
                     <currency-format value="value"></currency-format>
                 </td>

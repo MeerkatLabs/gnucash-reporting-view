@@ -11,7 +11,7 @@
         </thead>
         <tbody>
             <tr ng-repeat="row in data().records">
-                <td>{{row.name}}</td>
+                <td style="text-transform: uppercase;">{{row.name}}</td>
                 <td ng-repeat="value in row.trend track by $index">
                     <currency-format value="value"></currency-format>
                 </td>
@@ -24,7 +24,7 @@
             </tr>
 
             <tr style="background-color: aliceblue;">
-                <td><strong>TOTALS</strong></td>
+                <td style="text-transform: uppercase;"><strong>Totals</strong></td>
                 <td ng-repeat="value in data().trend track by $index">
                     <currency-format value="value"></currency-format>
                 </td>
