@@ -15,5 +15,6 @@ angular.module('gnucash-reports-view.reports', [
     'gnucash-reports-view.reports.net_worth_table',
     'gnucash-reports-view.reports.income_vs_expense',
     'gnucash-reports-view.reports.budget_planning',
-    'gnucash-reports-view.reports.taxes_paid'
+    'gnucash-reports-view.reports.taxes_paid',
+    'gnucash-reports-view.reports.debt_liquid_assets'
 ]);
