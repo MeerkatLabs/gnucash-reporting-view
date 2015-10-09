@@ -50,6 +50,11 @@ var CategoryGraphDirectiveGenerator = function($timeout, formatters) {
         ];
 
         $scope.tableData = data.categories;
+        $scope.total = 0;
+
+        data.categories.forEach(function(d) {
+            $scope.total += d[1];
+        });
     };
 
     return {
@@ -58,36 +63,6 @@ var CategoryGraphDirectiveGenerator = function($timeout, formatters) {
         },
         templateUrl: 'src/reports/category/categoryGraphDirective.html',
         link: function($scope) {
-            //var data = $scope.reportData();
-            //
-            //$timeout(function() {
-            //    $scope.options = {
-            //        chart: {
-            //            type: 'pieChart',
-            //            height: 350,
-            //            x: function(d){return d[0];},
-            //            y: function(d){return d[1];},
-            //            showLabels: true,
-            //            transitionDuration: 0,
-            //            labelThreshold: 0.01,
-            //            legend: {
-            //                margin: {
-            //                    top: 5,
-            //                    right: 35,
-            //                    bottom: 20,
-            //                    left: 0
-            //                }
-            //            },
-            //            labelType: "value",
-            //            donut: true,
-            //            labelsOutside: true,
-            //            valueFormat: formatters.currency,
-            //            labelSunbeamLayout: true
-            //        }
-            //    };
-            //
-            //    $scope.data = data.categories;
-            //});
             $timeout(createCategoryChart, 0, true, $scope);
         }
     };
