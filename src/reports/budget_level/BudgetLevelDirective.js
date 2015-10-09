@@ -3,7 +3,119 @@
  */
 var BudgetlevelDirectiveGenerator = function($timeout, colorDefinitions, formatters) {
 
-    //"ranges": [data.error_value, data.warn_value, data.good_value], data.balance
+    var createDataSet = function(budgetValue, balance, currentDay, daysInPeriod) {
+        var label = formatters.currency(budgetValue);
+
+        var todayValue = (currentDay / daysInPeriod) * budgetValue;
+
+        var data = null;
+
+        if (balance > budgetValue) {
+            data = [
+                {
+                    key: 'Today',
+                    color: colorDefinitions.good,
+                    values : [
+                        {
+                            label: label,
+                            value: todayValue
+                        }
+                    ]
+                },
+                {
+                    key: 'Budget Remaining Today',
+                    color: colorDefinitions.base,
+                    values : [
+                        {
+                            label: label,
+                            value: budgetValue - todayValue
+                        }
+                    ]
+                },
+                {
+                    key: 'Budget Overage',
+                    color: colorDefinitions.error,
+                    values : [
+                        {
+                            label: label,
+                            value: balance - budgetValue
+                        }
+                    ]
+                }
+            ];
+        } else if (balance > todayValue) {
+            // Build underage Chart
+            data = [
+                {
+                    key: 'Today',
+                    color: colorDefinitions.good,
+                    values : [
+                        {
+                            label: label,
+                            value: todayValue
+                        }
+                    ]
+                },
+                {
+                    key: 'Today Overage',
+                    color: colorDefinitions.warning,
+                    values : [
+                        {
+                            label: label,
+                            value: balance - todayValue
+                        }
+                    ]
+                },
+                {
+                    key: 'Budget Remaining',
+                    color: colorDefinitions.base,
+                    values: [
+                        {
+                            label: label,
+                            value: budgetValue - balance
+                        }
+                    ]
+                }
+            ];
+
+        } else {
+            // Build overage Chart
+            data = [
+                {
+                    key: 'Balance',
+                    color: colorDefinitions.best,
+                    values : [
+                        {
+                            label: label,
+                            value: balance
+                        }
+                    ]
+                },
+                {
+                    key: 'Today',
+                    color: colorDefinitions.good,
+                    values : [
+                        {
+                            label: label,
+                            value: todayValue - balance
+                        }
+                    ]
+                },
+                {
+                    key : 'Today Budget Remaining',
+                    color: colorDefinitions.base,
+                    values: [
+                        {
+                            label: label,
+                            value: budgetValue - todayValue
+                        }
+                    ]
+                }
+            ];
+        }
+
+        return data;
+    };
 
     var createBudgetLevelGraph = function($scope) {
         var data = $scope.reportData();
@@ -33,119 +145,12 @@ var BudgetlevelDirectiveGenerator = function($timeout, colorDefinitions, formatt
                     left: 75,
                     right: 75
                 }
-
             }
-
-
         };
 
-        var label = formatters.currency(data.budgetValue);
+        $scope.data = createDataSet(data.budgetValue, data.balance, data.today, data.daysInMonth);
+        $scope.yearData = createDataSet(data.budgetValue * 12, data.yearlyBalance, data.currentYearDay, data.daysInYear);
 
-        var todayValue = (data.today / data.daysInMonth) * data.budgetValue;
-
-        if (data.balance > data.budgetValue) {
-            $scope.data = [
-                {
-                    key: 'Today',
-                    color: colorDefinition.good,
-                    values : [
-                        {
-                            label: label,
-                            value: todayValue
-                        }
-                    ]
-                },
-                {
-                    key: 'Budget Remaining Today',
-                    color: colorDefinitions.base,
-                    values : [
-                        {
-                            label: label,
-                            value: data.budgetValue - todayValue
-                        }
-                    ]
-                },
-                {
-                    key: 'Budget Overage',
-                    color: colorDefinitions.error,
-                    values : [
-                        {
-                            label: label,
-                            value: data.balance - data.budgetValue
-                        }
-                    ]
-                }
-            ];
-        } else if (data.balance > todayValue) {
-            // Build underage Chart
-            $scope.data = [
-                {
-                    key: 'Today',
-                    color: colorDefinitions.good,
-                    values : [
-                        {
-                            label: label,
-                            value: todayValue
-                        }
-                    ]
-                },
-                {
-                    key: 'Today Overage',
-                    color: colorDefinitions.warning,
-                    values : [
-                        {
-                            label: label,
-                            value: data.balance - todayValue
-                        }
-                    ]
-                },
-                {
-                    key: 'Budget Remaining',
-                    color: colorDefinitions.base,
-                    values: [
-                        {
-                            label: label,
-                            value: data.budgetValue - data.balance
-                        }
-                    ]
-                }
-            ];
-
-        } else {
-            // Build overage Chart
-            $scope.data = [
-                {
-                    key: 'Balance',
-                    color: colorDefinitions.best,
-                    values : [
-                        {
-                            label: label,
-                            value: data.balance
-                        }
-                    ]
-                },
-                {
-                    key: 'Today',
-                    color: colorDefinitions.good,
-                    values : [
-                        {
-                            label: label,
-                            value: todayValue - data.balance
-                        }
-                    ]
-                },
-                {
-                    key : 'Today Budget Remaining',
-                    color: colorDefinitions.base,
-                    values: [
-                        {
-                            label: label,
-                            value: data.budgetValue - todayValue
-                        }
-                    ]
-                }
-            ];
-        }
     };
 
 

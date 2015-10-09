@@ -1,3 +1,24 @@
 <div flex>
-    <nvd3 options="options" data="data" ng-if="data"></nvd3>
+
+    <md-tabs md-dynamic-height md-border-bottom>
+        <md-tab label="monthly">
+            <md-content class="md-padding">
+                <nvd3 options="options" data="data" ng-if="data"></nvd3>
+                <div layout="row" layout-sm="column" layout-align="space-around" ng-hide="data">
+                    <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+                </div>
+            </md-content>
+        </md-tab>
+
+        <md-tab label="yearly" ng-if="yearData">
+            <md-content class="md-padding">
+                <nvd3 options="options" data="yearData" ng-if="yearData"></nvd3>
+                <div layout="row" layout-sm="column" layout-align="space-around" ng-hide="data">
+                    <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+                </div>
+            </md-content>
+        </md-tab>
+
+    </md-tabs>
+
 </div>
