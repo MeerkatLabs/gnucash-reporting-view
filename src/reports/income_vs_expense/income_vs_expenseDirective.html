@@ -15,13 +15,17 @@
                         <thead>
                         <tr>
                             <th name="Date"></th>
-                            <th name="{{dataset.key}}" ng-repeat="dataset in data track by $index"></th>
+                            <th name="Income"></th>
+                            <th name="Expenses"></th>
+                            <th name="Net"></th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr ng-repeat="firstDataSet in data[0].values track by $index" ng-init="i = $index">
+                        <tr ng-repeat="firstDataSet in reportData().net track by $index" ng-init="i = $index">
                             <td>{{firstDataSet.date * 1000 | date}}</td>
-                            <td ng-repeat="dataSet in data">{{dataSet.values[i].value | currency}}</td>
+                            <td><currency-format value="reportData().income[i].value"></currency-format></td>
+                            <td><currency-format value="reportData().expenses[i].value"></currency-format></td>
+                            <td><currency-format value="reportData().net[i].value"></currency-format></td>
                         </tr>
                         </tbody>
                     </table>

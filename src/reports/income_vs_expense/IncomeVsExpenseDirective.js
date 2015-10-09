@@ -63,6 +63,8 @@ var IncomeVsExpenseDirectiveGenerator = function(colorDefinitions, formatters) {
                     values : data.expenses
                 }
             ];
+
+            $scope.tableData = data;
         }
     };
 };
