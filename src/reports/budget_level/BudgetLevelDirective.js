@@ -1,44 +1,165 @@
 /**
  * Created by rerobins on 9/29/15.
  */
-var BudgetlevelDirectiveGenerator = function(formatters) {
+var BudgetlevelDirectiveGenerator = function($timeout, formatters) {
+
+    //"ranges": [data.error_value, data.warn_value, data.good_value], data.balance
+
+    var createBudgetLevelGraph = function($scope) {
+        var data = $scope.reportData();
+
+        $scope.options = {
+            chart: {
+                type: 'multiBarHorizontalChart',
+                transitionDuration: 0,
+                tooltip: {
+                    valueFormatter: formatters.currency
+                },
+                tickFormat: formatters.currencyNoParts,
+                x: function(d){return d.label;},
+                y: function(d){return d.value;},
+                showControls: false,
+                showValues: true,
+                stacked: true,
+                xAxis: {
+                    showMaxMin: false
+                },
+                yAxis: {
+                    ticks: 15,
+                    axisLabel: 'USD',
+                    tickFormat: formatters.currencyNoParts
+                },
+                margin: {
+                    left: 75,
+                    right: 75
+                }
+
+            }
+
+
+        };
+
+        var label = formatters.currency(data.budgetValue);
+
+        var todayValue = (data.today / data.daysInMonth) * data.budgetValue;
+
+        if (data.balance > data.budgetValue) {
+            $scope.data = [
+                {
+                    "key": "Today",
+                    "color": "Green",
+                    "values" : [
+                        {
+                            "label": label,
+                            "value": todayValue
+                        }
+                    ]
+                },
+                {
+                    "key": "Budget",
+                    "color": "LightSteelBlue",
+                    "values" : [
+                        {
+                            "label": label,
+                            "value": data.budgetValue - todayValue
+                        }
+                    ]
+                },
+                {
+                    "key": "Overage",
+                    "color": "LightCoral",
+                    "values" : [
+                        {
+                            "label": label,
+                            "value": data.balance - data.budgetValue
+                        }
+                    ]
+                }
+            ];
+        } else if (data.balance > todayValue) {
+            // Build underage Chart
+            $scope.data = [
+                {
+                    "key": "Today",
+                    "color": "DarkSeaGreen",
+                    "values" : [
+                        {
+                            "label": label,
+                            "value": todayValue
+                        }
+                    ]
+                },
+                {
+                    "key": "Overage",
+                    "color": "SandyBrown",
+                    "values" : [
+                        {
+                            "label": label,
+                            "value": data.balance - todayValue
+                        }
+                    ]
+                },
+                {
+                    "key" : "Budget",
+                    "color": "LightSteelBlue",
+                    "values": [
+                        {
+                            "label": label,
+                            "value": data.budgetValue - data.balance
+                        }
+                    ]
+                }
+            ];
+
+        } else {
+            // Build overage Chart
+            $scope.data = [
+                {
+                    "key": "Balance",
+                    "color": "ForestGreen",
+                    "values" : [
+                        {
+                            "label": label,
+                            "value": data.balance
+                        }
+                    ]
+                },
+                {
+                    "key": "Goal",
+                    "color": "DarkSeaGreen",
+                    "values" : [
+                        {
+                            "label": label,
+                            "value": todayValue - data.balance
+                        }
+                    ]
+                },
+                {
+                    "key" : "Budget",
+                    "color": "LightSteelBlue",
+                    "values": [
+                        {
+                            "label": label,
+                            "value": data.budgetValue - todayValue
+                        }
+                    ]
+                }
+            ];
+        }
+    };
+
+
+
     return {
         scope: {
             reportData: '&'
         },
         templateUrl: 'src/reports/budget_level/budgetLevelDirective.html',
         link: function($scope) {
-            var data = $scope.reportData();
-
-            $scope.options = {
-                chart: {
-                    type: 'bulletChart',
-                    transitionDuration: 0,
-                    tooltip: {
-                        valueFormatter: formatters.currency
-                    },
-                    tickFormat: formatters.currencyNoParts
-                }
-            };
-
-            var graphMargin = 1.1;
-
-            var maximum_value = Math.max(data.balance * graphMargin,
-                                         data.budgetValue * graphMargin);
-
-            var marker = (data.today / data.daysInMonth) * data.budgetValue;
-
-
-            $scope.data =  {
-                "title": "Account",
-                "subtitle": "US$",
-                "ranges": [data.budgetValue, maximum_value],
-                "measures": [data.balance],
-                "markers": [marker]
-            };
+            $timeout(createBudgetLevelGraph, 0, true, $scope);
         }
     };
 };
 
 angular.module('gnucash-reports-view.reports.budget_level')
-    .directive('budgetLevel', ['formatters', BudgetlevelDirectiveGenerator]);
+    .directive('budgetLevel', ['$timeout', 'formatters', BudgetlevelDirectiveGenerator]);
