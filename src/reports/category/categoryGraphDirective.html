@@ -20,16 +20,19 @@
                         <tr>
                             <th name="Category"></th>
                             <th name="Value" ></th>
+                            <th name="Percentage"></th>
                         </tr>
                         </thead>
                         <tbody>
                             <tr ng-repeat="dataset in tableData track by dataset[0]">
                                 <td style="text-transform: uppercase;">{{::dataset[0]}}</td>
                                 <td>{{::dataset[1] | currency}}</td>
+                                <td><percentage-format value="dataset[1] / total"></percentage-format></td>
                             </tr>
                             <tr style="background-color: lightblue;">
                                 <td style="text-transform: uppercase;">Total</td>
                                 <td>{{::total | currency}}</td>
+                                <td>&nbsp;</td>
                             </tr>
                         </tbody>
                     </table>

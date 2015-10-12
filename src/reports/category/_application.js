@@ -4,4 +4,5 @@ angular.module('gnucash-reports-view.reports.category', ['gnucash-reports-view.r
     .config(['ReportsManagementProvider', function(provider) {
         provider.addTemplate('account_usage_categories', 'src/reports/category/category.html');
         provider.addTemplate('expenses_categories', 'src/reports/category/category.html');
+        provider.addTemplate('investment_allocation', 'src/reports/category/category.html');
     }]);
