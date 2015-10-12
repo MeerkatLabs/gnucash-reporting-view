@@ -1,7 +1,7 @@
 /**
  * Created by rerobins on 9/29/15.
  */
-var InvestmentBalanceDirectiveGenerator = function(formatters) {
+var InvestmentBalanceDirectiveGenerator = function(colorDefinitions, formatters) {
     return {
         scope: {
             reportData: '&'
@@ -20,11 +20,12 @@ var InvestmentBalanceDirectiveGenerator = function(formatters) {
                         bottom: 100,
                         left: 100
                     },
-                    color: d3.scale.category10().range(),
+                    color: [colorDefinitions.best, colorDefinitions.good, '#000000'],
                     useInteractiveGuideline: true,
                     useVoronoi: false,
                     interpolate: false,
                     transitionDuration: 0,
+                    toolTips: true,
                     xAxis: {
                         showMaxMin: false,
                         tickFormat: formatters.date
@@ -80,4 +81,4 @@ var InvestmentBalanceDirectiveGenerator = function(formatters) {
 };
 
 angular.module('gnucash-reports-view.reports.account_levels')
-    .directive('investmentBalance', ['formatters', InvestmentBalanceDirectiveGenerator]);
+    .directive('investmentBalance', ['colorDefinitions', 'formatters', InvestmentBalanceDirectiveGenerator]);
