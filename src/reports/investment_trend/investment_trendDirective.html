@@ -18,12 +18,16 @@
                         <tr>
                             <th name="Date"></th>
                             <th name="{{::dataset.key}}" ng-repeat="dataset in data track by $index"></th>
+                            <th name="Value Difference"></th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr ng-repeat="firstDataSet in data[0].values track by $index" ng-init="i = $index">
                             <td>{{::firstDataSet.x * 1000 | date}}</td>
                             <td ng-repeat="dataSet in data track by $index">{{::dataSet.values[i].y | currency}}</td>
+                            <td>
+                                <currency-format value="data[4].values[i].y-data[0].values[i].y"></currency-format>
+                            </td>
                         </tr>
                         </tbody>
                     </table>

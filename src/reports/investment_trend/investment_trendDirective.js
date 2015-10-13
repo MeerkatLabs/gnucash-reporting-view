@@ -65,6 +65,19 @@ var InvestmentTrendDirectiveGenerator = function(colorDefinitions, formatters) {
                         });
                         return results;
                     }()
+                },
+                {
+                    "type": "line",
+                    "yAxis": 1,
+                    "key" : "Value",
+                    "values" : function() {
+                        var results = [];
+                        data.value.forEach(function(element) {
+                            results.push({x: element[0], y: element[1]});
+                            basisMax = Math.max(basisMax, element[1]);
+                        });
+                        return results;
+                    }()
                 }
 
             ];
@@ -79,7 +92,9 @@ var InvestmentTrendDirectiveGenerator = function(colorDefinitions, formatters) {
                         bottom: 100,
                         left: 100
                     },
-                    color: [colorDefinitions.good, colorDefinitions.best, '#000000', colorDefinitions.error],
+                    color: [
+                        colorDefinitions.good, colorDefinitions.best,
+                        colorDefinitions.info, colorDefinitions.error, '#000000'],
                     useInteractiveGuideline: true,
                     useVoronoi: false,
                     interpolate: false,
