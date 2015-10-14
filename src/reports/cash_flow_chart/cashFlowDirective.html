@@ -19,12 +19,16 @@
                         <tr>
                             <th name="Date"></th>
                             <th name="{{::dataset.key}}" ng-repeat="dataset in data track by $index"></th>
+                            <th name="Net"></th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr ng-repeat="firstDataSet in data[0].values track by $index" ng-init="i = $index">
                             <td>{{::firstDataSet.date * 1000 | date}}</td>
                             <td ng-repeat="dataSet in data track by $index">{{::dataSet.values[i].value | currency}}</td>
+                            <td>
+                                <currency-format value="data[0].values[i].value + data[1].values[i].value"></currency-format>
+                            </td>
                         </tr>
                         </tbody>
                     </table>
