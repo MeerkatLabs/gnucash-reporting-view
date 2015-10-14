@@ -9,12 +9,12 @@ var CurrencyDirectiveGenerator = function(formatters) {
         },
         template: '<span ng-style="style">{{currencyValue}}</span>',
         link: function($scope) {
+            $scope.currencyValue = formatters.currency($scope.value());
+
             if ($scope.value() > 0.0) {
                 $scope.style = {color: 'green'};
-                $scope.currencyValue = formatters.currency($scope.value());
             } else if ($scope.value() < 0.0) {
                 $scope.style = {color: 'red'};
-                $scope.currencyValue = formatters.currency($scope.value());
             }
         }
     };
