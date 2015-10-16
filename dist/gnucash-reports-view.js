@@ -76,9 +76,11 @@ angular.module('gnucash-reports-view.reports.cash_flow', ['gnucash-reports-view.
 angular.module('gnucash-reports-view.reports.category', ['gnucash-reports-view.reports.base',
                                                           'nvd3'])
     .config(['ReportsManagementProvider', function(provider) {
-        provider.addTemplate('account_usage_categories', 'src/reports/category/category.html');
-        provider.addTemplate('expenses_categories', 'src/reports/category/category.html');
-        provider.addTemplate('investment_allocation', 'src/reports/category/category.html');
+        var categoryTemplate = 'src/reports/category/category.html';
+        provider.addTemplate('account_usage_categories', categoryTemplate);
+        provider.addTemplate('expenses_categories', categoryTemplate);
+        provider.addTemplate('investment_allocation', categoryTemplate);
+        provider.addTemplate('expense_accounts', categoryTemplate);
     }]);
 
 
@@ -687,12 +689,12 @@ var CurrencyDirectiveGenerator = function(formatters) {
         },
         template: '<span ng-style="style">{{currencyValue}}</span>',
         link: function($scope) {
+            $scope.currencyValue = formatters.currency($scope.value());
+
             if ($scope.value() > 0.0) {
                 $scope.style = {color: 'green'};
-                $scope.currencyValue = formatters.currency($scope.value());
             } else if ($scope.value() < 0.0) {
                 $scope.style = {color: 'red'};
-                $scope.currencyValue = formatters.currency($scope.value());
             }
         }
     };
