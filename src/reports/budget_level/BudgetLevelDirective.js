@@ -48,7 +48,7 @@ var BudgetlevelDirectiveGenerator = function($timeout, colorDefinitions, formatt
             data = [
                 {
                     key: 'Today',
-                    color: colorDefinitions.good,
+                    color: colorDefinitions.best,
                     values : [
                         {
                             label: label,
