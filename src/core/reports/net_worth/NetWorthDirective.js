@@ -7,7 +7,7 @@ var NetworthDirectiveGenerator = function($timeout, formatters) {
         scope: {
             reportData: '&'
         },
-        templateUrl: 'src/reports/net_worth/net_worthDirective.html',
+        templateUrl: 'core/reports/net_worth/net_worthDirective.html',
         link: function($scope) {
             var data = $scope.reportData();
 

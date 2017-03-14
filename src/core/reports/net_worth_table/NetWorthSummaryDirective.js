@@ -11,7 +11,7 @@ var NetworthSummaryDirectiveGenerator = function() {
             deltas: '&',
             trends: '&'
         },
-        templateUrl: 'src/reports/net_worth_table/net_worth_summary.html'
+        templateUrl: 'core/reports/net_worth_table/net_worth_summary.html'
     };
 };
 
