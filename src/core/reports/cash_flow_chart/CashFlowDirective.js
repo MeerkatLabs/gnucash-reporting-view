@@ -6,7 +6,7 @@ var CashFlowDirectiveGenerator = function($timeout, colorDefinitions, formatters
         scope: {
             reportData: '&'
         },
-        templateUrl: 'src/reports/cash_flow_chart/cashFlowDirective.html',
+        templateUrl: 'core/reports/cash_flow_chart/cashFlowDirective.html',
         link: function($scope) {
             var data = $scope.reportData();
 

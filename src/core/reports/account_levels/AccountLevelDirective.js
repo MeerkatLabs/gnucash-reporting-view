@@ -106,7 +106,7 @@ var AccountLevelDirectiveGenerator = function($timeout, colorDefinitions, format
         scope: {
             reportData: '&'
         },
-        templateUrl: 'src/reports/account_levels/accountLevelDirective.html',
+        templateUrl: 'core/reports/account_levels/accountLevelDirective.html',
         link: function($scope) {
             $timeout(createAccountLevelGraph, 0, true, $scope);
         }

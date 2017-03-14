@@ -46,7 +46,7 @@ var BoxPlotDirectiveGenerator = function($timeout, colorDefinitions, formatters)
         scope: {
             reportData: '&'
         },
-        templateUrl: 'src/reports/box_plot/boxPlotDirective.html',
+        templateUrl: 'core/reports/box_plot/boxPlotDirective.html',
         link: function($scope) {
             $timeout(buildChartConfiguration, 0, true, $scope);
         }

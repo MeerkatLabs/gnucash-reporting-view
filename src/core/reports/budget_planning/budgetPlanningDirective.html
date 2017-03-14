@@ -5,34 +5,34 @@
     </div>
 
     <div style="height: 400px; overflow-y: scroll; overflow-x: hidden">
-        <md-data-table-container>
-            <table md-data-table>
-                <thead>
-                <tr>
-                    <th name="Category"></th>
-                    <th name="Value"></th>
-                </tr>
+        <md-table-container>
+            <table md-table>
+                <thead md-head>
+                    <tr md-row>
+                        <th md-column>Category</th>
+                        <th md-column>Value</th>
+                    </tr>
                 </thead>
-                <tbody>
-                <tr ng-repeat="item in budget track by $index">
-                    <td>{{item.name}}</td>
-                    <td>{{item.value | currency}}</td>
-                </tr>
+                <tbody md-body>
+                    <tr md-row ng-repeat="item in budget track by $index">
+                        <td md-cell>{{item.name}}</td>
+                        <td md-cell>{{item.value | currency}}</td>
+                    </tr>
 
-                <tr style="background: aliceblue">
-                    <td>Total</td>
-                    <td>{{total | currency}}</td>
-                </tr>
-                <tr>
-                    <td>Income</td>
-                    <td>{{income | currency}}</td>
-                </tr>
-                <tr ng-style="remainingStyle">
-                    <td>Remaining</td>
-                    <td>{{remaining | currency}}</td>
-                </tr>
+                    <tr md-row style="background: aliceblue">
+                        <td md-cell>Total</td>
+                        <td md-cell>{{total | currency}}</td>
+                    </tr>
+                    <tr md-row>
+                        <td md-cell>Income</td>
+                        <td md-cell>{{income | currency}}</td>
+                    </tr>
+                    <tr md-row ng-style="remainingStyle">
+                        <td md-cell>Remaining</td>
+                        <td md-cell>{{remaining | currency}}</td>
+                    </tr>
                 </tbody>
             </table>
-        </md-data-table-container>
+        </md-table-container>
     </div>
 </div>

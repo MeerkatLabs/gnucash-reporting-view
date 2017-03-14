@@ -6,7 +6,7 @@ var ExpensesPeriodDirectiveGenerator = function($timeout, colorDefinitions, form
         scope: {
             reportData: '&'
         },
-        templateUrl: 'src/reports/expenses_period/expensesPeriodDirective.html',
+        templateUrl: 'core/reports/expenses_period/expensesPeriodDirective.html',
         link: function($scope) {
             var data = $scope.reportData();
 

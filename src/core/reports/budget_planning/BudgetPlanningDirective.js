@@ -6,7 +6,7 @@ var BudgetPlanningDirectiveGenerator = function($timeout, colorDefinitions, form
         scope: {
             reportData: '&'
         },
-        templateUrl: 'src/reports/budget_planning/budgetPlanningDirective.html',
+        templateUrl: 'core/reports/budget_planning/budgetPlanningDirective.html',
         link: function($scope) {
             var data = $scope.reportData();
 

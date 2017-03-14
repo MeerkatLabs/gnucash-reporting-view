@@ -97,7 +97,7 @@ var TaxesPaidDirectiveGenerator = function($timeout, colorDefinitions, formatter
         scope: {
             reportData: '&'
         },
-        templateUrl: 'src/reports/taxes_paid/taxes_paidDirective.html',
+        templateUrl: 'core/reports/taxes_paid/taxes_paidDirective.html',
         link: function($scope) {
             $timeout(createTaxesPaidGraph, 0, true, $scope);
         }

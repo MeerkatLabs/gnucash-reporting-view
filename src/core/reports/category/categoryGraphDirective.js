@@ -62,7 +62,7 @@ var CategoryGraphDirectiveGenerator = function($timeout, colorDefinitions, forma
         scope: {
             reportData: '&'
         },
-        templateUrl: 'src/reports/category/categoryGraphDirective.html',
+        templateUrl: 'core/reports/category/categoryGraphDirective.html',
         link: function($scope) {
             $timeout(createCategoryChart, 0, true, $scope);
         }

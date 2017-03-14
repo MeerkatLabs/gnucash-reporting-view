@@ -93,7 +93,7 @@ var DebtLiquidAssetDirectiveGenerator = function($timeout, colorDefinitions, for
         scope: {
             reportData: '&'
         },
-        templateUrl: 'src/reports/debt_liquid_assets/debtLiquidAssetDirective.html',
+        templateUrl: 'core/reports/debt_liquid_assets/debtLiquidAssetDirective.html',
         link: function($scope) {
             $timeout(createDebitLiquidAssetChart, 0, true, $scope);
         }

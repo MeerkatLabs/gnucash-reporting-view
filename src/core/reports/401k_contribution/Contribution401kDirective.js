@@ -143,7 +143,7 @@ var Contribution401kDirectiveGenerator = function($timeout, colorDefinitions, fo
         scope: {
             reportData: '&'
         },
-        templateUrl: 'src/reports/401k_contribution/401k_reportDirective.html',
+        templateUrl: 'core/reports/401k_contribution/401k_reportDirective.html',
         link: function($scope) {
             $timeout(create401kContributionGraph, 0, true, $scope);
         }

@@ -159,7 +159,7 @@ var BudgetlevelDirectiveGenerator = function($timeout, colorDefinitions, formatt
         scope: {
             reportData: '&'
         },
-        templateUrl: 'src/reports/budget_level/budgetLevelDirective.html',
+        templateUrl: 'core/reports/budget_level/budgetLevelDirective.html',
         link: function($scope) {
             $timeout(createBudgetLevelGraph, 0, true, $scope);
         }

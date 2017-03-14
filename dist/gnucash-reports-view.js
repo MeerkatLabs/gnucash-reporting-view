@@ -28,7 +28,7 @@ angular.module('gnucash-reports-view.reports', [
 angular.module('gnucash-reports-view.reports.401k_contribution', ['gnucash-reports-view.reports.base',
                                                                   'nvd3'])
     .config(['ReportsManagementProvider', function(provider) {
-        provider.addTemplate('401k_report', 'src/reports/401k_contribution/401k_report.html');
+        provider.addTemplate('401k_report', 'core/reports/401k_contribution/401k_report.html');
     }]);
 /**
  * This is a report that will show the level of a checking/savings account and show warning levels based on the values
@@ -38,7 +38,7 @@ angular.module('gnucash-reports-view.reports.401k_contribution', ['gnucash-repor
 angular.module('gnucash-reports-view.reports.account_levels', ['gnucash-reports-view.reports.base',
                                                                'nvd3'])
     .config(['ReportsManagementProvider', function(provider) {
-        provider.addTemplate('account_levels', 'src/reports/account_levels/account_levels.html');
+        provider.addTemplate('account_levels', 'core/reports/account_levels/account_levels.html');
     }]);
 angular.module('gnucash-reports-view.reports.base', []);
 /**
@@ -47,31 +47,31 @@ angular.module('gnucash-reports-view.reports.base', []);
 angular.module('gnucash-reports-view.reports.box_plot', ['gnucash-reports-view.reports.base',
     'nvd3'])
     .config(['ReportsManagementProvider', function(provider) {
-        provider.addTemplate('expenses_box', 'src/reports/box_plot/box_plot.html');
+        provider.addTemplate('expenses_box', 'core/reports/box_plot/box_plot.html');
     }]);
 angular.module('gnucash-reports-view.reports.budget_level', ['gnucash-reports-view.reports.base',
                                                                'nvd3'])
     .config(['ReportsManagementProvider', function(provider) {
-        provider.addTemplate('budget_level', 'src/reports/budget_level/budget_level.html');
-        provider.addTemplate('category_budget_level', 'src/reports/budget_level/budget_level.html');
+        provider.addTemplate('budget_level', 'core/reports/budget_level/budget_level.html');
+        provider.addTemplate('category_budget_level', 'core/reports/budget_level/budget_level.html');
     }]);
 
 angular.module('gnucash-reports-view.reports.budget_planning', ['gnucash-reports-view.reports.base',
                                                                 'nvd3', 'md.data.table', 'ngMaterial'])
     .config(['ReportsManagementProvider', function(provider) {
-        provider.addTemplate('budget_planning', 'src/reports/budget_planning/budget_planning.html');
+        provider.addTemplate('budget_planning', 'core/reports/budget_planning/budget_planning.html');
     }]);
 
 angular.module('gnucash-reports-view.reports.cash_flow', ['gnucash-reports-view.reports.base',
                                                                   'nvd3'])
     .config(['ReportsManagementProvider', function(provider) {
-        provider.addTemplate('cash_flow_chart', 'src/reports/cash_flow_chart/cash_flow.html');
+        provider.addTemplate('cash_flow_chart', 'core/reports/cash_flow_chart/cash_flow.html');
     }]);
 
 angular.module('gnucash-reports-view.reports.category', ['gnucash-reports-view.reports.base',
                                                           'nvd3'])
     .config(['ReportsManagementProvider', function(provider) {
-        var categoryTemplate = 'src/reports/category/category.html';
+        var categoryTemplate = 'core/reports/category/category.html';
         provider.addTemplate('account_usage_categories', categoryTemplate);
         provider.addTemplate('expenses_categories', categoryTemplate);
         provider.addTemplate('investment_allocation', categoryTemplate);
@@ -82,40 +82,40 @@ angular.module('gnucash-reports-view.reports.category', ['gnucash-reports-view.r
 angular.module('gnucash-reports-view.reports.credit_usage', ['gnucash-reports-view.reports.base',
                                                           'nvd3'])
     .config(['ReportsManagementProvider', function(provider) {
-        provider.addTemplate('credit_usage', 'src/reports/credit_usage/credit_usage.html');
+        provider.addTemplate('credit_usage', 'core/reports/credit_usage/credit_usage.html');
     }]);
 
 
 angular.module('gnucash-reports-view.reports.debt_liquid_assets', ['gnucash-reports-view.reports.base',
                                                           'nvd3'])
     .config(['ReportsManagementProvider', function(provider) {
-        provider.addTemplate('debt_vs_liquid_assets', 'src/reports/debt_liquid_assets/debt_liquid_assets.html');
+        provider.addTemplate('debt_vs_liquid_assets', 'core/reports/debt_liquid_assets/debt_liquid_assets.html');
     }]);
 
 angular.module('gnucash-reports-view.reports.expenses_period', ['gnucash-reports-view.reports.base',
                                                                   'nvd3'])
     .config(['ReportsManagementProvider', function(provider) {
-        provider.addTemplate('expenses_period', 'src/reports/expenses_period/expenses_period.html');
+        provider.addTemplate('expenses_period', 'core/reports/expenses_period/expenses_period.html');
     }]);
 angular.module('gnucash-reports-view.reports.income_vs_expense', ['gnucash-reports-view.reports.base',
                                                                   'nvd3'])
     .config(['ReportsManagementProvider', function(provider) {
-        provider.addTemplate('income_vs_expense', 'src/reports/income_vs_expense/income_vs_expense.html');
+        provider.addTemplate('income_vs_expense', 'core/reports/income_vs_expense/income_vs_expense.html');
     }]);
 angular.module('gnucash-reports-view.reports.investment_balance', ['gnucash-reports-view.reports.base',
                                                                'nvd3'])
     .config(['ReportsManagementProvider', function(provider) {
-        provider.addTemplate('investment_balance', 'src/reports/investment_balance/investment_balance.html');
+        provider.addTemplate('investment_balance', 'core/reports/investment_balance/investment_balance.html');
     }]);
 angular.module('gnucash-reports-view.reports.investment_trend', ['gnucash-reports-view.reports.base',
                                                                'nvd3'])
     .config(['ReportsManagementProvider', function(provider) {
-        provider.addTemplate('investment_trend', 'src/reports/investment_trend/investment_trend.html');
+        provider.addTemplate('investment_trend', 'core/reports/investment_trend/investment_trend.html');
     }]);
 angular.module('gnucash-reports-view.reports.multi_report', ['gnucash-reports-view.reports.base',
                                                                'nvd3'])
     .config(['ReportsManagementProvider', function(provider) {
-        provider.addTemplate('multi_report', 'src/reports/multi_report/multi_report.html');
+        provider.addTemplate('multi_report', 'core/reports/multi_report/multi_report.html');
     }]);
 angular.module('gnucash-reports-view.reports.net_worth_table', ['gnucash-reports-view.reports.base',
     'md.data.table', 'ngMaterial'])
@@ -132,12 +132,12 @@ angular.module('gnucash-reports-view.reports.net_worth', ['gnucash-reports-view.
 
 angular.module('gnucash-reports-view.reports.savings_goal', ['gnucash-reports-view.reports.base'])
     .config(['ReportsManagementProvider', function(provider) {
-        provider.addTemplate('savings_goal', 'src/reports/savings_goal/savings_goal.html');
+        provider.addTemplate('savings_goal', 'core/reports/savings_goal/savings_goal.html');
     }]);
 angular.module('gnucash-reports-view.reports.taxes_paid', ['gnucash-reports-view.reports.base',
                                                                   'nvd3'])
     .config(['ReportsManagementProvider', function(provider) {
-        provider.addTemplate('income_tax', 'src/reports/taxes_paid/taxes_paid.html');
+        provider.addTemplate('income_tax', 'core/reports/taxes_paid/taxes_paid.html');
     }]);
 var DisplayController = function($mdUtil, $mdSidenav, $timeout, content) {
 
@@ -408,7 +408,7 @@ var Contribution401kDirectiveGenerator = function($timeout, colorDefinitions, fo
         scope: {
             reportData: '&'
         },
-        templateUrl: 'src/reports/401k_contribution/401k_reportDirective.html',
+        templateUrl: 'core/reports/401k_contribution/401k_reportDirective.html',
         link: function($scope) {
             $timeout(create401kContributionGraph, 0, true, $scope);
         }
@@ -525,7 +525,7 @@ var AccountLevelDirectiveGenerator = function($timeout, colorDefinitions, format
         scope: {
             reportData: '&'
         },
-        templateUrl: 'src/reports/account_levels/accountLevelDirective.html',
+        templateUrl: 'core/reports/account_levels/accountLevelDirective.html',
         link: function($scope) {
             $timeout(createAccountLevelGraph, 0, true, $scope);
         }
@@ -764,7 +764,7 @@ var BoxPlotDirectiveGenerator = function($timeout, colorDefinitions, formatters)
         scope: {
             reportData: '&'
         },
-        templateUrl: 'src/reports/box_plot/boxPlotDirective.html',
+        templateUrl: 'core/reports/box_plot/boxPlotDirective.html',
         link: function($scope) {
             $timeout(buildChartConfiguration, 0, true, $scope);
         }
@@ -934,7 +934,7 @@ var BudgetlevelDirectiveGenerator = function($timeout, colorDefinitions, formatt
         scope: {
             reportData: '&'
         },
-        templateUrl: 'src/reports/budget_level/budgetLevelDirective.html',
+        templateUrl: 'core/reports/budget_level/budgetLevelDirective.html',
         link: function($scope) {
             $timeout(createBudgetLevelGraph, 0, true, $scope);
         }
@@ -951,7 +951,7 @@ var BudgetPlanningDirectiveGenerator = function($timeout, colorDefinitions, form
         scope: {
             reportData: '&'
         },
-        templateUrl: 'src/reports/budget_planning/budgetPlanningDirective.html',
+        templateUrl: 'core/reports/budget_planning/budgetPlanningDirective.html',
         link: function($scope) {
             var data = $scope.reportData();
 
@@ -1008,7 +1008,7 @@ var CashFlowDirectiveGenerator = function($timeout, colorDefinitions, formatters
         scope: {
             reportData: '&'
         },
-        templateUrl: 'src/reports/cash_flow_chart/cashFlowDirective.html',
+        templateUrl: 'core/reports/cash_flow_chart/cashFlowDirective.html',
         link: function($scope) {
             var data = $scope.reportData();
 
@@ -1138,7 +1138,7 @@ var CategoryGraphDirectiveGenerator = function($timeout, colorDefinitions, forma
         scope: {
             reportData: '&'
         },
-        templateUrl: 'src/reports/category/categoryGraphDirective.html',
+        templateUrl: 'core/reports/category/categoryGraphDirective.html',
         link: function($scope) {
             $timeout(createCategoryChart, 0, true, $scope);
         }
@@ -1214,7 +1214,7 @@ var CreditUsageDirectiveGenerator = function($timeout, colorDefinitions, formatt
         scope: {
             reportData: '&'
         },
-        templateUrl: 'src/reports/credit_usage/creditUsageDirective.html',
+        templateUrl: 'core/reports/credit_usage/creditUsageDirective.html',
         link: function($scope) {
             $timeout(createCreditUsageChart, 0, true, $scope);
         }
@@ -1318,7 +1318,7 @@ var DebtLiquidAssetDirectiveGenerator = function($timeout, colorDefinitions, for
         scope: {
             reportData: '&'
         },
-        templateUrl: 'src/reports/debt_liquid_assets/debtLiquidAssetDirective.html',
+        templateUrl: 'core/reports/debt_liquid_assets/debtLiquidAssetDirective.html',
         link: function($scope) {
             $timeout(createDebitLiquidAssetChart, 0, true, $scope);
         }
@@ -1335,7 +1335,7 @@ var ExpensesPeriodDirectiveGenerator = function($timeout, colorDefinitions, form
         scope: {
             reportData: '&'
         },
-        templateUrl: 'src/reports/expenses_period/expensesPeriodDirective.html',
+        templateUrl: 'core/reports/expenses_period/expensesPeriodDirective.html',
         link: function($scope) {
             var data = $scope.reportData();
 
@@ -1396,7 +1396,7 @@ var IncomeVsExpenseDirectiveGenerator = function(colorDefinitions, formatters) {
         scope: {
             reportData: '&'
         },
-        templateUrl: 'src/reports/income_vs_expense/income_vs_expenseDirective.html',
+        templateUrl: 'core/reports/income_vs_expense/income_vs_expenseDirective.html',
         link: function($scope) {
             var data = $scope.reportData();
 
@@ -1469,7 +1469,7 @@ var InvestmentBalanceDirectiveGenerator = function(colorDefinitions, formatters)
         scope: {
             reportData: '&'
         },
-        templateUrl: 'src/reports/investment_balance/investmentBalanceDirective.html',
+        templateUrl: 'core/reports/investment_balance/investmentBalanceDirective.html',
         link: function($scope) {
             var data = $scope.reportData();
 
@@ -1663,7 +1663,7 @@ var InvestmentTrendDirectiveGenerator = function($timeout, colorDefinitions, for
         scope: {
             reportData: '&'
         },
-        templateUrl: 'src/reports/investment_trend/investment_trendDirective.html',
+        templateUrl: 'core/reports/investment_trend/investment_trendDirective.html',
         link: function($scope) {
             $timeout(createInvestmentTrendChart, 0, true, $scope);
         }
@@ -1875,7 +1875,7 @@ var SavingsGoalDirectiveGenerator = function($timeout, colorDefinitions, formatt
         scope: {
             reportData: '&'
         },
-        templateUrl: 'src/reports/savings_goal/savingsGoalDirective.html',
+        templateUrl: 'core/reports/savings_goal/savingsGoalDirective.html',
         link: function($scope) {
             $timeout(createSavingsGoalChart, 0, true, $scope);
         }
@@ -1983,7 +1983,7 @@ var TaxesPaidDirectiveGenerator = function($timeout, colorDefinitions, formatter
         scope: {
             reportData: '&'
         },
-        templateUrl: 'src/reports/taxes_paid/taxes_paidDirective.html',
+        templateUrl: 'core/reports/taxes_paid/taxes_paidDirective.html',
         link: function($scope) {
             $timeout(createTaxesPaidGraph, 0, true, $scope);
         }
@@ -2082,29 +2082,29 @@ $templateCache.put('core/reports/box_plot/boxPlotDirective.html','<div flex>\n  
 $templateCache.put('core/reports/budget_level/budget_level.html','<div flex>\n    <budget-level report-data="reportData()"></budget-level>\n</div>');
 $templateCache.put('core/reports/budget_level/budgetLevelDirective.html','<div flex>\n\n    <md-tabs md-dynamic-height md-border-bottom>\n        <md-tab label="monthly">\n            <md-content class="md-padding">\n                <nvd3 options="options" data="data" ng-if="data"></nvd3>\n                <div layout="row" layout-sm="column" layout-align="space-around" ng-hide="data">\n                    <md-progress-circular md-mode="indeterminate"></md-progress-circular>\n                </div>\n            </md-content>\n        </md-tab>\n\n        <md-tab label="yearly" ng-if="yearData">\n            <md-content class="md-padding">\n                <nvd3 options="options" data="yearData" ng-if="yearData"></nvd3>\n                <div layout="row" layout-sm="column" layout-align="space-around" ng-hide="data">\n                    <md-progress-circular md-mode="indeterminate"></md-progress-circular>\n                </div>\n            </md-content>\n        </md-tab>\n\n    </md-tabs>\n\n</div>');
 $templateCache.put('core/reports/budget_planning/budget_planning.html','<div flex>\n    <budget-planning report-data="reportData()"></budget-planning>\n</div>');
-$templateCache.put('core/reports/budget_planning/budgetPlanningDirective.html','<div flex layout="row">\n\n    <div flex>\n        <nvd3 options="options" data="data"></nvd3>\n    </div>\n\n    <div style="height: 400px; overflow-y: scroll; overflow-x: hidden">\n        <md-data-table-container>\n            <table md-data-table>\n                <thead>\n                <tr>\n                    <th name="Category"></th>\n                    <th name="Value"></th>\n                </tr>\n                </thead>\n                <tbody>\n                <tr ng-repeat="item in budget track by $index">\n                    <td>{{item.name}}</td>\n                    <td>{{item.value | currency}}</td>\n                </tr>\n\n                <tr style="background: aliceblue">\n                    <td>Total</td>\n                    <td>{{total | currency}}</td>\n                </tr>\n                <tr>\n                    <td>Income</td>\n                    <td>{{income | currency}}</td>\n                </tr>\n                <tr ng-style="remainingStyle">\n                    <td>Remaining</td>\n                    <td>{{remaining | currency}}</td>\n                </tr>\n                </tbody>\n            </table>\n        </md-data-table-container>\n    </div>\n</div>');
+$templateCache.put('core/reports/budget_planning/budgetPlanningDirective.html','<div flex layout="row">\n\n    <div flex>\n        <nvd3 options="options" data="data"></nvd3>\n    </div>\n\n    <div style="height: 400px; overflow-y: scroll; overflow-x: hidden">\n        <md-table-container>\n            <table md-table>\n                <thead md-head>\n                    <tr md-row>\n                        <th md-column>Category</th>\n                        <th md-column>Value</th>\n                    </tr>\n                </thead>\n                <tbody md-body>\n                    <tr md-row ng-repeat="item in budget track by $index">\n                        <td md-cell>{{item.name}}</td>\n                        <td md-cell>{{item.value | currency}}</td>\n                    </tr>\n\n                    <tr md-row style="background: aliceblue">\n                        <td md-cell>Total</td>\n                        <td md-cell>{{total | currency}}</td>\n                    </tr>\n                    <tr md-row>\n                        <td md-cell>Income</td>\n                        <td md-cell>{{income | currency}}</td>\n                    </tr>\n                    <tr md-row ng-style="remainingStyle">\n                        <td md-cell>Remaining</td>\n                        <td md-cell>{{remaining | currency}}</td>\n                    </tr>\n                </tbody>\n            </table>\n        </md-table-container>\n    </div>\n</div>');
 $templateCache.put('core/reports/cash_flow_chart/cash_flow.html','<div flex>\n    <cash-flow report-data="reportData()"></cash-flow>\n</div>');
-$templateCache.put('core/reports/cash_flow_chart/cashFlowDirective.html','\n<div flex>\n    <md-tabs md-dynamic-height md-border-bottom>\n        <md-tab label="graph">\n            <md-content class="md-padding">\n                <nvd3 options="options" data="data" ng-if="data"></nvd3>\n                <div layout="row" layout-sm="column" layout-align="space-around" ng-hide="data">\n                    <md-progress-circular md-mode="indeterminate"></md-progress-circular>\n                </div>\n            </md-content>\n        </md-tab>\n\n        <md-tab label="table" ng-if="data">\n            <md-content class="md-padding">\n\n                <md-data-table-container>\n                    <table md-data-table>\n                        <thead>\n                        <tr>\n                            <th name="Date"></th>\n                            <th name="{{::dataset.key}}" ng-repeat="dataset in data track by $index"></th>\n                            <th name="Net"></th>\n                        </tr>\n                        </thead>\n                        <tbody>\n                        <tr ng-repeat="firstDataSet in data[0].values track by $index" ng-init="i = $index">\n                            <td>{{::firstDataSet.date * 1000 | date}}</td>\n                            <td ng-repeat="dataSet in data track by $index">{{::dataSet.values[i].value | currency}}</td>\n                            <td>\n                                <currency-format value="data[0].values[i].value + data[1].values[i].value"></currency-format>\n                            </td>\n                        </tr>\n                        </tbody>\n                    </table>\n                </md-data-table-container>\n\n            </md-content>\n        </md-tab>\n\n    </md-tabs>\n</div>');
+$templateCache.put('core/reports/cash_flow_chart/cashFlowDirective.html','\n<div flex>\n    <md-tabs md-dynamic-height md-border-bottom>\n        <md-tab label="graph">\n            <md-content class="md-padding">\n                <nvd3 options="options" data="data" ng-if="data"></nvd3>\n                <div layout="row" layout-sm="column" layout-align="space-around" ng-hide="data">\n                    <md-progress-circular md-mode="indeterminate"></md-progress-circular>\n                </div>\n            </md-content>\n        </md-tab>\n\n        <md-tab label="table" ng-if="data">\n            <md-content class="md-padding">\n\n                <md-table-container>\n                    <table md-table>\n                        <thead md-head>\n                            <tr md-row>\n                                <th md-column>Date</th>\n                                <th md-column ng-repeat="dataset in data track by $index">{{::dataset.key}}</th>\n                                <th md-column>Net</th>\n                            </tr>\n                        </thead>\n                        <tbody md-body>\n                            <tr md-row ng-repeat="firstDataSet in data[0].values track by $index" ng-init="i = $index">\n                                <td md-cell>{{::firstDataSet.date * 1000 | date}}</td>\n                                <td md-cell ng-repeat="dataSet in data track by $index">{{::dataSet.values[i].value | currency}}</td>\n                                <td md-cell>\n                                    <currency-format value="data[0].values[i].value + data[1].values[i].value"></currency-format>\n                                </td>\n                            </tr>\n                        </tbody>\n                    </table>\n                </md-table-container>\n\n            </md-content>\n        </md-tab>\n\n    </md-tabs>\n</div>');
 $templateCache.put('core/reports/category/category.html','<div flex>\n    <category-graph report-data="::reportData()"></category-graph>\n</div>');
-$templateCache.put('core/reports/category/categoryGraphDirective.html','\n<div flex>\n    <md-tabs md-dynamic-height md-border-bottom>\n        <md-tab label="graph">\n            <md-content class="md-padding">\n                <nvd3 options="options" data="data" ng-if="data"></nvd3>\n                <div layout="row" layout-sm="column" layout-align="space-around" ng-hide="data">\n                    <md-progress-circular md-mode="indeterminate"></md-progress-circular>\n                </div>\n            </md-content>\n        </md-tab>\n\n        <md-tab label="table" ng-if="data">\n            <md-content class="md-padding">\n\n\n                <md-data-table-container>\n                    <table md-data-table>\n                        <thead>\n                        <tr>\n                            <th name="Category"></th>\n                            <th name="Value"></th>\n                            <th name="Percentage"></th>\n                        </tr>\n                        </thead>\n                        <tbody>\n                            <tr ng-repeat="dataset in tableData track by dataset[0]">\n                                <td style="text-transform: uppercase">{{::dataset[0]}}</td>\n                                <td>{{::dataset[1] | currency}}</td>\n                                <td><percentage-format value="dataset[1] / total"></percentage-format></td>\n                            </tr>\n                            <tr style="background-color: lightblue">\n                                <td style="text-transform: uppercase">Total</td>\n                                <td>{{::total | currency}}</td>\n                                <td>&nbsp;</td>\n                            </tr>\n                        </tbody>\n                    </table>\n                </md-data-table-container>\n\n            </md-content>\n        </md-tab>\n\n    </md-tabs>\n</div>');
+$templateCache.put('core/reports/category/categoryGraphDirective.html','\n<div flex>\n    <md-tabs md-dynamic-height md-border-bottom>\n        <md-tab label="graph">\n            <md-content class="md-padding">\n                <nvd3 options="options" data="data" ng-if="data"></nvd3>\n                <div layout="row" layout-sm="column" layout-align="space-around" ng-hide="data">\n                    <md-progress-circular md-mode="indeterminate"></md-progress-circular>\n                </div>\n            </md-content>\n        </md-tab>\n\n        <md-tab label="table" ng-if="data">\n            <md-content class="md-padding">\n\n\n                <md-table-container>\n                    <table md-table>\n                        <thead md-head>\n                            <tr md-row>\n                                <th md-column>Category</th>\n                                <th md-column>Value</th>\n                                <th md-column>Percentage</th>\n                            </tr>\n                        </thead>\n                        <tbody md-body>\n                            <tr md-row ng-repeat="dataset in tableData track by dataset[0]">\n                                <td md-cell style="text-transform: uppercase">{{::dataset[0]}}</td>\n                                <td md-cell>{{::dataset[1] | currency}}</td>\n                                <td md-cell><percentage-format value="dataset[1] / total"></percentage-format></td>\n                            </tr>\n                            <tr md-row style="background-color: lightblue">\n                                <td md-cell style="text-transform: uppercase">Total</td>\n                                <td md-cell>{{::total | currency}}</td>\n                                <td md-cell>&nbsp;</td>\n                            </tr>\n                        </tbody>\n                    </table>\n                </md-table-container>\n\n            </md-content>\n        </md-tab>\n\n    </md-tabs>\n</div>');
 $templateCache.put('core/reports/credit_usage/credit_usage.html','<div flex>\n    <credit-usage report-data="reportData()"></credit-usage>\n</div>');
 $templateCache.put('core/reports/credit_usage/creditUsageDirective.html','<div flex>\n    <nvd3 options="options" data="data" ng-if="data"></nvd3>\n    <div layout="row" layout-sm="column" layout-align="space-around" ng-hide="data">\n        <md-progress-circular md-mode="indeterminate"></md-progress-circular>\n    </div>\n</div>');
 $templateCache.put('core/reports/debt_liquid_assets/debt_liquid_assets.html','<div flex>\n    <debt-liquid-asset report-data="reportData()"></debt-liquid-asset>\n</div>');
 $templateCache.put('core/reports/debt_liquid_assets/debtLiquidAssetDirective.html','<div flex>\n    <nvd3 options="options" data="data" ng-if="data"></nvd3>\n    <div layout="row" layout-sm="column" layout-align="space-around" ng-hide="data">\n        <md-progress-circular md-mode="indeterminate"></md-progress-circular>\n    </div>\n</div>');
 $templateCache.put('core/reports/expenses_period/expenses_period.html','<div flex>\n    <expenses-period report-data="::reportData()"></expenses-period>\n</div>');
-$templateCache.put('core/reports/expenses_period/expensesPeriodDirective.html','<div flex>\n    <md-tabs md-dynamic-height md-border-bottom>\n        <md-tab label="graph">\n            <md-content class="md-padding">\n                <nvd3 options="options" data="data" ng-if="data"></nvd3>\n                <div layout="row" layout-sm="column" layout-align="space-around" ng-hide="data">\n                    <md-progress-circular md-mode="indeterminate"></md-progress-circular>\n                </div>\n            </md-content>\n        </md-tab>\n\n        <md-tab label="table" ng-if="data">\n            <md-content class="md-padding">\n\n\n                <md-data-table-container>\n                    <table md-data-table>\n                        <thead>\n                        <tr>\n                            <th name="Date"></th>\n                            <th name="{{::dataset.key}}" ng-repeat="dataset in data track by $index"></th>\n                        </tr>\n                        </thead>\n                        <tbody>\n                        <tr ng-repeat="firstDataSet in data[0].values track by $index" ng-init="i = $index">\n                            <td>{{::firstDataSet.date * 1000 | date}}</td>\n                            <td ng-repeat="dataSet in data track by $index">{{::dataSet.values[i].value | currency}}</td>\n                        </tr>\n                        </tbody>\n                    </table>\n                </md-data-table-container>\n\n            </md-content>\n        </md-tab>\n\n    </md-tabs>\n</div>');
+$templateCache.put('core/reports/expenses_period/expensesPeriodDirective.html','<div flex>\n    <md-tabs md-dynamic-height md-border-bottom>\n        <md-tab label="graph">\n            <md-content class="md-padding">\n                <nvd3 options="options" data="data" ng-if="data"></nvd3>\n                <div layout="row" layout-sm="column" layout-align="space-around" ng-hide="data">\n                    <md-progress-circular md-mode="indeterminate"></md-progress-circular>\n                </div>\n            </md-content>\n        </md-tab>\n\n        <md-tab label="table" ng-if="data">\n            <md-content class="md-padding">\n\n\n                <md-table-container>\n                    <table md-table>\n                        <thead md-head>\n                            <tr md-row>\n                                <th md-column>Date</th>\n                                <th md-column ng-repeat="dataset in data track by $index">{{::dataset.key}}</th>\n                            </tr>\n                        </thead>\n                        <tbody md-body>\n                            <tr md-row ng-repeat="firstDataSet in data[0].values track by $index" ng-init="i = $index">\n                                <td md-cell>{{::firstDataSet.date * 1000 | date}}</td>\n                                <td md-cell ng-repeat="dataSet in data track by $index">{{::dataSet.values[i].value | currency}}</td>\n                            </tr>\n                        </tbody>\n                    </table>\n                </md-table-container>\n\n            </md-content>\n        </md-tab>\n\n    </md-tabs>\n</div>');
 $templateCache.put('core/reports/income_vs_expense/income_vs_expense.html','<div flex>\n    <income-vs-expense report-data="reportData()"></income-vs-expense>\n</div>');
-$templateCache.put('core/reports/income_vs_expense/income_vs_expenseDirective.html','\n<div flex>\n    <md-tabs md-dynamic-height md-border-bottom>\n        <md-tab label="graph">\n            <md-content class="md-padding">\n                <nvd3 options="options" data="data"></nvd3>\n            </md-content>\n        </md-tab>\n\n        <md-tab label="table">\n            <md-content class="md-padding">\n\n                <md-data-table-container>\n                    <table md-data-table>\n                        <thead>\n                        <tr>\n                            <th name="Date"></th>\n                            <th name="Income"></th>\n                            <th name="Expenses"></th>\n                            <th name="Net"></th>\n                        </tr>\n                        </thead>\n                        <tbody>\n                        <tr ng-repeat="firstDataSet in reportData().net track by $index" ng-init="i = $index">\n                            <td>{{firstDataSet.date * 1000 | date}}</td>\n                            <td><currency-format value="reportData().income[i].value"></currency-format></td>\n                            <td><currency-format value="reportData().expenses[i].value"></currency-format></td>\n                            <td><currency-format value="reportData().net[i].value"></currency-format></td>\n                        </tr>\n                        </tbody>\n                    </table>\n                </md-data-table-container>\n\n            </md-content>\n        </md-tab>\n\n    </md-tabs>\n</div>');
+$templateCache.put('core/reports/income_vs_expense/income_vs_expenseDirective.html','\n<div flex>\n    <md-tabs md-dynamic-height md-border-bottom>\n        <md-tab label="graph">\n            <md-content class="md-padding">\n                <nvd3 options="options" data="data"></nvd3>\n            </md-content>\n        </md-tab>\n\n        <md-tab label="table">\n            <md-content class="md-padding">\n\n                <md-table-container>\n                    <table md-table>\n                        <thead md-head>\n                            <tr md-row>\n                                <th md-column name="">Date</th>\n                                <th md-column>Income</th>\n                                <th md-column>Expenses</th>\n                                <th md-column>Net</th>\n                            </tr>\n                        </thead>\n                        <tbody md-body>\n                            <tr md-row ng-repeat="firstDataSet in reportData().net track by $index" ng-init="i = $index">\n                                <td md-cell>{{firstDataSet.date * 1000 | date}}</td>\n                                <td md-cell><currency-format value="reportData().income[i].value"></currency-format></td>\n                                <td md-cell><currency-format value="reportData().expenses[i].value"></currency-format></td>\n                                <td md-cell><currency-format value="reportData().net[i].value"></currency-format></td>\n                            </tr>\n                        </tbody>\n                    </table>\n                </md-table-container>\n\n            </md-content>\n        </md-tab>\n\n    </md-tabs>\n</div>');
 $templateCache.put('core/reports/investment_balance/investment_balance.html','<div flex>\n    <investment-balance report-data="reportData()"></investment-balance>\n</div>');
 $templateCache.put('core/reports/investment_balance/investmentBalanceDirective.html','<div flex>\n    <nvd3 options="options" data="data"></nvd3>\n</div>');
 $templateCache.put('core/reports/investment_trend/investment_trend.html','<div flex>\n    <investment-trend report-data="reportData()"></investment-trend>\n</div>');
-$templateCache.put('core/reports/investment_trend/investment_trendDirective.html','<div flex>\n    <md-tabs md-dynamic-height md-border-bottom>\n        <md-tab label="graph">\n            <md-content class="md-padding">\n                <nvd3 options="options" data="data" ng-if="data"></nvd3>\n                <div layout="row" layout-sm="column" layout-align="space-around" ng-hide="data">\n                    <md-progress-circular md-mode="indeterminate"></md-progress-circular>\n                </div>\n            </md-content>\n        </md-tab>\n\n        <md-tab label="table" ng-if="data">\n            <md-content class="md-padding">\n\n                <md-data-table-container>\n                    <table md-data-table>\n                        <thead>\n                        <tr>\n                            <th name="Date"></th>\n                            <th name="{{::dataset.key}}" ng-repeat="dataset in data track by $index"></th>\n                            <th name="Value Difference"></th>\n                        </tr>\n                        </thead>\n                        <tbody>\n                        <tr ng-repeat="firstDataSet in data[0].values track by $index" ng-init="i = $index">\n                            <td>{{::firstDataSet.x * 1000 | date}}</td>\n                            <td ng-repeat="dataSet in data track by $index">{{::dataSet.values[i].y | currency}}</td>\n                            <td>\n                                <currency-format value="data[4].values[i].y-data[0].values[i].y"></currency-format>\n                            </td>\n                        </tr>\n                        </tbody>\n                    </table>\n                </md-data-table-container>\n\n            </md-content>\n        </md-tab>\n\n    </md-tabs>\n</div>');
+$templateCache.put('core/reports/investment_trend/investment_trendDirective.html','<div flex>\n    <md-tabs md-dynamic-height md-border-bottom>\n        <md-tab label="graph">\n            <md-content class="md-padding">\n                <nvd3 options="options" data="data" ng-if="data"></nvd3>\n                <div layout="row" layout-sm="column" layout-align="space-around" ng-hide="data">\n                    <md-progress-circular md-mode="indeterminate"></md-progress-circular>\n                </div>\n            </md-content>\n        </md-tab>\n\n        <md-tab label="table" ng-if="data">\n            <md-content class="md-padding">\n\n                <md-table-container>\n                    <table md-table>\n                        <thead md-head>\n                            <tr md-row>\n                                <th md-column name="">Date</th>\n                                <th md-column ng-repeat="dataset in data track by $index">{{::dataset.key}}</th>\n                                <th md-column>Value Difference</th>\n                            </tr>\n                        </thead>\n                        <tbody md-body>\n                            <tr md-row ng-repeat="firstDataSet in data[0].values track by $index" ng-init="i = $index">\n                                <td md-cell>{{::firstDataSet.x * 1000 | date}}</td>\n                                <td md-cell ng-repeat="dataSet in data track by $index">{{::dataSet.values[i].y | currency}}</td>\n                                <td md-cell>\n                                    <currency-format value="data[4].values[i].y-data[0].values[i].y"></currency-format>\n                                </td>\n                            </tr>\n                        </tbody>\n                    </table>\n                </md-table-container>\n\n            </md-content>\n        </md-tab>\n\n    </md-tabs>\n</div>');
 $templateCache.put('core/reports/multi_report/multi_report.html','<div flex layout="row">\n    <gnucash-report report="report" ng-repeat="report in reportData().reports" flex>\n\n    </gnucash-report>\n</div>');
-$templateCache.put('core/reports/net_worth_table/net_worth_breakdown.html','\n<md-data-table-container>\n    <table md-data-table>\n        <thead>\n            <tr>\n                <th name="{{header()}}" width="30%"></th>\n                <th name="{{date*1000 | date : \'MMM yyyy\'}}" ng-repeat="date in trends() track by $index"></th>\n                <th style="background-color: lightcyan" name="Current"></th>\n                <th name="&Delta; {{-delta}} Months" ng-repeat="delta in deltas() track by $index"></th>\n            </tr>\n        </thead>\n        <tbody>\n            <tr ng-repeat="row in data().records">\n                <td style="text-transform: uppercase">{{row.name}}</td>\n                <td ng-repeat="value in row.trend track by $index">\n                    <currency-format value="value"></currency-format>\n                </td>\n                <td style="background-color: lightcyan">\n                    <currency-format value="row.current_data"></currency-format>\n                </td>\n                <td ng-repeat="value in row.deltas track by $index">\n                    <percentage-format value="value"></percentage-format>\n                </td>\n            </tr>\n\n            <tr style="background-color: aliceblue">\n                <td style="text-transform: uppercase"><strong>Totals</strong></td>\n                <td ng-repeat="value in data().trend track by $index">\n                    <currency-format value="value"></currency-format>\n                </td>\n                <td>\n                    <currency-format value="data().current_data"></currency-format>\n                </td>\n                <td ng-repeat="value in data().deltas track by $index">\n                    <percentage-format value="value"></percentage-format>\n                </td>\n            </tr>\n        </tbody>\n    </table>\n</md-data-table-container>\n');
-$templateCache.put('core/reports/net_worth_table/net_worth_summary.html','\n<md-data-table-container>\n    <table md-data-table>\n        <thead>\n            <tr>\n                <th name="{{header()}}" width="30%"></th>\n                <th name="{{date*1000 | date : \'MMM yyyy\'}}" ng-repeat="date in trends() track by $index"></th>\n                <th style="background-color: lightcyan" name="Current"></th>\n                <th name="&Delta; {{-delta}} Months" ng-repeat="delta in deltas() track by $index"></th>\n            </tr>\n        </thead>\n        <tbody>\n            <tr>\n                <td width="30%" style="text-transform: uppercase">Assets</td>\n                <td ng-repeat="value in assets().trend track by $index">\n                    <currency-format value="value"></currency-format>\n                </td>\n                <td style="background-color: lightcyan">\n                    <currency-format value="assets().current_data"></currency-format>\n                </td>\n                <td ng-repeat="value in assets().deltas track by $index">\n                    <percentage-format value="value"></percentage-format>\n                </td>\n            </tr>\n\n            <tr>\n                <td style="text-transform: uppercase">Liabilities</td>\n                <td ng-repeat="value in liabilities().trend track by $index">\n                    <currency-format value="value"></currency-format>\n                </td>\n                <td style="background-color: lightcyan">\n                    <currency-format value="liabilities().current_data"></currency-format>\n                </td>\n                <td ng-repeat="value in liabilities().deltas track by $index">\n                    <percentage-format value="value"></percentage-format>\n                </td>\n            </tr>\n\n\n            <tr style="background-color: lightblue">\n                <td style="text-transform: uppercase"><strong>Totals</strong></td>\n                <td ng-repeat="value in netWorth().trend track by $index">\n                    <currency-format value="value"></currency-format>\n                </td>\n                <td>\n                    <currency-format value="netWorth().current_data"></currency-format>\n                </td>\n                <td ng-repeat="value in netWorth().deltas track by $index">\n                    <percentage-format value="value"></percentage-format>\n                </td>\n            </tr>\n        </tbody>\n    </table>\n</md-data-table-container>\n');
+$templateCache.put('core/reports/net_worth_table/net_worth_breakdown.html','\n<md-table-container>\n    <table md-table>\n        <thead md-head>\n            <tr md-row>\n                <th md-column width="30%">{{header()}}</th>\n                <th md-column ng-repeat="date in trends() track by $index">{{date*1000 | date : \'MMM yyyy\'}}</th>\n                <th md-column style="background-color: lightcyan">Current</th>\n                <th md-column ng-repeat="delta in deltas() track by $index">&Delta; {{-delta}} Months</th>\n            </tr>\n        </thead>\n        <tbody md-body>\n            <tr md-row ng-repeat="row in data().records">\n                <td md-cell style="text-transform: uppercase">{{row.name}}</td>\n                <td md-cell ng-repeat="value in row.trend track by $index">\n                    <currency-format value="value"></currency-format>\n                </td>\n                <td md-cell style="background-color: lightcyan">\n                    <currency-format value="row.current_data"></currency-format>\n                </td>\n                <td md-cell ng-repeat="value in row.deltas track by $index">\n                    <percentage-format value="value"></percentage-format>\n                </td>\n            </tr>\n\n            <tr md-row style="background-color: aliceblue">\n                <td md-cell style="text-transform: uppercase"><strong>Totals</strong></td>\n                <td md-cell ng-repeat="value in data().trend track by $index">\n                    <currency-format value="value"></currency-format>\n                </td>\n                <td md-cell>\n                    <currency-format value="data().current_data"></currency-format>\n                </td>\n                <td md-cell ng-repeat="value in data().deltas track by $index">\n                    <percentage-format value="value"></percentage-format>\n                </td>\n            </tr>\n        </tbody>\n    </table>\n</md-table-container>\n');
+$templateCache.put('core/reports/net_worth_table/net_worth_summary.html','\n<md-table-container>\n    <table md-table>\n        <thead md-head>\n            <tr md-row>\n                <th md-column width="30%">{{header()}}</th>\n                <th md-column ng-repeat="date in trends() track by $index">{{date*1000 | date : \'MMM yyyy\'}}</th>\n                <th md-column style="background-color: lightcyan">Current</th>\n                <th md-column ng-repeat="delta in deltas() track by $index">&Delta; {{-delta}} Months</th>\n            </tr>\n        </thead>\n        <tbody md-body>\n            <tr md-row>\n                <td md-cell width="30%" style="text-transform: uppercase">Assets</td>\n                <td md-cell ng-repeat="value in assets().trend track by $index">\n                    <currency-format value="value"></currency-format>\n                </td>\n                <td md-cell style="background-color: lightcyan">\n                    <currency-format value="assets().current_data"></currency-format>\n                </td>\n                <td md-cell ng-repeat="value in assets().deltas track by $index">\n                    <percentage-format value="value"></percentage-format>\n                </td>\n            </tr>\n\n            <tr md-row>\n                <td md-cell style="text-transform: uppercase">Liabilities</td>\n                <td md-cell ng-repeat="value in liabilities().trend track by $index">\n                    <currency-format value="value"></currency-format>\n                </td>\n                <td md-cell style="background-color: lightcyan">\n                    <currency-format value="liabilities().current_data"></currency-format>\n                </td>\n                <td md-cell ng-repeat="value in liabilities().deltas track by $index">\n                    <percentage-format value="value"></percentage-format>\n                </td>\n            </tr>\n\n\n            <tr md-row style="background-color: lightblue">\n                <td md-cell style="text-transform: uppercase"><strong>Totals</strong></td>\n                <td md-cell ng-repeat="value in netWorth().trend track by $index">\n                    <currency-format value="value"></currency-format>\n                </td>\n                <td md-cell>\n                    <currency-format value="netWorth().current_data"></currency-format>\n                </td>\n                <td md-cell ng-repeat="value in netWorth().deltas track by $index">\n                    <percentage-format value="value"></percentage-format>\n                </td>\n            </tr>\n        </tbody>\n    </table>\n</md-table-container>\n');
 $templateCache.put('core/reports/net_worth_table/net_worth_table.html','<net-worth-breakdown header="\'Assets\'" data="reportData().assets" deltas="reportData().deltas" trends="reportData().trend"></net-worth-breakdown>\n\n<div><p>&nbsp;</p></div>\n\n<net-worth-breakdown header="\'Liabilities\'" data="reportData().liability" deltas="reportData().deltas" trends="reportData().trend"></net-worth-breakdown>\n\n<div><p>&nbsp;</p></div>\n\n<net-worth-summary assets="reportData().assets" liabilities="reportData().liability" deltas="reportData().deltas" trends="reportData().trend" net-worth="reportData().net_worth"></net-worth-summary>');
 $templateCache.put('core/reports/net_worth/net_worth.html','<div flex>\n    <net-worth report-data="reportData()"></net-worth>\n</div>');
-$templateCache.put('core/reports/net_worth/net_worthDirective.html','<div flex>\n    <md-tabs md-dynamic-height md-border-bottom>\n        <md-tab label="graph">\n            <md-content class="md-padding">\n                <nvd3 options="options" data="data" ng-if="data"></nvd3>\n                <div layout="row" layout-sm="column" layout-align="space-around" ng-hide="data">\n                    <md-progress-circular md-mode="indeterminate"></md-progress-circular>\n                </div>\n            </md-content>\n        </md-tab>\n\n        <md-tab label="table" ng-if="data">\n            <md-content class="md-padding">\n\n\n                <md-data-table-container>\n                    <table md-data-table>\n                        <thead>\n                            <tr>\n                                <th name="Date"></th>\n                                <th name="{{::dataset.key}}" ng-repeat="dataset in data track by $index"></th>\n                            </tr>\n                        </thead>\n                        <tbody>\n                            <tr ng-repeat="firstDataSet in data[0].values track by $index" ng-init="i = $index">\n                                <td>{{::firstDataSet.date * 1000 | date}}</td>\n                                <td ng-repeat="dataSet in data track by $index">{{::dataSet.values[i].value | currency}}</td>\n                            </tr>\n                        </tbody>\n                    </table>\n                </md-data-table-container>\n\n            </md-content>\n        </md-tab>\n\n    </md-tabs>\n</div>');
+$templateCache.put('core/reports/net_worth/net_worthDirective.html','<div flex>\n    <md-tabs md-dynamic-height md-border-bottom>\n        <md-tab label="graph">\n            <md-content class="md-padding">\n                <nvd3 options="options" data="data" ng-if="data"></nvd3>\n                <div layout="row" layout-sm="column" layout-align="space-around" ng-hide="data">\n                    <md-progress-circular md-mode="indeterminate"></md-progress-circular>\n                </div>\n            </md-content>\n        </md-tab>\n\n        <md-tab label="table" ng-if="data">\n            <md-content class="md-padding">\n\n\n                <md-table-container>\n                    <table md-table>\n                        <thead md-head>\n                            <tr md-row>\n                                <th md-column>Date</th>\n                                <th md-column ng-repeat="dataset in data track by $index">{{::dataset.key}}</th>\n                            </tr>\n                        </thead>\n                        <tbody md-body>\n                            <tr md-row ng-repeat="firstDataSet in data[0].values track by $index" ng-init="i = $index">\n                                <td md-cell>{{::firstDataSet.date * 1000 | date}}</td>\n                                <td md-cell ng-repeat="dataSet in data track by $index">{{::dataSet.values[i].value | currency}}</td>\n                            </tr>\n                        </tbody>\n                    </table>\n                </md-table-container>\n\n            </md-content>\n        </md-tab>\n\n    </md-tabs>\n</div>');
 $templateCache.put('core/reports/savings_goal/savings_goal.html','<div flex>\n    <savings-goal report-data="::reportData()"></savings-goal>\n</div>');
 $templateCache.put('core/reports/savings_goal/savingsGoalDirective.html','<div flex>\n    <nvd3 options="options" data="data" ng-if="data"></nvd3>\n    <div layout="row" layout-sm="column" layout-align="space-around" ng-hide="data">\n        <md-progress-circular md-mode="indeterminate"></md-progress-circular>\n    </div>\n</div>');
 $templateCache.put('core/reports/taxes_paid/taxes_paid.html','<div flex>\n    <taxes-paid report-data="reportData()"></taxes-paid>\n</div>');

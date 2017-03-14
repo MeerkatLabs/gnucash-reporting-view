@@ -65,7 +65,7 @@ var CreditUsageDirectiveGenerator = function($timeout, colorDefinitions, formatt
         scope: {
             reportData: '&'
         },
-        templateUrl: 'src/reports/credit_usage/creditUsageDirective.html',
+        templateUrl: 'core/reports/credit_usage/creditUsageDirective.html',
         link: function($scope) {
             $timeout(createCreditUsageChart, 0, true, $scope);
         }

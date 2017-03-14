@@ -6,7 +6,7 @@ var IncomeVsExpenseDirectiveGenerator = function(colorDefinitions, formatters) {
         scope: {
             reportData: '&'
         },
-        templateUrl: 'src/reports/income_vs_expense/income_vs_expenseDirective.html',
+        templateUrl: 'core/reports/income_vs_expense/income_vs_expenseDirective.html',
         link: function($scope) {
             var data = $scope.reportData();
 

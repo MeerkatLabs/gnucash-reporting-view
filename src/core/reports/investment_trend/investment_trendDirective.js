@@ -116,7 +116,7 @@ var InvestmentTrendDirectiveGenerator = function($timeout, colorDefinitions, for
         scope: {
             reportData: '&'
         },
-        templateUrl: 'src/reports/investment_trend/investment_trendDirective.html',
+        templateUrl: 'core/reports/investment_trend/investment_trendDirective.html',
         link: function($scope) {
             $timeout(createInvestmentTrendChart, 0, true, $scope);
         }

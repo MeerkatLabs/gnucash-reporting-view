@@ -6,7 +6,7 @@ var InvestmentBalanceDirectiveGenerator = function(colorDefinitions, formatters)
         scope: {
             reportData: '&'
         },
-        templateUrl: 'src/reports/investment_balance/investmentBalanceDirective.html',
+        templateUrl: 'core/reports/investment_balance/investmentBalanceDirective.html',
         link: function($scope) {
             var data = $scope.reportData();
 

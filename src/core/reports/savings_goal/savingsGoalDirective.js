@@ -96,7 +96,7 @@ var SavingsGoalDirectiveGenerator = function($timeout, colorDefinitions, formatt
         scope: {
             reportData: '&'
         },
-        templateUrl: 'src/reports/savings_goal/savingsGoalDirective.html',
+        templateUrl: 'core/reports/savings_goal/savingsGoalDirective.html',
         link: function($scope) {
             $timeout(createSavingsGoalChart, 0, true, $scope);
         }
