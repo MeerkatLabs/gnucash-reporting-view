@@ -113,5 +113,5 @@ var AccountLevelDirectiveGenerator = function($timeout, colorDefinitions, format
     };
 };
 
-angular.module('gnucash-reports-view.reports.account_levels')
+angular.module('gnucash-reports-view.reports')
     .directive('accountLevel', ['$timeout', 'colorDefinitions', 'formatters', AccountLevelDirectiveGenerator]);

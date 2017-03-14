@@ -53,5 +53,5 @@ var BoxPlotDirectiveGenerator = function($timeout, colorDefinitions, formatters)
     };
 };
 
-angular.module('gnucash-reports-view.reports.box_plot')
+angular.module('gnucash-reports-view.reports')
     .directive('boxPlot', ['$timeout', 'colorDefinitions', 'formatters', BoxPlotDirectiveGenerator]);

@@ -80,5 +80,5 @@ var InvestmentBalanceDirectiveGenerator = function(colorDefinitions, formatters)
     };
 };
 
-angular.module('gnucash-reports-view.reports.account_levels')
+angular.module('gnucash-reports-view.reports')
     .directive('investmentBalance', ['colorDefinitions', 'formatters', InvestmentBalanceDirectiveGenerator]);

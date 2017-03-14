@@ -5,140 +5,11 @@ angular.module('gnucash-reports-view', ['ngMaterial', 'ui.router', 'gnucash-repo
     }]);
 
 angular.module('gnucash-reports-view.reports', [
-    'gnucash-reports-view.reports.savings_goal',
-    'gnucash-reports-view.reports.account_levels',
-    'gnucash-reports-view.reports.budget_level',
-    'gnucash-reports-view.reports.investment_balance',
-    'gnucash-reports-view.reports.401k_contribution',
-    'gnucash-reports-view.reports.expenses_period',
-    'gnucash-reports-view.reports.cash_flow',
-    'gnucash-reports-view.reports.box_plot',
-    'gnucash-reports-view.reports.multi_report',
-    'gnucash-reports-view.reports.credit_usage',
-    'gnucash-reports-view.reports.net_worth',
-    'gnucash-reports-view.reports.category',
-    'gnucash-reports-view.reports.net_worth_table',
-    'gnucash-reports-view.reports.income_vs_expense',
-    'gnucash-reports-view.reports.budget_planning',
-    'gnucash-reports-view.reports.taxes_paid',
-    'gnucash-reports-view.reports.debt_liquid_assets',
-    'gnucash-reports-view.reports.investment_trend'
-]);
-
-angular.module('gnucash-reports-view.reports.401k_contribution', ['gnucash-reports-view.reports.base',
-                                                                  'nvd3'])
-    .config(['ReportsManagementProvider', function(provider) {
-        provider.addTemplate('401k_report', 'core/reports/401k_contribution/401k_report.html');
-    }]);
-/**
- * This is a report that will show the level of a checking/savings account and show warning levels based on the values
- * that are defined.
- */
-
-angular.module('gnucash-reports-view.reports.account_levels', ['gnucash-reports-view.reports.base',
-                                                               'nvd3'])
-    .config(['ReportsManagementProvider', function(provider) {
-        provider.addTemplate('account_levels', 'core/reports/account_levels/account_levels.html');
-    }]);
-angular.module('gnucash-reports-view.reports.base', []);
-/**
- * Created by rerobins on 9/30/15.
- */
-angular.module('gnucash-reports-view.reports.box_plot', ['gnucash-reports-view.reports.base',
-    'nvd3'])
-    .config(['ReportsManagementProvider', function(provider) {
-        provider.addTemplate('expenses_box', 'core/reports/box_plot/box_plot.html');
-    }]);
-angular.module('gnucash-reports-view.reports.budget_level', ['gnucash-reports-view.reports.base',
-                                                               'nvd3'])
-    .config(['ReportsManagementProvider', function(provider) {
-        provider.addTemplate('budget_level', 'core/reports/budget_level/budget_level.html');
-        provider.addTemplate('category_budget_level', 'core/reports/budget_level/budget_level.html');
-    }]);
-
-angular.module('gnucash-reports-view.reports.budget_planning', ['gnucash-reports-view.reports.base',
-                                                                'nvd3', 'md.data.table', 'ngMaterial'])
-    .config(['ReportsManagementProvider', function(provider) {
-        provider.addTemplate('budget_planning', 'core/reports/budget_planning/budget_planning.html');
-    }]);
-
-angular.module('gnucash-reports-view.reports.cash_flow', ['gnucash-reports-view.reports.base',
-                                                                  'nvd3'])
-    .config(['ReportsManagementProvider', function(provider) {
-        provider.addTemplate('cash_flow_chart', 'core/reports/cash_flow_chart/cash_flow.html');
-    }]);
-
-angular.module('gnucash-reports-view.reports.category', ['gnucash-reports-view.reports.base',
-                                                          'nvd3'])
-    .config(['ReportsManagementProvider', function(provider) {
-        var categoryTemplate = 'core/reports/category/category.html';
-        provider.addTemplate('account_usage_categories', categoryTemplate);
-        provider.addTemplate('expenses_categories', categoryTemplate);
-        provider.addTemplate('investment_allocation', categoryTemplate);
-        provider.addTemplate('expense_accounts', categoryTemplate);
-    }]);
+    'nvd3',
+    'md.data.table',
+    'ngMaterial']);
 
 
-angular.module('gnucash-reports-view.reports.credit_usage', ['gnucash-reports-view.reports.base',
-                                                          'nvd3'])
-    .config(['ReportsManagementProvider', function(provider) {
-        provider.addTemplate('credit_usage', 'core/reports/credit_usage/credit_usage.html');
-    }]);
-
-
-angular.module('gnucash-reports-view.reports.debt_liquid_assets', ['gnucash-reports-view.reports.base',
-                                                          'nvd3'])
-    .config(['ReportsManagementProvider', function(provider) {
-        provider.addTemplate('debt_vs_liquid_assets', 'core/reports/debt_liquid_assets/debt_liquid_assets.html');
-    }]);
-
-angular.module('gnucash-reports-view.reports.expenses_period', ['gnucash-reports-view.reports.base',
-                                                                  'nvd3'])
-    .config(['ReportsManagementProvider', function(provider) {
-        provider.addTemplate('expenses_period', 'core/reports/expenses_period/expenses_period.html');
-    }]);
-angular.module('gnucash-reports-view.reports.income_vs_expense', ['gnucash-reports-view.reports.base',
-                                                                  'nvd3'])
-    .config(['ReportsManagementProvider', function(provider) {
-        provider.addTemplate('income_vs_expense', 'core/reports/income_vs_expense/income_vs_expense.html');
-    }]);
-angular.module('gnucash-reports-view.reports.investment_balance', ['gnucash-reports-view.reports.base',
-                                                               'nvd3'])
-    .config(['ReportsManagementProvider', function(provider) {
-        provider.addTemplate('investment_balance', 'core/reports/investment_balance/investment_balance.html');
-    }]);
-angular.module('gnucash-reports-view.reports.investment_trend', ['gnucash-reports-view.reports.base',
-                                                               'nvd3'])
-    .config(['ReportsManagementProvider', function(provider) {
-        provider.addTemplate('investment_trend', 'core/reports/investment_trend/investment_trend.html');
-    }]);
-angular.module('gnucash-reports-view.reports.multi_report', ['gnucash-reports-view.reports.base',
-                                                               'nvd3'])
-    .config(['ReportsManagementProvider', function(provider) {
-        provider.addTemplate('multi_report', 'core/reports/multi_report/multi_report.html');
-    }]);
-angular.module('gnucash-reports-view.reports.net_worth_table', ['gnucash-reports-view.reports.base',
-    'md.data.table', 'ngMaterial'])
-    .config(['ReportsManagementProvider', function(provider) {
-        provider.addTemplate('net_worth_table', 'core/reports/net_worth_table/net_worth_table.html');
-    }]);
-
-angular.module('gnucash-reports-view.reports.net_worth', ['gnucash-reports-view.reports.base',
-    'nvd3'])
-    .config(['ReportsManagementProvider', function(provider) {
-        provider.addTemplate('net_worth', 'core/reports/net_worth/net_worth.html');
-    }]);
-
-
-angular.module('gnucash-reports-view.reports.savings_goal', ['gnucash-reports-view.reports.base'])
-    .config(['ReportsManagementProvider', function(provider) {
-        provider.addTemplate('savings_goal', 'core/reports/savings_goal/savings_goal.html');
-    }]);
-angular.module('gnucash-reports-view.reports.taxes_paid', ['gnucash-reports-view.reports.base',
-                                                                  'nvd3'])
-    .config(['ReportsManagementProvider', function(provider) {
-        provider.addTemplate('income_tax', 'core/reports/taxes_paid/taxes_paid.html');
-    }]);
 var DisplayController = function($mdUtil, $mdSidenav, $timeout, content) {
 
     var controller = this;
@@ -415,7 +286,7 @@ var Contribution401kDirectiveGenerator = function($timeout, colorDefinitions, fo
     };
 };
 
-angular.module('gnucash-reports-view.reports.account_levels')
+angular.module('gnucash-reports-view.reports')
     .directive('contribution401k', ['$timeout', 'colorDefinitions', 'formatters', Contribution401kDirectiveGenerator]);
 /**
  * Directive that will display the account level information on the display.
@@ -532,12 +403,12 @@ var AccountLevelDirectiveGenerator = function($timeout, colorDefinitions, format
     };
 };
 
-angular.module('gnucash-reports-view.reports.account_levels')
+angular.module('gnucash-reports-view.reports')
     .directive('accountLevel', ['$timeout', 'colorDefinitions', 'formatters', AccountLevelDirectiveGenerator]);
 /**
  * Color Definition constants for all of the code.
  */
-angular.module('gnucash-reports-view.reports.base')
+angular.module('gnucash-reports-view.reports')
     .constant('colorDefinitions', {
         // Core Value
         base: 'LightSteelBlue',
@@ -580,7 +451,7 @@ var CurrencyDirectiveGenerator = function(formatters) {
 
 };
 
-angular.module('gnucash-reports-view.reports.base')
+angular.module('gnucash-reports-view.reports')
     .directive('currencyFormat', ['formatters', CurrencyDirectiveGenerator]);
 
 
@@ -605,7 +476,7 @@ var _formatters = {
 
 };
 
-angular.module('gnucash-reports-view.reports.base')
+angular.module('gnucash-reports-view.reports')
     .constant('formatters', {
 
         /**
@@ -673,7 +544,7 @@ var PercentageDirectiveGenerator = function(formatters) {
 
 };
 
-angular.module('gnucash-reports-view.reports.base')
+angular.module('gnucash-reports-view.reports')
     .directive('percentageFormat', ['formatters', PercentageDirectiveGenerator]);
 
 
@@ -706,6 +577,7 @@ var ReportsManagementProvider = function() {
 
     provider.addTemplate = function(type, template) {
         provider.providerTemplates[type] = template;
+        return provider;
     };
 
     this.$get = [function() {
@@ -714,7 +586,7 @@ var ReportsManagementProvider = function() {
 
 };
 
-angular.module('gnucash-reports-view.reports.base')
+angular.module('gnucash-reports-view.reports')
     .provider('ReportsManagement', ReportsManagementProvider);
 /**
  * Created by rerobins on 9/29/15.
@@ -771,7 +643,7 @@ var BoxPlotDirectiveGenerator = function($timeout, colorDefinitions, formatters)
     };
 };
 
-angular.module('gnucash-reports-view.reports.box_plot')
+angular.module('gnucash-reports-view.reports')
     .directive('boxPlot', ['$timeout', 'colorDefinitions', 'formatters', BoxPlotDirectiveGenerator]);
 /**
  * Created by rerobins on 9/29/15.
@@ -941,7 +813,7 @@ var BudgetlevelDirectiveGenerator = function($timeout, colorDefinitions, formatt
     };
 };
 
-angular.module('gnucash-reports-view.reports.budget_level')
+angular.module('gnucash-reports-view.reports')
     .directive('budgetLevel', ['$timeout', 'colorDefinitions', 'formatters', BudgetlevelDirectiveGenerator]);
 /**
  * Created by rerobins on 9/29/15.
@@ -998,7 +870,7 @@ var BudgetPlanningDirectiveGenerator = function($timeout, colorDefinitions, form
     };
 };
 
-angular.module('gnucash-reports-view.reports.budget_planning')
+angular.module('gnucash-reports-view.reports')
     .directive('budgetPlanning', ['$timeout', 'colorDefinitions', 'formatters', BudgetPlanningDirectiveGenerator]);
 /**
  * Created by rerobins on 9/29/15.
@@ -1072,7 +944,7 @@ var CashFlowDirectiveGenerator = function($timeout, colorDefinitions, formatters
     };
 };
 
-angular.module('gnucash-reports-view.reports.cash_flow')
+angular.module('gnucash-reports-view.reports')
     .directive('cashFlow', ['$timeout', 'colorDefinitions', 'formatters', CashFlowDirectiveGenerator]);
 /**
  * Created by rerobins on 9/29/15.
@@ -1145,7 +1017,7 @@ var CategoryGraphDirectiveGenerator = function($timeout, colorDefinitions, forma
     };
 };
 
-angular.module('gnucash-reports-view.reports.category')
+angular.module('gnucash-reports-view.reports')
     .directive('categoryGraph', ['$timeout', 'colorDefinitions', 'formatters', CategoryGraphDirectiveGenerator]);
 /**
  * Created by rerobins on 9/29/15.
@@ -1221,7 +1093,7 @@ var CreditUsageDirectiveGenerator = function($timeout, colorDefinitions, formatt
     };
 };
 
-angular.module('gnucash-reports-view.reports.credit_usage')
+angular.module('gnucash-reports-view.reports')
     .directive('creditUsage', ['$timeout', 'colorDefinitions', 'formatters', CreditUsageDirectiveGenerator]);
 /**
  * Created by rerobins on 9/29/15.
@@ -1325,7 +1197,7 @@ var DebtLiquidAssetDirectiveGenerator = function($timeout, colorDefinitions, for
     };
 };
 
-angular.module('gnucash-reports-view.reports.debt_liquid_assets')
+angular.module('gnucash-reports-view.reports')
     .directive('debtLiquidAsset', ['$timeout', 'colorDefinitions', 'formatters', DebtLiquidAssetDirectiveGenerator]);
 /**
  * Created by rerobins on 9/29/15.
@@ -1386,7 +1258,7 @@ var ExpensesPeriodDirectiveGenerator = function($timeout, colorDefinitions, form
     };
 };
 
-angular.module('gnucash-reports-view.reports.expenses_period')
+angular.module('gnucash-reports-view.reports')
     .directive('expensesPeriod', ['$timeout', 'colorDefinitions', 'formatters', ExpensesPeriodDirectiveGenerator]);
 /**
  * Created by rerobins on 9/29/15.
@@ -1459,7 +1331,7 @@ var IncomeVsExpenseDirectiveGenerator = function(colorDefinitions, formatters) {
     };
 };
 
-angular.module('gnucash-reports-view.reports.cash_flow')
+angular.module('gnucash-reports-view.reports')
     .directive('incomeVsExpense', ['colorDefinitions', 'formatters', IncomeVsExpenseDirectiveGenerator]);
 /**
  * Created by rerobins on 9/29/15.
@@ -1543,7 +1415,7 @@ var InvestmentBalanceDirectiveGenerator = function(colorDefinitions, formatters)
     };
 };
 
-angular.module('gnucash-reports-view.reports.account_levels')
+angular.module('gnucash-reports-view.reports')
     .directive('investmentBalance', ['colorDefinitions', 'formatters', InvestmentBalanceDirectiveGenerator]);
 /**
  * Created by rerobins on 9/29/15.
@@ -1670,7 +1542,7 @@ var InvestmentTrendDirectiveGenerator = function($timeout, colorDefinitions, for
     };
 };
 
-angular.module('gnucash-reports-view.reports.investment_trend')
+angular.module('gnucash-reports-view.reports')
     .directive('investmentTrend', ['$timeout', 'colorDefinitions', 'formatters', InvestmentTrendDirectiveGenerator]);
 /**
  * Created by rerobins on 10/6/15.
@@ -1688,7 +1560,7 @@ var NetworthBreakdownDirectiveGenerator = function(formatters) {
     };
 };
 
-angular.module('gnucash-reports-view.reports.net_worth_table')
+angular.module('gnucash-reports-view.reports')
     .directive('netWorthBreakdown', ['formatters', NetworthBreakdownDirectiveGenerator]);
 /**
  * Created by rerobins on 10/6/15.
@@ -1707,7 +1579,7 @@ var NetworthSummaryDirectiveGenerator = function() {
     };
 };
 
-angular.module('gnucash-reports-view.reports.net_worth_table')
+angular.module('gnucash-reports-view.reports')
     .directive('netWorthSummary', [NetworthSummaryDirectiveGenerator]);
 /**
  * Created by rerobins on 9/29/15.
@@ -1775,8 +1647,37 @@ var NetworthDirectiveGenerator = function($timeout, formatters) {
     };
 };
 
-angular.module('gnucash-reports-view.reports.net_worth')
+angular.module('gnucash-reports-view.reports')
     .directive('netWorth', ['$timeout', 'formatters', NetworthDirectiveGenerator]);
+/**
+ * Register all of the core reports into the data system.
+ */
+
+angular.module('gnucash-reports-view.reports')
+    .config(['ReportsManagementProvider', function(provider) {
+        provider.addTemplate('401k_report', 'core/reports/401k_contribution/401k_report.html')
+                .addTemplate('account_levels', 'core/reports/account_levels/account_levels.html')
+                .addTemplate('expenses_box', 'core/reports/box_plot/box_plot.html')
+                .addTemplate('budget_level', 'core/reports/budget_level/budget_level.html')
+                .addTemplate('category_budget_level', 'core/reports/budget_level/budget_level.html')
+                .addTemplate('budget_planning', 'core/reports/budget_planning/budget_planning.html')
+                .addTemplate('cash_flow_chart', 'core/reports/cash_flow_chart/cash_flow.html')
+                .addTemplate('account_usage_categories', 'core/reports/category/category.html')
+                .addTemplate('expenses_categories', 'core/reports/category/category.html')
+                .addTemplate('investment_allocation', 'core/reports/category/category.html')
+                .addTemplate('expense_accounts', 'core/reports/category/category.html')
+                .addTemplate('credit_usage', 'core/reports/credit_usage/credit_usage.html')
+                .addTemplate('debt_vs_liquid_assets', 'core/reports/debt_liquid_assets/debt_liquid_assets.html')
+                .addTemplate('expenses_period', 'core/reports/expenses_period/expenses_period.html')
+                .addTemplate('income_vs_expense', 'core/reports/income_vs_expense/income_vs_expense.html')
+                .addTemplate('investment_balance', 'core/reports/investment_balance/investment_balance.html')
+                .addTemplate('investment_trend', 'core/reports/investment_trend/investment_trend.html')
+                .addTemplate('multi_report', 'core/reports/multi_report/multi_report.html')
+                .addTemplate('net_worth', 'core/reports/net_worth/net_worth.html')
+                .addTemplate('net_worth_table', 'core/reports/net_worth_table/net_worth_table.html')
+                .addTemplate('savings_goal', 'core/reports/savings_goal/savings_goal.html')
+                .addTemplate('income_tax', 'core/reports/taxes_paid/taxes_paid.html');
+    }]);
 /**
  * Created by rerobins on 9/29/15.
  */
@@ -1882,7 +1783,7 @@ var SavingsGoalDirectiveGenerator = function($timeout, colorDefinitions, formatt
     };
 };
 
-angular.module('gnucash-reports-view.reports.savings_goal')
+angular.module('gnucash-reports-view.reports')
     .directive('savingsGoal', ['$timeout', 'colorDefinitions', 'formatters', SavingsGoalDirectiveGenerator]);
 /**
  * Created by rerobins on 9/29/15.
@@ -1990,7 +1891,7 @@ var TaxesPaidDirectiveGenerator = function($timeout, colorDefinitions, formatter
     };
 };
 
-angular.module('gnucash-reports-view.reports.account_levels')
+angular.module('gnucash-reports-view.reports')
     .directive('taxesPaid', ['$timeout', 'colorDefinitions', 'formatters', TaxesPaidDirectiveGenerator]);
 // Service provider responsible for loading the reports and creating the pages.
 var ReportsService = function($http, $q, reportFile) {

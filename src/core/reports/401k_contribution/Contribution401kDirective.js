@@ -150,5 +150,5 @@ var Contribution401kDirectiveGenerator = function($timeout, colorDefinitions, fo
     };
 };
 
-angular.module('gnucash-reports-view.reports.account_levels')
+angular.module('gnucash-reports-view.reports')
     .directive('contribution401k', ['$timeout', 'colorDefinitions', 'formatters', Contribution401kDirectiveGenerator]);

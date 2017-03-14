@@ -1,7 +1,7 @@
 /**
  * Color Definition constants for all of the code.
  */
-angular.module('gnucash-reports-view.reports.base')
+angular.module('gnucash-reports-view.reports')
     .constant('colorDefinitions', {
         // Core Value
         base: 'LightSteelBlue',

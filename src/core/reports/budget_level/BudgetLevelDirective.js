@@ -166,5 +166,5 @@ var BudgetlevelDirectiveGenerator = function($timeout, colorDefinitions, formatt
     };
 };
 
-angular.module('gnucash-reports-view.reports.budget_level')
+angular.module('gnucash-reports-view.reports')
     .directive('budgetLevel', ['$timeout', 'colorDefinitions', 'formatters', BudgetlevelDirectiveGenerator]);

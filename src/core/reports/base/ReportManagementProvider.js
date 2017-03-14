@@ -27,6 +27,7 @@ var ReportsManagementProvider = function() {
 
     provider.addTemplate = function(type, template) {
         provider.providerTemplates[type] = template;
+        return provider;
     };
 
     this.$get = [function() {
@@ -35,5 +36,5 @@ var ReportsManagementProvider = function() {
 
 };
 
-angular.module('gnucash-reports-view.reports.base')
+angular.module('gnucash-reports-view.reports')
     .provider('ReportsManagement', ReportsManagementProvider);

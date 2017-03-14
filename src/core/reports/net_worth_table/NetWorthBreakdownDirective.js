@@ -14,5 +14,5 @@ var NetworthBreakdownDirectiveGenerator = function(formatters) {
     };
 };
 
-angular.module('gnucash-reports-view.reports.net_worth_table')
+angular.module('gnucash-reports-view.reports')
     .directive('netWorthBreakdown', ['formatters', NetworthBreakdownDirectiveGenerator]);

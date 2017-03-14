@@ -69,5 +69,5 @@ var IncomeVsExpenseDirectiveGenerator = function(colorDefinitions, formatters) {
     };
 };
 
-angular.module('gnucash-reports-view.reports.cash_flow')
+angular.module('gnucash-reports-view.reports')
     .directive('incomeVsExpense', ['colorDefinitions', 'formatters', IncomeVsExpenseDirectiveGenerator]);

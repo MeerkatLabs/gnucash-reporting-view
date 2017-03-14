@@ -57,5 +57,5 @@ var ExpensesPeriodDirectiveGenerator = function($timeout, colorDefinitions, form
     };
 };
 
-angular.module('gnucash-reports-view.reports.expenses_period')
+angular.module('gnucash-reports-view.reports')
     .directive('expensesPeriod', ['$timeout', 'colorDefinitions', 'formatters', ExpensesPeriodDirectiveGenerator]);

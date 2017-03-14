@@ -104,5 +104,5 @@ var TaxesPaidDirectiveGenerator = function($timeout, colorDefinitions, formatter
     };
 };
 
-angular.module('gnucash-reports-view.reports.account_levels')
+angular.module('gnucash-reports-view.reports')
     .directive('taxesPaid', ['$timeout', 'colorDefinitions', 'formatters', TaxesPaidDirectiveGenerator]);

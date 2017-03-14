@@ -123,5 +123,5 @@ var InvestmentTrendDirectiveGenerator = function($timeout, colorDefinitions, for
     };
 };
 
-angular.module('gnucash-reports-view.reports.investment_trend')
+angular.module('gnucash-reports-view.reports')
     .directive('investmentTrend', ['$timeout', 'colorDefinitions', 'formatters', InvestmentTrendDirectiveGenerator]);

@@ -53,5 +53,5 @@ var BudgetPlanningDirectiveGenerator = function($timeout, colorDefinitions, form
     };
 };
 
-angular.module('gnucash-reports-view.reports.budget_planning')
+angular.module('gnucash-reports-view.reports')
     .directive('budgetPlanning', ['$timeout', 'colorDefinitions', 'formatters', BudgetPlanningDirectiveGenerator]);

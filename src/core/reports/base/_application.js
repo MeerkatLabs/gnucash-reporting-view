@@ -1,1 +1,0 @@
-angular.module('gnucash-reports-view.reports.base', []);

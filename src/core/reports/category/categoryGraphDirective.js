@@ -69,5 +69,5 @@ var CategoryGraphDirectiveGenerator = function($timeout, colorDefinitions, forma
     };
 };
 
-angular.module('gnucash-reports-view.reports.category')
+angular.module('gnucash-reports-view.reports')
     .directive('categoryGraph', ['$timeout', 'colorDefinitions', 'formatters', CategoryGraphDirectiveGenerator]);
