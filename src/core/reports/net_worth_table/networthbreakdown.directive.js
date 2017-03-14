@@ -1,21 +1,21 @@
-/**
- * Created by rerobins on 10/6/15.
- */
+(function() {
 
-angular.module('gnucash-reports-view.reports')
-    .directive('gnucashNetWorthBreakdown', NetworthBreakdownDirectiveGenerator);
+    angular.module('gnucash-reports-view.reports')
+        .directive('gnucashNetWorthBreakdown', NetworthBreakdownDirectiveGenerator);
 
-NetworthBreakdownDirectiveGenerator.$inject = ['formatters'];
+    NetworthBreakdownDirectiveGenerator.$inject = ['formatters'];
 
-function NetworthBreakdownDirectiveGenerator(formatters) {
-    return {
-        restrict: 'E',
-        scope: {
-            data: '&',
-            deltas: '&',
-            trends: '&',
-            header: '&'
-        },
-        templateUrl: 'core/reports/net_worth_table/net_worth_breakdown.html'
-    };
-}
+    function NetworthBreakdownDirectiveGenerator(formatters) {
+        return {
+            restrict: 'E',
+            scope: {
+                data: '&',
+                deltas: '&',
+                trends: '&',
+                header: '&'
+            },
+            templateUrl: 'core/reports/net_worth_table/net_worth_breakdown.html'
+        };
+    }
+
+})();

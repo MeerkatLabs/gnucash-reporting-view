@@ -1,35 +1,32 @@
-/**
- * Created by rerobins on 10/6/15.
- */
+(function() {
 
-angular.module('gnucash-reports-view.reports')
-    .directive('gnucashCurrencyFormat', CurrencyDirectiveGenerator);
+    angular.module('gnucash-reports-view.reports')
+        .directive('gnucashCurrencyFormat', CurrencyDirectiveGenerator);
 
-CurrencyDirectiveGenerator.$inject = ['formatters'];
+    CurrencyDirectiveGenerator.$inject = ['formatters'];
 
-function CurrencyDirectiveGenerator(formatters) {
+    function CurrencyDirectiveGenerator(formatters) {
 
-    return {
-        scope: {
-            value: '&'
-        },
-        template: '<span ng-style="style">{{currencyValue}}</span>',
-        link: link
-    };
+        return {
+            scope: {
+                value: '&'
+            },
+            template: '<span ng-style="style">{{currencyValue}}</span>',
+            link: link
+        };
 
-    ////////////////////////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////////////////////////
 
-    function link($scope) {
-        $scope.currencyValue = formatters.currency($scope.value());
+        function link($scope) {
+            $scope.currencyValue = formatters.currency($scope.value());
 
-        if ($scope.value() > 0.0) {
-            $scope.style = {color: 'green'};
-        } else if ($scope.value() < 0.0) {
-            $scope.style = {color: 'red'};
+            if ($scope.value() > 0.0) {
+                $scope.style = {color: 'green'};
+            } else if ($scope.value() < 0.0) {
+                $scope.style = {color: 'red'};
+            }
         }
+
     }
 
-}
-
-
-
+})();

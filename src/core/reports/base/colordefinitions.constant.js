@@ -1,23 +1,27 @@
-/**
- * Color Definition constants for all of the code.
- */
-angular.module('gnucash-reports-view.reports')
-    .constant('colorDefinitions', {
-        // Core Value
-        base: 'LightSteelBlue',
+(function() {
 
-        // Color Scale values.
-        best: 'ForestGreen',
-        good: 'DarkSeaGreen',
-        info: 'Khaki',
-        warning: 'SandyBrown',
-        error: 'LightCoral',
+    /**
+     * Color Definition constants for all of the code.
+     */
+    angular.module('gnucash-reports-view.reports')
+        .constant('colorDefinitions', {
+            // Core Value
+            base: 'LightSteelBlue',
 
-        // Total Sale Values
-        totalGood: 'LightCyan',
-        totalBad: 'LightCoral',
+            // Color Scale values.
+            best: 'ForestGreen',
+            good: 'DarkSeaGreen',
+            info: 'Khaki',
+            warning: 'SandyBrown',
+            error: 'LightCoral',
 
-        // Credit Debit Values
-        credit: 'DarkSeaGreen',
-        debit: 'LightCoral'
-    });
+            // Total Sale Values
+            totalGood: 'LightCyan',
+            totalBad: 'LightCoral',
+
+            // Credit Debit Values
+            credit: 'DarkSeaGreen',
+            debit: 'LightCoral'
+        });
+
+})();

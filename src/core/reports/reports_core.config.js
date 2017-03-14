@@ -1,10 +1,11 @@
-/**
- * Register all of the core reports into the data system.
- */
+(function() {
 
-angular.module('gnucash-reports-view.reports')
-    .config(['ReportsManagementProvider', function(provider) {
-        provider.addTemplate('401k_report', 'core/reports/401k_contribution/401k_report.html')
+    /**
+     * Register all of the core reports into the data system.
+     */
+    angular.module('gnucash-reports-view.reports')
+        .config(['ReportsManagementProvider', function(provider) {
+            provider.addTemplate('401k_report', 'core/reports/401k_contribution/401k_report.html')
                 .addTemplate('account_levels', 'core/reports/account_levels/account_levels.html')
                 .addTemplate('expenses_box', 'core/reports/box_plot/box_plot.html')
                 .addTemplate('budget_level', 'core/reports/budget_level/budget_level.html')
@@ -26,4 +27,6 @@ angular.module('gnucash-reports-view.reports')
                 .addTemplate('net_worth_table', 'core/reports/net_worth_table/net_worth_table.html')
                 .addTemplate('savings_goal', 'core/reports/savings_goal/savings_goal.html')
                 .addTemplate('income_tax', 'core/reports/taxes_paid/taxes_paid.html');
-    }]);
+        }]);
+
+})();

@@ -1,5 +1,0 @@
-/**
- * Function call for js.prefix file.
- */
-
-}(window, window.angular));

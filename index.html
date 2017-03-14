@@ -14,7 +14,7 @@
     <!-- endinject -->
     <title>GNU Cash Display</title>
 </head>
-<body ng-app="gnucash-reports-view" layout="row">
+<body ng-app="mainDisplay" layout="row">
 
     <section layout="row" flex>
 
@@ -50,7 +50,7 @@
 
 
 <script language="JavaScript">
-    angular.module('gnucash-reports-view').config(['ReportsServiceProvider', function(provider) {
+    angular.module('mainDisplay', ['gnucash-reports-view']).config(['ReportsServiceProvider', function(provider) {
         provider.configureReportFile('data/__reports.json');
     }]).run(['$animate', function($animate) {
         // Have to turn off the animations for now because ui router is animating the transitions of states

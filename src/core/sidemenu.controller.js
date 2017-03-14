@@ -1,18 +1,21 @@
+(function() {
 
-angular.module('gnucash-reports-view')
-    .controller('SideMenuController', SideMenuController);
+    angular.module('gnucash-reports-view')
+        .controller('SideMenuController', SideMenuController);
 
-SideMenuController.$inject = ['ReportsService'];
+    SideMenuController.$inject = ['ReportsService'];
 
-// Side menu controller.
-function SideMenuController(ReportsService) {
+    // Side menu controller.
+    function SideMenuController(ReportsService) {
 
-    var controller = this;
+        var controller = this;
 
-    controller.reports = [];
+        controller.reports = [];
 
-    ReportsService.reportsContent.then(function(results) {
-        controller.reports = results.data.reports;
-    });
+        ReportsService.reportsContent.then(function(results) {
+            controller.reports = results.data.reports;
+        });
 
-}
+    }
+
+})();
