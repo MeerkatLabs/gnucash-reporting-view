@@ -51,9 +51,9 @@
             $scope.data = angular.copy(data.categories);
 
             // Manipulate the data set and tye style based on the amount of remaining value that is in the accounts.
-            $scope.remainingStyle = {background: colorDefinitions.totalGood};
+            $scope.remainingClass = 'total-positive';
             if ($scope.remaining < 0) {
-                $scope.remainingStyle = {background: colorDefinitions.totalBad};
+                $scope.remainingClass = 'total-negative';
             } else {
                 $scope.data.push({name: 'Remaining', value: data.remaining});
             }

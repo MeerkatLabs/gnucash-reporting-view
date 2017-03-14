@@ -11,7 +11,7 @@
             scope: {
                 value: '&'
             },
-            template: '<span ng-style="style">{{currencyValue}}</span>',
+            template: '<span ng-class="style">{{::percentageValue}}</span>',
             link: link
         };
 
@@ -19,15 +19,15 @@
         function link($scope) {
             if (angular.isNumber($scope.value())) {
 
-                $scope.currencyValue = formatters.percentage($scope.value());
+                $scope.percentageValue = formatters.percentage($scope.value());
 
                 if ($scope.value() > 0.0) {
-                    $scope.style = {color: 'green'};
+                    $scope.style = 'percentage-positive';
                 } else if ($scope.value() < 0.0) {
-                    $scope.style = {color: 'red'};
+                    $scope.style = 'percentage-negative';
                 }
             } else {
-                $scope.currencyValue = 'N/A';
+                $scope.percentageValue = 'N/A';
             }
         }
 

@@ -11,7 +11,7 @@
             scope: {
                 value: '&'
             },
-            template: '<span ng-style="style">{{currencyValue}}</span>',
+            template: '<span ng-class="style">{{currencyValue}}</span>',
             link: link
         };
 
@@ -21,9 +21,9 @@
             $scope.currencyValue = formatters.currency($scope.value());
 
             if ($scope.value() > 0.0) {
-                $scope.style = {color: 'green'};
+                $scope.style = 'currency-positive';
             } else if ($scope.value() < 0.0) {
-                $scope.style = {color: 'red'};
+                $scope.style = 'currency-negative';
             }
         }
 

@@ -19,7 +19,7 @@
                         <td md-cell>{{item.value | currency}}</td>
                     </tr>
 
-                    <tr md-row style="background: aliceblue">
+                    <tr md-row class="totals">
                         <td md-cell>Total</td>
                         <td md-cell>{{total | currency}}</td>
                     </tr>
@@ -27,7 +27,7 @@
                         <td md-cell>Income</td>
                         <td md-cell>{{income | currency}}</td>
                     </tr>
-                    <tr md-row ng-style="remainingStyle">
+                    <tr md-row ng-class="remainingClass">
                         <td md-cell>Remaining</td>
                         <td md-cell>{{remaining | currency}}</td>
                     </tr>

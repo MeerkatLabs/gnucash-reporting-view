@@ -1,0 +1,29 @@
+.currency-positive {
+  color: #006600; }
+
+.currency-negative {
+  color: #F00; }
+
+.percentage-positive {
+  color: #006600; }
+
+.percentage-negative {
+  color: #F00; }
+
+td.rowHeader {
+  text-transform: uppercase; }
+
+td.current, th.current {
+  background-color: lightcyan; }
+
+tr.totals {
+  background-color: aliceblue; }
+
+tr.summaryTotals {
+  background-color: lightblue; }
+
+tr.total-positive {
+  background-color: LightCyan; }
+
+tr.total-negative {
+  background-color: LightCoral; }

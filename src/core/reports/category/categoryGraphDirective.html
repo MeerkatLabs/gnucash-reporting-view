@@ -29,8 +29,8 @@
                                 <td md-cell>{{::dataset[1] | currency}}</td>
                                 <td md-cell><gnucash-percentage-format value="dataset[1] / total"></gnucash-percentage-format></td>
                             </tr>
-                            <tr md-row style="background-color: lightblue;">
-                                <td md-cell style="text-transform: uppercase;">Total</td>
+                            <tr md-row class="summaryTotals">
+                                <td md-cell class="rowHeader">Total</td>
                                 <td md-cell>{{::total | currency}}</td>
                                 <td md-cell>&nbsp;</td>
                             </tr>
