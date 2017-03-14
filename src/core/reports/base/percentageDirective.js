@@ -29,5 +29,5 @@ var PercentageDirectiveGenerator = function(formatters) {
 };
 
 angular.module('gnucash-reports-view.reports')
-    .directive('percentageFormat', ['formatters', PercentageDirectiveGenerator]);
+    .directive('gnucashPercentageFormat', ['formatters', PercentageDirectiveGenerator]);
 

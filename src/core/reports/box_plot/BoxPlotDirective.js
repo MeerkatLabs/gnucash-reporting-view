@@ -54,4 +54,4 @@ var BoxPlotDirectiveGenerator = function($timeout, colorDefinitions, formatters)
 };
 
 angular.module('gnucash-reports-view.reports')
-    .directive('boxPlot', ['$timeout', 'colorDefinitions', 'formatters', BoxPlotDirectiveGenerator]);
+    .directive('gnucashBoxPlot', ['$timeout', 'colorDefinitions', 'formatters', BoxPlotDirectiveGenerator]);

@@ -27,7 +27,7 @@
                                 <td md-cell>{{::firstDataSet.date * 1000 | date}}</td>
                                 <td md-cell ng-repeat="dataSet in data track by $index">{{::dataSet.values[i].value | currency}}</td>
                                 <td md-cell>
-                                    <currency-format value="data[0].values[i].value + data[1].values[i].value"></currency-format>
+                                    <gnucash-currency-format value="data[0].values[i].value + data[1].values[i].value"></gnucash-currency-format>
                                 </td>
                             </tr>
                         </tbody>

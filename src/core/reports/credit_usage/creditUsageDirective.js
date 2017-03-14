@@ -73,4 +73,4 @@ var CreditUsageDirectiveGenerator = function($timeout, colorDefinitions, formatt
 };
 
 angular.module('gnucash-reports-view.reports')
-    .directive('creditUsage', ['$timeout', 'colorDefinitions', 'formatters', CreditUsageDirectiveGenerator]);
+    .directive('gnucashCreditUsage', ['$timeout', 'colorDefinitions', 'formatters', CreditUsageDirectiveGenerator]);

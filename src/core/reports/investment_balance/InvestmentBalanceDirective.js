@@ -81,4 +81,4 @@ var InvestmentBalanceDirectiveGenerator = function(colorDefinitions, formatters)
 };
 
 angular.module('gnucash-reports-view.reports')
-    .directive('investmentBalance', ['colorDefinitions', 'formatters', InvestmentBalanceDirectiveGenerator]);
+    .directive('gnucashInvestmentBalance', ['colorDefinitions', 'formatters', InvestmentBalanceDirectiveGenerator]);

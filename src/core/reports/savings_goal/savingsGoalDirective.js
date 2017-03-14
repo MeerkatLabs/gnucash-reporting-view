@@ -104,4 +104,4 @@ var SavingsGoalDirectiveGenerator = function($timeout, colorDefinitions, formatt
 };
 
 angular.module('gnucash-reports-view.reports')
-    .directive('savingsGoal', ['$timeout', 'colorDefinitions', 'formatters', SavingsGoalDirectiveGenerator]);
+    .directive('gnucashSavingsGoal', ['$timeout', 'colorDefinitions', 'formatters', SavingsGoalDirectiveGenerator]);

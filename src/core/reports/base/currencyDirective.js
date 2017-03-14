@@ -22,5 +22,5 @@ var CurrencyDirectiveGenerator = function(formatters) {
 };
 
 angular.module('gnucash-reports-view.reports')
-    .directive('currencyFormat', ['formatters', CurrencyDirectiveGenerator]);
+    .directive('gnucashCurrencyFormat', ['formatters', CurrencyDirectiveGenerator]);
 

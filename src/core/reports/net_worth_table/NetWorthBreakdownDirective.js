@@ -15,4 +15,4 @@ var NetworthBreakdownDirectiveGenerator = function(formatters) {
 };
 
 angular.module('gnucash-reports-view.reports')
-    .directive('netWorthBreakdown', ['formatters', NetworthBreakdownDirectiveGenerator]);
+    .directive('gnucashNetWorthBreakdown', ['formatters', NetworthBreakdownDirectiveGenerator]);

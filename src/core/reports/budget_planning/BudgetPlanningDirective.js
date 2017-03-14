@@ -54,4 +54,4 @@ var BudgetPlanningDirectiveGenerator = function($timeout, colorDefinitions, form
 };
 
 angular.module('gnucash-reports-view.reports')
-    .directive('budgetPlanning', ['$timeout', 'colorDefinitions', 'formatters', BudgetPlanningDirectiveGenerator]);
+    .directive('gnucashBudgetPlanning', ['$timeout', 'colorDefinitions', 'formatters', BudgetPlanningDirectiveGenerator]);

@@ -151,4 +151,4 @@ var Contribution401kDirectiveGenerator = function($timeout, colorDefinitions, fo
 };
 
 angular.module('gnucash-reports-view.reports')
-    .directive('contribution401k', ['$timeout', 'colorDefinitions', 'formatters', Contribution401kDirectiveGenerator]);
+    .directive('gnucashContribution401k', ['$timeout', 'colorDefinitions', 'formatters', Contribution401kDirectiveGenerator]);

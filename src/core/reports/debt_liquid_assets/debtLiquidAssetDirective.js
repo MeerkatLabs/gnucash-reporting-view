@@ -101,4 +101,4 @@ var DebtLiquidAssetDirectiveGenerator = function($timeout, colorDefinitions, for
 };
 
 angular.module('gnucash-reports-view.reports')
-    .directive('debtLiquidAsset', ['$timeout', 'colorDefinitions', 'formatters', DebtLiquidAssetDirectiveGenerator]);
+    .directive('gnucashDebtLiquidAsset', ['$timeout', 'colorDefinitions', 'formatters', DebtLiquidAssetDirectiveGenerator]);

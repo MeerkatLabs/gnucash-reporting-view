@@ -124,4 +124,4 @@ var InvestmentTrendDirectiveGenerator = function($timeout, colorDefinitions, for
 };
 
 angular.module('gnucash-reports-view.reports')
-    .directive('investmentTrend', ['$timeout', 'colorDefinitions', 'formatters', InvestmentTrendDirectiveGenerator]);
+    .directive('gnucashInvestmentTrend', ['$timeout', 'colorDefinitions', 'formatters', InvestmentTrendDirectiveGenerator]);

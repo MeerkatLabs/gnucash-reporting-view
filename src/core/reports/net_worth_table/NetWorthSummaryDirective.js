@@ -16,4 +16,4 @@ var NetworthSummaryDirectiveGenerator = function() {
 };
 
 angular.module('gnucash-reports-view.reports')
-    .directive('netWorthSummary', [NetworthSummaryDirectiveGenerator]);
+    .directive('gnucashNetWorthSummary', [NetworthSummaryDirectiveGenerator]);

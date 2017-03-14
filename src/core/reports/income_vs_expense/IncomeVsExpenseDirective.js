@@ -70,4 +70,4 @@ var IncomeVsExpenseDirectiveGenerator = function(colorDefinitions, formatters) {
 };
 
 angular.module('gnucash-reports-view.reports')
-    .directive('incomeVsExpense', ['colorDefinitions', 'formatters', IncomeVsExpenseDirectiveGenerator]);
+    .directive('gnucashIncomeVsExpense', ['colorDefinitions', 'formatters', IncomeVsExpenseDirectiveGenerator]);

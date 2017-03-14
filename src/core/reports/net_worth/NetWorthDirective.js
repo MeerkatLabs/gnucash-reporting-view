@@ -65,4 +65,4 @@ var NetworthDirectiveGenerator = function($timeout, formatters) {
 };
 
 angular.module('gnucash-reports-view.reports')
-    .directive('netWorth', ['$timeout', 'formatters', NetworthDirectiveGenerator]);
+    .directive('gnucashNetWorth', ['$timeout', 'formatters', NetworthDirectiveGenerator]);

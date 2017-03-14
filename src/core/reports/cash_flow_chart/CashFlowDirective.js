@@ -71,4 +71,4 @@ var CashFlowDirectiveGenerator = function($timeout, colorDefinitions, formatters
 };
 
 angular.module('gnucash-reports-view.reports')
-    .directive('cashFlow', ['$timeout', 'colorDefinitions', 'formatters', CashFlowDirectiveGenerator]);
+    .directive('gnucashCashFlow', ['$timeout', 'colorDefinitions', 'formatters', CashFlowDirectiveGenerator]);

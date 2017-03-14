@@ -105,4 +105,4 @@ var TaxesPaidDirectiveGenerator = function($timeout, colorDefinitions, formatter
 };
 
 angular.module('gnucash-reports-view.reports')
-    .directive('taxesPaid', ['$timeout', 'colorDefinitions', 'formatters', TaxesPaidDirectiveGenerator]);
+    .directive('gnucashTaxesPaid', ['$timeout', 'colorDefinitions', 'formatters', TaxesPaidDirectiveGenerator]);

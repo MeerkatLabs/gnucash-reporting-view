@@ -13,26 +13,26 @@
             <tr md-row ng-repeat="row in data().records">
                 <td md-cell style="text-transform: uppercase;">{{row.name}}</td>
                 <td md-cell ng-repeat="value in row.trend track by $index">
-                    <currency-format value="value"></currency-format>
+                    <gnucash-currency-format value="value"></gnucash-currency-format>
                 </td>
                 <td md-cell style="background-color: lightcyan">
-                    <currency-format value="row.current_data"></currency-format>
+                    <gnucash-currency-format value="row.current_data"></gnucash-currency-format>
                 </td>
                 <td md-cell ng-repeat="value in row.deltas track by $index">
-                    <percentage-format value="value"></percentage-format>
+                    <gnucash-percentage-format value="value"></gnucash-percentage-format>
                 </td>
             </tr>
 
             <tr md-row style="background-color: aliceblue;">
                 <td md-cell style="text-transform: uppercase;"><strong>Totals</strong></td>
                 <td md-cell ng-repeat="value in data().trend track by $index">
-                    <currency-format value="value"></currency-format>
+                    <gnucash-currency-format value="value"></gnucash-currency-format>
                 </td>
                 <td md-cell>
-                    <currency-format value="data().current_data"></currency-format>
+                    <gnucash-currency-format value="data().current_data"></gnucash-currency-format>
                 </td>
                 <td md-cell ng-repeat="value in data().deltas track by $index">
-                    <percentage-format value="value"></percentage-format>
+                    <gnucash-percentage-format value="value"></gnucash-percentage-format>
                 </td>
             </tr>
         </tbody>
