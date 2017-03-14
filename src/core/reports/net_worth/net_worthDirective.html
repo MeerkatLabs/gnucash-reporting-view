@@ -13,22 +13,22 @@
             <md-content class="md-padding">
 
 
-                <md-data-table-container>
-                    <table md-data-table>
-                        <thead>
-                            <tr>
-                                <th name="Date"></th>
-                                <th name="{{::dataset.key}}" ng-repeat="dataset in data track by $index"></th>
+                <md-table-container>
+                    <table md-table>
+                        <thead md-head>
+                            <tr md-row>
+                                <th md-column>Date</th>
+                                <th md-column ng-repeat="dataset in data track by $index">{{::dataset.key}}</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr ng-repeat="firstDataSet in data[0].values track by $index" ng-init="i = $index">
-                                <td>{{::firstDataSet.date * 1000 | date}}</td>
-                                <td ng-repeat="dataSet in data track by $index">{{::dataSet.values[i].value | currency}}</td>
+                        <tbody md-body>
+                            <tr md-row ng-repeat="firstDataSet in data[0].values track by $index" ng-init="i = $index">
+                                <td md-cell>{{::firstDataSet.date * 1000 | date}}</td>
+                                <td md-cell ng-repeat="dataSet in data track by $index">{{::dataSet.values[i].value | currency}}</td>
                             </tr>
                         </tbody>
                     </table>
-                </md-data-table-container>
+                </md-table-container>
 
             </md-content>
         </md-tab>
