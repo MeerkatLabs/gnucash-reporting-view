@@ -1,9 +1,25 @@
 /**
  * Created by rerobins on 9/29/15.
  */
-var CategoryGraphDirectiveGenerator = function($timeout, colorDefinitions, formatters) {
 
-    var createCategoryChart = function($scope) {
+angular.module('gnucash-reports-view.reports')
+    .directive('gnucashCategoryGraph', CategoryGraphDirectiveGenerator);
+
+CategoryGraphDirectiveGenerator.$inject = ['$timeout', 'colorDefinitions', 'formatters'];
+
+function CategoryGraphDirectiveGenerator($timeout, colorDefinitions, formatters) {
+
+    return {
+        scope: {
+            reportData: '&'
+        },
+        templateUrl: 'core/reports/category/categoryGraphDirective.html',
+        link: function($scope) {
+            $timeout(createCategoryChart, 0, true, $scope);
+        }
+    };
+
+    function createCategoryChart($scope) {
         var data = $scope.reportData();
         $scope.options = {
             chart: {
@@ -56,18 +72,7 @@ var CategoryGraphDirectiveGenerator = function($timeout, colorDefinitions, forma
         data.categories.forEach(function(d) {
             $scope.total += d[1];
         });
-    };
+    }
 
-    return {
-        scope: {
-            reportData: '&'
-        },
-        templateUrl: 'core/reports/category/categoryGraphDirective.html',
-        link: function($scope) {
-            $timeout(createCategoryChart, 0, true, $scope);
-        }
-    };
-};
+}
 
-angular.module('gnucash-reports-view.reports')
-    .directive('gnucashCategoryGraph', ['$timeout', 'colorDefinitions', 'formatters', CategoryGraphDirectiveGenerator]);

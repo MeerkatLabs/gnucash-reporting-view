@@ -1,9 +1,25 @@
 /**
  * Created by rerobins on 9/29/15.
  */
-var InvestmentTrendDirectiveGenerator = function($timeout, colorDefinitions, formatters) {
 
-    var createInvestmentTrendChart = function($scope) {
+angular.module('gnucash-reports-view.reports')
+    .directive('gnucashInvestmentTrend', InvestmentTrendDirectiveGenerator);
+
+InvestmentTrendDirectiveGenerator.$inject = ['$timeout', 'colorDefinitions', 'formatters'];
+
+function InvestmentTrendDirectiveGenerator($timeout, colorDefinitions, formatters) {
+
+    return {
+        scope: {
+            reportData: '&'
+        },
+        templateUrl: 'core/reports/investment_trend/investment_trendDirective.html',
+        link: function($scope) {
+            $timeout(createInvestmentTrendChart, 0, true, $scope);
+        }
+    };
+
+    function createInvestmentTrendChart($scope) {
         var data = $scope.reportData();
 
         var basisMax = 0.0;
@@ -110,18 +126,6 @@ var InvestmentTrendDirectiveGenerator = function($timeout, colorDefinitions, for
                 }
             }
         };
-    };
+    }
 
-    return {
-        scope: {
-            reportData: '&'
-        },
-        templateUrl: 'core/reports/investment_trend/investment_trendDirective.html',
-        link: function($scope) {
-            $timeout(createInvestmentTrendChart, 0, true, $scope);
-        }
-    };
-};
-
-angular.module('gnucash-reports-view.reports')
-    .directive('gnucashInvestmentTrend', ['$timeout', 'colorDefinitions', 'formatters', InvestmentTrendDirectiveGenerator]);
+}

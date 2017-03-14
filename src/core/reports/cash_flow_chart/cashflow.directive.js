@@ -1,15 +1,27 @@
 /**
  * Created by rerobins on 9/29/15.
  */
-var IncomeVsExpenseDirectiveGenerator = function(colorDefinitions, formatters) {
+
+angular.module('gnucash-reports-view.reports')
+    .directive('gnucashCashFlow', CashFlowDirectiveGenerator);
+
+CashFlowDirectiveGenerator.$inject = ['$timeout', 'colorDefinitions', 'formatters'];
+
+function CashFlowDirectiveGenerator($timeout, colorDefinitions, formatters) {
     return {
         scope: {
             reportData: '&'
         },
-        templateUrl: 'core/reports/income_vs_expense/income_vs_expenseDirective.html',
-        link: function($scope) {
-            var data = $scope.reportData();
+        templateUrl: 'core/reports/cash_flow_chart/cashFlowDirective.html',
+        link: link
+    };
 
+    ///////////////////////////////////////////////////////////
+
+    function link($scope) {
+        var data = $scope.reportData();
+
+        $timeout(function() {
             $scope.options = {
                 chart: {
                     type: 'multiBarChart',
@@ -41,7 +53,7 @@ var IncomeVsExpenseDirectiveGenerator = function(colorDefinitions, formatters) {
                 }
             };
 
-            data.expenses.forEach(function(dataValue) {
+            data.debits.forEach(function(dataValue) {
                 if (dataValue.value === 0) {
                     // TODO: Figure out how to do this so that it doesn't display as -0.0001 in the graph.
                     dataValue.value = -0.00001;
@@ -51,23 +63,18 @@ var IncomeVsExpenseDirectiveGenerator = function(colorDefinitions, formatters) {
 
             $scope.data = [
                 {
-                    key : 'Income',
+                    key: 'Credits',
                     bar: true,
                     color: colorDefinitions.credit,
-                    values : data.income
+                    values: data.credits
                 },
                 {
-                    key : "Expenses" ,
+                    key: 'Debits',
                     bar: true,
                     color: colorDefinitions.debit,
-                    values : data.expenses
+                    values: data.debits
                 }
             ];
-
-            $scope.tableData = data;
-        }
-    };
-};
-
-angular.module('gnucash-reports-view.reports')
-    .directive('gnucashIncomeVsExpense', ['colorDefinitions', 'formatters', IncomeVsExpenseDirectiveGenerator]);
+        });
+    }
+}

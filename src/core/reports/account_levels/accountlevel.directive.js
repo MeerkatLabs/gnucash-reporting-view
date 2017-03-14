@@ -1,13 +1,29 @@
 /**
  * Directive that will display the account level information on the display.
  */
-var AccountLevelDirectiveGenerator = function($timeout, colorDefinitions, formatters) {
+
+angular.module('gnucash-reports-view.reports')
+    .directive('gnucashAccountLevel', AccountLevelDirectiveGenerator);
+
+AccountLevelDirectiveGenerator.$inject = ['$timeout', 'colorDefinitions', 'formatters'];
+
+function AccountLevelDirectiveGenerator($timeout, colorDefinitions, formatters) {
+
+    return {
+        scope: {
+            reportData: '&'
+        },
+        templateUrl: 'core/reports/account_levels/accountLevelDirective.html',
+        link: function($scope) {
+            $timeout(createAccountLevelGraph, 0, true, $scope);
+        }
+    };
 
     /**
      * Translate the values of the data report into something that can be rendered.
      * @param $scope
      */
-    var createAccountLevelGraph = function($scope) {
+    function createAccountLevelGraph($scope) {
         var data = $scope.reportData();
 
         $scope.options = {
@@ -100,18 +116,7 @@ var AccountLevelDirectiveGenerator = function($timeout, colorDefinitions, format
             ];
             $scope.options.chart.stacked = false;
         }
-    };
+    }
 
-    return {
-        scope: {
-            reportData: '&'
-        },
-        templateUrl: 'core/reports/account_levels/accountLevelDirective.html',
-        link: function($scope) {
-            $timeout(createAccountLevelGraph, 0, true, $scope);
-        }
-    };
-};
+}
 
-angular.module('gnucash-reports-view.reports')
-    .directive('gnucashAccountLevel', ['$timeout', 'colorDefinitions', 'formatters', AccountLevelDirectiveGenerator]);

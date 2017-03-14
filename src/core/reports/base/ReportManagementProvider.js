@@ -1,25 +1,15 @@
 /**
  * Report Management Service
  */
-// Service provider responsible for loading the reports and creating the pages.
-var ReportsManagement = function(_templates) {
 
-    var service = this;
-    var templates = _templates;
-
-    service.getTemplate = function(templateId) {
-        return templates[templateId];
-    };
-
-    return service;
-
-};
+angular.module('gnucash-reports-view.reports')
+    .provider('ReportsManagement', ReportsManagementProvider);
 
 /**
  * Provider that will create the Reports Service.
  * @constructor
  */
-var ReportsManagementProvider = function() {
+function ReportsManagementProvider() {
 
     var provider = this;
 
@@ -30,11 +20,23 @@ var ReportsManagementProvider = function() {
         return provider;
     };
 
-    this.$get = [function() {
+    this.$get = function() {
         return ReportsManagement(provider.providerTemplates);
-    }];
+    };
 
-};
+}
 
-angular.module('gnucash-reports-view.reports')
-    .provider('ReportsManagement', ReportsManagementProvider);
+
+// Service provider responsible for loading the reports and creating the pages.
+function ReportsManagement(_templates) {
+
+    var service = this;
+    var templates = _templates;
+
+    service.getTemplate = function(templateId) {
+        return templates[templateId];
+    };
+
+    return service;
+
+}

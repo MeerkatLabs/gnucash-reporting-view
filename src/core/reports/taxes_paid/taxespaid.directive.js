@@ -1,9 +1,27 @@
 /**
  * Created by rerobins on 9/29/15.
  */
-var TaxesPaidDirectiveGenerator = function($timeout, colorDefinitions, formatters) {
 
-    var createTaxesPaidGraph = function($scope) {
+
+angular.module('gnucash-reports-view.reports')
+    .directive('gnucashTaxesPaid', TaxesPaidDirectiveGenerator);
+
+
+TaxesPaidDirectiveGenerator.$inject = ['$timeout', 'colorDefinitions', 'formatters'];
+
+function TaxesPaidDirectiveGenerator($timeout, colorDefinitions, formatters) {
+
+    return {
+        scope: {
+            reportData: '&'
+        },
+        templateUrl: 'core/reports/taxes_paid/taxes_paidDirective.html',
+        link: function($scope) {
+            $timeout(createTaxesPaidGraph, 0, true, $scope);
+        }
+    };
+
+    function createTaxesPaidGraph($scope) {
         var data = $scope.reportData();
 
         $scope.options = {
@@ -91,18 +109,6 @@ var TaxesPaidDirectiveGenerator = function($timeout, colorDefinitions, formatter
 
             $scope.options.chart.stacked = true;
         }
-    };
+    }
 
-    return {
-        scope: {
-            reportData: '&'
-        },
-        templateUrl: 'core/reports/taxes_paid/taxes_paidDirective.html',
-        link: function($scope) {
-            $timeout(createTaxesPaidGraph, 0, true, $scope);
-        }
-    };
-};
-
-angular.module('gnucash-reports-view.reports')
-    .directive('gnucashTaxesPaid', ['$timeout', 'colorDefinitions', 'formatters', TaxesPaidDirectiveGenerator]);
+}

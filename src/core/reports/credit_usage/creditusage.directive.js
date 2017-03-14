@@ -1,9 +1,25 @@
 /**
  * Created by rerobins on 9/29/15.
  */
-var CreditUsageDirectiveGenerator = function($timeout, colorDefinitions, formatters) {
 
-    var createCreditUsageChart = function($scope) {
+angular.module('gnucash-reports-view.reports')
+    .directive('gnucashCreditUsage', CreditUsageDirectiveGenerator);
+
+CreditUsageDirectiveGenerator.$inject = ['$timeout', 'colorDefinitions', 'formatters'];
+
+function CreditUsageDirectiveGenerator($timeout, colorDefinitions, formatters) {
+
+    return {
+        scope: {
+            reportData: '&'
+        },
+        templateUrl: 'core/reports/credit_usage/creditUsageDirective.html',
+        link: function($scope) {
+            $timeout(createCreditUsageChart, 0, true, $scope);
+        }
+    };
+
+    function createCreditUsageChart ($scope) {
         var data = $scope.reportData();
 
         $scope.options = {
@@ -59,18 +75,6 @@ var CreditUsageDirectiveGenerator = function($timeout, colorDefinitions, formatt
                 ]
             }
         ];
-    };
+    }
 
-    return {
-        scope: {
-            reportData: '&'
-        },
-        templateUrl: 'core/reports/credit_usage/creditUsageDirective.html',
-        link: function($scope) {
-            $timeout(createCreditUsageChart, 0, true, $scope);
-        }
-    };
-};
-
-angular.module('gnucash-reports-view.reports')
-    .directive('gnucashCreditUsage', ['$timeout', 'colorDefinitions', 'formatters', CreditUsageDirectiveGenerator]);
+}

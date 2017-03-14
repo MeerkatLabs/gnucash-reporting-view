@@ -1,9 +1,25 @@
 /**
  * Created by rerobins on 9/29/15.
  */
-var DebtLiquidAssetDirectiveGenerator = function($timeout, colorDefinitions, formatters) {
 
-    var createDebitLiquidAssetChart = function($scope) {
+angular.module('gnucash-reports-view.reports')
+    .directive('gnucashDebtLiquidAsset', DebtLiquidAssetDirectiveGenerator);
+
+DebtLiquidAssetDirectiveGenerator.$inject = ['$timeout', 'colorDefinitions', 'formatters'];
+
+function DebtLiquidAssetDirectiveGenerator($timeout, colorDefinitions, formatters) {
+
+    return {
+        scope: {
+            reportData: '&'
+        },
+        templateUrl: 'core/reports/debt_liquid_assets/debtLiquidAssetDirective.html',
+        link: function($scope) {
+            $timeout(createDebitLiquidAssetChart, 0, true, $scope);
+        }
+    };
+
+    function createDebitLiquidAssetChart($scope) {
         var data = $scope.reportData();
 
         $scope.options = {
@@ -87,18 +103,6 @@ var DebtLiquidAssetDirectiveGenerator = function($timeout, colorDefinitions, for
             $scope.options.chart.stacked = false;
         }
 
-    };
+    }
 
-    return {
-        scope: {
-            reportData: '&'
-        },
-        templateUrl: 'core/reports/debt_liquid_assets/debtLiquidAssetDirective.html',
-        link: function($scope) {
-            $timeout(createDebitLiquidAssetChart, 0, true, $scope);
-        }
-    };
-};
-
-angular.module('gnucash-reports-view.reports')
-    .directive('gnucashDebtLiquidAsset', ['$timeout', 'colorDefinitions', 'formatters', DebtLiquidAssetDirectiveGenerator]);
+}

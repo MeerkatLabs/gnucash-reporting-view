@@ -1,9 +1,28 @@
 /**
  * Created by rerobins on 9/29/15.
  */
-var SavingsGoalDirectiveGenerator = function($timeout, colorDefinitions, formatters) {
 
-    var createSavingsGoalChart = function($scope) {
+
+
+
+angular.module('gnucash-reports-view.reports')
+    .directive('gnucashSavingsGoal', SavingsGoalDirectiveGenerator);
+
+SavingsGoalDirectiveGenerator.$inject = ['$timeout', 'colorDefinitions', 'formatters'];
+
+function SavingsGoalDirectiveGenerator($timeout, colorDefinitions, formatters) {
+
+    return {
+        scope: {
+            reportData: '&'
+        },
+        templateUrl: 'core/reports/savings_goal/savingsGoalDirective.html',
+        link: function($scope) {
+            $timeout(createSavingsGoalChart, 0, true, $scope);
+        }
+    };
+
+    function createSavingsGoalChart($scope) {
         var data = $scope.reportData();
 
         $scope.options = {
@@ -14,8 +33,12 @@ var SavingsGoalDirectiveGenerator = function($timeout, colorDefinitions, formatt
                     valueFormatter: formatters.currency
                 },
                 tickFormat: formatters.currencyNoParts,
-                x: function(d){return d.label;},
-                y: function(d){return d.value;},
+                x: function (d) {
+                    return d.label;
+                },
+                y: function (d) {
+                    return d.value;
+                },
                 showControls: false,
                 showValues: true,
                 xAxis: {
@@ -44,7 +67,7 @@ var SavingsGoalDirectiveGenerator = function($timeout, colorDefinitions, formatt
                 {
                     key: 'Balance',
                     color: colorDefinitions.good,
-                    values : [
+                    values: [
                         {
                             label: label,
                             value: data.balance
@@ -54,7 +77,7 @@ var SavingsGoalDirectiveGenerator = function($timeout, colorDefinitions, formatt
                 {
                     key: 'To Go',
                     color: colorDefinitions.error,
-                    values : [
+                    values: [
                         {
                             label: label,
                             value: data.goal - data.balance
@@ -90,18 +113,5 @@ var SavingsGoalDirectiveGenerator = function($timeout, colorDefinitions, formatt
             $scope.options.chart.stacked = false;
         }
 
-    };
-
-    return {
-        scope: {
-            reportData: '&'
-        },
-        templateUrl: 'core/reports/savings_goal/savingsGoalDirective.html',
-        link: function($scope) {
-            $timeout(createSavingsGoalChart, 0, true, $scope);
-        }
-    };
-};
-
-angular.module('gnucash-reports-view.reports')
-    .directive('gnucashSavingsGoal', ['$timeout', 'colorDefinitions', 'formatters', SavingsGoalDirectiveGenerator]);
+    }
+}

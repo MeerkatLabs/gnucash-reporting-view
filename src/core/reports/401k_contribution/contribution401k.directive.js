@@ -1,9 +1,29 @@
 /**
- * Created by rerobins on 9/29/15.
+ * Graph generator that will show progress of gathering money for 401k values.  This is similar to the budget graph
+ * except excess over the days current value is shown as green, as opposed to a warning.  Excess over the years value
+ * is still shown as an error value.
  */
-var Contribution401kDirectiveGenerator = function($timeout, colorDefinitions, formatters) {
+angular.module('gnucash-reports-view.reports')
+    .directive('gnucashContribution401k', Contribution401kDirectiveGenerator);
 
-    var create401kContributionGraph = function($scope) {
+
+Contribution401kDirectiveGenerator.$inject = ['$timeout', 'colorDefinitions', 'formatters'];
+
+function Contribution401kDirectiveGenerator($timeout, colorDefinitions, formatters) {
+
+
+
+    return {
+        scope: {
+            reportData: '&'
+        },
+        templateUrl: 'core/reports/401k_contribution/401k_reportDirective.html',
+        link: function($scope) {
+            $timeout(create401kContributionGraph, 0, true, $scope);
+        }
+    };
+
+    function create401kContributionGraph($scope) {
         var data = $scope.reportData();
 
         $scope.options = {
@@ -32,8 +52,6 @@ var Contribution401kDirectiveGenerator = function($timeout, colorDefinitions, fo
                 }
 
             }
-
-
         };
 
         var label = formatters.currency(data.contributionLimit);
@@ -137,18 +155,7 @@ var Contribution401kDirectiveGenerator = function($timeout, colorDefinitions, fo
 
             $scope.options.chart.stacked = true;
         }
-    };
+    }
 
-    return {
-        scope: {
-            reportData: '&'
-        },
-        templateUrl: 'core/reports/401k_contribution/401k_reportDirective.html',
-        link: function($scope) {
-            $timeout(create401kContributionGraph, 0, true, $scope);
-        }
-    };
-};
+}
 
-angular.module('gnucash-reports-view.reports')
-    .directive('gnucashContribution401k', ['$timeout', 'colorDefinitions', 'formatters', Contribution401kDirectiveGenerator]);

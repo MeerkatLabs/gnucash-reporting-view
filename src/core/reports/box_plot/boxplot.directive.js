@@ -1,9 +1,24 @@
 /**
  * Created by rerobins on 9/29/15.
  */
-var BoxPlotDirectiveGenerator = function($timeout, colorDefinitions, formatters) {
+angular.module('gnucash-reports-view.reports')
+    .directive('gnucashBoxPlot', BoxPlotDirectiveGenerator);
 
-    var buildChartConfiguration = function($scope) {
+BoxPlotDirectiveGenerator.$inject = ['$timeout', 'colorDefinitions', 'formatters'];
+
+function BoxPlotDirectiveGenerator($timeout, colorDefinitions, formatters) {
+
+    return {
+        scope: {
+            reportData: '&'
+        },
+        templateUrl: 'core/reports/box_plot/boxPlotDirective.html',
+        link: function($scope) {
+            $timeout(buildChartConfiguration, 0, true, $scope);
+        }
+    };
+
+    function buildChartConfiguration($scope) {
         var data = $scope.reportData();
 
         $scope.options = {
@@ -40,18 +55,5 @@ var BoxPlotDirectiveGenerator = function($timeout, colorDefinitions, formatters)
                 }
             }
         ];
-    };
-
-    return {
-        scope: {
-            reportData: '&'
-        },
-        templateUrl: 'core/reports/box_plot/boxPlotDirective.html',
-        link: function($scope) {
-            $timeout(buildChartConfiguration, 0, true, $scope);
-        }
-    };
-};
-
-angular.module('gnucash-reports-view.reports')
-    .directive('gnucashBoxPlot', ['$timeout', 'colorDefinitions', 'formatters', BoxPlotDirectiveGenerator]);
+    }
+}
