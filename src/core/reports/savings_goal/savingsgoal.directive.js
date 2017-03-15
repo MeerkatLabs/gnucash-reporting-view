@@ -8,6 +8,7 @@
     function SavingsGoalDirectiveGenerator($timeout, colorDefinitions, formatters) {
 
         return {
+            restrict: 'E',
             scope: {
                 reportData: '&'
             },

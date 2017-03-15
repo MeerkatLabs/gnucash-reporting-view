@@ -7,6 +7,7 @@
 
     function IncomeVsExpenseDirectiveGenerator(colorDefinitions, formatters) {
         return {
+            restrict: 'E',
             scope: {
                 reportData: '&'
             },

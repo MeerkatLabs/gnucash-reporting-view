@@ -8,6 +8,7 @@
     function InvestmentTrendDirectiveGenerator($timeout, colorDefinitions, formatters) {
 
         return {
+            restrict: 'E',
             scope: {
                 reportData: '&'
             },

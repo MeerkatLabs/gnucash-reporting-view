@@ -8,6 +8,7 @@
     function DebtLiquidAssetDirectiveGenerator($timeout, colorDefinitions, formatters) {
 
         return {
+            restrict: 'E',
             scope: {
                 reportData: '&'
             },

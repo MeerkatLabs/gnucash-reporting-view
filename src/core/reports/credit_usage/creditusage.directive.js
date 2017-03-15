@@ -8,6 +8,7 @@
     function CreditUsageDirectiveGenerator($timeout, colorDefinitions, formatters) {
 
         return {
+            restrict: 'E',
             scope: {
                 reportData: '&'
             },

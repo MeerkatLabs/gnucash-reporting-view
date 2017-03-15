@@ -8,6 +8,7 @@
     function TaxesPaidDirectiveGenerator($timeout, colorDefinitions, formatters) {
 
         return {
+            restrict: 'E',
             scope: {
                 reportData: '&'
             },

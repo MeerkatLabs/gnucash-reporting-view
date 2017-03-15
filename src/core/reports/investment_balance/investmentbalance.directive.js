@@ -7,6 +7,7 @@
 
     function InvestmentBalanceDirectiveGenerator(colorDefinitions, formatters) {
         return {
+            restrict: 'E',
             scope: {
                 reportData: '&'
             },

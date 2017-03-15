@@ -123,6 +123,7 @@
      */
     function ReportDirectiveGenerator($mdDialog, ReportsManagement) {
         return {
+            restrict: 'E',
             scope: {
                 report: '&'
             },
@@ -188,6 +189,7 @@
 
 
         return {
+            restrict: 'E',
             scope: {
                 reportData: '&'
             },
@@ -350,6 +352,7 @@
     function AccountLevelDirectiveGenerator($timeout, colorDefinitions, formatters) {
 
         return {
+            restrict: 'E',
             scope: {
                 reportData: '&'
             },
@@ -498,6 +501,7 @@
     function CurrencyDirectiveGenerator() {
 
         return {
+            restrict: 'E',
             scope: {
                 value: '&'
             },
@@ -592,6 +596,7 @@
     function PercentageDirectiveGenerator() {
 
         return {
+            restrict: 'E',
             scope: {
                 value: '&'
             },
@@ -703,6 +708,7 @@
     function BoxPlotDirectiveGenerator($timeout, colorDefinitions, formatters) {
 
         return {
+            restrict: 'E',
             scope: {
                 reportData: '&'
             },
@@ -763,6 +769,7 @@
     function BudgetlevelDirectiveGenerator($timeout, colorDefinitions, formatters) {
 
         return {
+            restrict: 'E',
             scope: {
                 reportData: '&'
             },
@@ -935,6 +942,7 @@
 
     function BudgetPlanningDirectiveGenerator($timeout, colorDefinitions, formatters) {
         return {
+            restrict: 'E',
             scope: {
                 reportData: '&'
             },
@@ -998,6 +1006,7 @@
 
     function CashFlowDirectiveGenerator($timeout, colorDefinitions, formatters) {
         return {
+            restrict: 'E',
             scope: {
                 reportData: '&'
             },
@@ -1079,6 +1088,7 @@
     function CategoryGraphDirectiveGenerator($timeout, colorDefinitions, formatters) {
 
         return {
+            restrict: 'E',
             scope: {
                 reportData: '&'
             },
@@ -1156,6 +1166,7 @@
     function CreditUsageDirectiveGenerator($timeout, colorDefinitions, formatters) {
 
         return {
+            restrict: 'E',
             scope: {
                 reportData: '&'
             },
@@ -1236,6 +1247,7 @@
     function DebtLiquidAssetDirectiveGenerator($timeout, colorDefinitions, formatters) {
 
         return {
+            restrict: 'E',
             scope: {
                 reportData: '&'
             },
@@ -1343,6 +1355,7 @@
 
     function ExpensesPeriodDirectiveGenerator($timeout, colorDefinitions, formatters) {
         return {
+            restrict: 'E',
             scope: {
                 reportData: '&'
             },
@@ -1409,6 +1422,7 @@
 
     function IncomeVsExpenseDirectiveGenerator(colorDefinitions, formatters) {
         return {
+            restrict: 'E',
             scope: {
                 reportData: '&'
             },
@@ -1487,6 +1501,7 @@
 
     function InvestmentBalanceDirectiveGenerator(colorDefinitions, formatters) {
         return {
+            restrict: 'E',
             scope: {
                 reportData: '&'
             },
@@ -1577,6 +1592,7 @@
     function InvestmentTrendDirectiveGenerator($timeout, colorDefinitions, formatters) {
 
         return {
+            restrict: 'E',
             scope: {
                 reportData: '&'
             },
@@ -1856,6 +1872,7 @@
     function SavingsGoalDirectiveGenerator($timeout, colorDefinitions, formatters) {
 
         return {
+            restrict: 'E',
             scope: {
                 reportData: '&'
             },
@@ -1969,6 +1986,7 @@
     function TaxesPaidDirectiveGenerator($timeout, colorDefinitions, formatters) {
 
         return {
+            restrict: 'E',
             scope: {
                 reportData: '&'
             },

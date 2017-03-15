@@ -10,6 +10,7 @@
      */
     function ReportDirectiveGenerator($mdDialog, ReportsManagement) {
         return {
+            restrict: 'E',
             scope: {
                 report: '&'
             },

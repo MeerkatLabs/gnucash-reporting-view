@@ -16,6 +16,7 @@
 
 
         return {
+            restrict: 'E',
             scope: {
                 reportData: '&'
             },

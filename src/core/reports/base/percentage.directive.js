@@ -8,6 +8,7 @@
     function PercentageDirectiveGenerator() {
 
         return {
+            restrict: 'E',
             scope: {
                 value: '&'
             },

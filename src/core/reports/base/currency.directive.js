@@ -8,6 +8,7 @@
     function CurrencyDirectiveGenerator() {
 
         return {
+            restrict: 'E',
             scope: {
                 value: '&'
             },
