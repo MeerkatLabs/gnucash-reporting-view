@@ -12,7 +12,7 @@
         $stateProvider.state('report', {
             url: '/report/:report',
             controller: 'DisplayController',
-            templateUrl: 'src/core/display.html',
+            templateUrl: 'core/display.html',
             controllerAs: 'displayController',
             resolve: {
                 content: contentResolver
@@ -23,7 +23,7 @@
             url: '/main',
             controller: 'MainDisplay',
             controllerAs: 'controller',
-            templateUrl: 'src/core/main.html'
+            templateUrl: 'core/main.html'
         });
 
         /////////////////////////////////////////////////////////
