@@ -1,234 +1,139 @@
-/**
- * Prefix for all of the code in order to isolate all of the modules and namespaces.
- */
+(function() {
 
-(function(window, angular, undefined) {
-// Define the application.
-angular.module('gnucash-reports-view', ['ngMaterial', 'ui.router', 'gnucash-reports-view.reports', 'ngMdIcons'])
-    .config(['$urlRouterProvider', function($urlRouterProvider) {
+    // Define the application.
+    angular.module('gnucash-reports-view', ['ngMaterial', 'ui.router', 'gnucash-reports-view.reports', 'ngMdIcons']);
+
+})();
+(function() {
+
+    angular.module('gnucash-reports-view.reports', [
+        'nvd3',
+        'md.data.table',
+        'ngMaterial']);
+
+})();
+(function() {
+
+    angular.module('gnucash-reports-view')
+        .config(injectCoreStates);
+
+    injectCoreStates.$inject = ['$urlRouterProvider', '$stateProvider'];
+
+    function injectCoreStates($urlRouterProvider, $stateProvider) {
+
         $urlRouterProvider.otherwise('/main');
-    }]);
-angular.module('gnucash-reports-view.reports.401k_contribution', ['gnucash-reports-view.reports.base',
-                                                                  'nvd3'])
-    .config(['ReportsManagementProvider', function(provider) {
-        provider.addTemplate('401k_report', 'src/reports/401k_contribution/401k_report.html');
-    }]);
 
-angular.module('gnucash-reports-view.reports', [
-    'gnucash-reports-view.reports.savings_goal',
-    'gnucash-reports-view.reports.account_levels',
-    'gnucash-reports-view.reports.budget_level',
-    'gnucash-reports-view.reports.investment_balance',
-    'gnucash-reports-view.reports.401k_contribution',
-    'gnucash-reports-view.reports.expenses_period',
-    'gnucash-reports-view.reports.cash_flow',
-    'gnucash-reports-view.reports.box_plot',
-    'gnucash-reports-view.reports.multi_report',
-    'gnucash-reports-view.reports.credit_usage',
-    'gnucash-reports-view.reports.net_worth',
-    'gnucash-reports-view.reports.category',
-    'gnucash-reports-view.reports.net_worth_table',
-    'gnucash-reports-view.reports.income_vs_expense',
-    'gnucash-reports-view.reports.budget_planning',
-    'gnucash-reports-view.reports.taxes_paid',
-    'gnucash-reports-view.reports.debt_liquid_assets',
-    'gnucash-reports-view.reports.investment_trend'
-]);
-
-/**
- * This is a report that will show the level of a checking/savings account and show warning levels based on the values
- * that are defined.
- */
-
-angular.module('gnucash-reports-view.reports.account_levels', ['gnucash-reports-view.reports.base',
-                                                               'nvd3'])
-    .config(['ReportsManagementProvider', function(provider) {
-        provider.addTemplate('account_levels', 'src/reports/account_levels/account_levels.html');
-    }]);
-angular.module('gnucash-reports-view.reports.base', []);
-/**
- * Created by rerobins on 9/30/15.
- */
-angular.module('gnucash-reports-view.reports.box_plot', ['gnucash-reports-view.reports.base',
-    'nvd3'])
-    .config(['ReportsManagementProvider', function(provider) {
-        provider.addTemplate('expenses_box', 'src/reports/box_plot/box_plot.html');
-    }]);
-angular.module('gnucash-reports-view.reports.budget_level', ['gnucash-reports-view.reports.base',
-                                                               'nvd3'])
-    .config(['ReportsManagementProvider', function(provider) {
-        provider.addTemplate('budget_level', 'src/reports/budget_level/budget_level.html');
-        provider.addTemplate('category_budget_level', 'src/reports/budget_level/budget_level.html');
-    }]);
-
-angular.module('gnucash-reports-view.reports.budget_planning', ['gnucash-reports-view.reports.base',
-                                                                'nvd3', 'md.data.table', 'ngMaterial'])
-    .config(['ReportsManagementProvider', function(provider) {
-        provider.addTemplate('budget_planning', 'src/reports/budget_planning/budget_planning.html');
-    }]);
-
-angular.module('gnucash-reports-view.reports.cash_flow', ['gnucash-reports-view.reports.base',
-                                                                  'nvd3'])
-    .config(['ReportsManagementProvider', function(provider) {
-        provider.addTemplate('cash_flow_chart', 'src/reports/cash_flow_chart/cash_flow.html');
-    }]);
-
-angular.module('gnucash-reports-view.reports.category', ['gnucash-reports-view.reports.base',
-                                                          'nvd3'])
-    .config(['ReportsManagementProvider', function(provider) {
-        var categoryTemplate = 'src/reports/category/category.html';
-        provider.addTemplate('account_usage_categories', categoryTemplate);
-        provider.addTemplate('expenses_categories', categoryTemplate);
-        provider.addTemplate('investment_allocation', categoryTemplate);
-        provider.addTemplate('expense_accounts', categoryTemplate);
-    }]);
-
-
-angular.module('gnucash-reports-view.reports.credit_usage', ['gnucash-reports-view.reports.base',
-                                                          'nvd3'])
-    .config(['ReportsManagementProvider', function(provider) {
-        provider.addTemplate('credit_usage', 'src/reports/credit_usage/credit_usage.html');
-    }]);
-
-
-angular.module('gnucash-reports-view.reports.debt_liquid_assets', ['gnucash-reports-view.reports.base',
-                                                          'nvd3'])
-    .config(['ReportsManagementProvider', function(provider) {
-        provider.addTemplate('debt_vs_liquid_assets', 'src/reports/debt_liquid_assets/debt_liquid_assets.html');
-    }]);
-
-angular.module('gnucash-reports-view.reports.expenses_period', ['gnucash-reports-view.reports.base',
-                                                                  'nvd3'])
-    .config(['ReportsManagementProvider', function(provider) {
-        provider.addTemplate('expenses_period', 'src/reports/expenses_period/expenses_period.html');
-    }]);
-angular.module('gnucash-reports-view.reports.income_vs_expense', ['gnucash-reports-view.reports.base',
-                                                                  'nvd3'])
-    .config(['ReportsManagementProvider', function(provider) {
-        provider.addTemplate('income_vs_expense', 'src/reports/income_vs_expense/income_vs_expense.html');
-    }]);
-angular.module('gnucash-reports-view.reports.investment_balance', ['gnucash-reports-view.reports.base',
-                                                               'nvd3'])
-    .config(['ReportsManagementProvider', function(provider) {
-        provider.addTemplate('investment_balance', 'src/reports/investment_balance/investment_balance.html');
-    }]);
-angular.module('gnucash-reports-view.reports.investment_trend', ['gnucash-reports-view.reports.base',
-                                                               'nvd3'])
-    .config(['ReportsManagementProvider', function(provider) {
-        provider.addTemplate('investment_trend', 'src/reports/investment_trend/investment_trend.html');
-    }]);
-angular.module('gnucash-reports-view.reports.multi_report', ['gnucash-reports-view.reports.base',
-                                                               'nvd3'])
-    .config(['ReportsManagementProvider', function(provider) {
-        provider.addTemplate('multi_report', 'src/reports/multi_report/multi_report.html');
-    }]);
-angular.module('gnucash-reports-view.reports.net_worth', ['gnucash-reports-view.reports.base',
-    'nvd3'])
-    .config(['ReportsManagementProvider', function(provider) {
-        provider.addTemplate('net_worth', 'src/reports/net_worth/net_worth.html');
-    }]);
-
-angular.module('gnucash-reports-view.reports.net_worth_table', ['gnucash-reports-view.reports.base',
-    'md.data.table', 'ngMaterial'])
-    .config(['ReportsManagementProvider', function(provider) {
-        provider.addTemplate('net_worth_table', 'src/reports/net_worth_table/net_worth_table.html');
-    }]);
-
-
-angular.module('gnucash-reports-view.reports.savings_goal', ['gnucash-reports-view.reports.base'])
-    .config(['ReportsManagementProvider', function(provider) {
-        provider.addTemplate('savings_goal', 'src/reports/savings_goal/savings_goal.html');
-    }]);
-angular.module('gnucash-reports-view.reports.taxes_paid', ['gnucash-reports-view.reports.base',
-                                                                  'nvd3'])
-    .config(['ReportsManagementProvider', function(provider) {
-        provider.addTemplate('income_tax', 'src/reports/taxes_paid/taxes_paid.html');
-    }]);
-var DisplayController = function($mdUtil, $mdSidenav, $timeout, content) {
-
-    var controller = this;
-
-    $timeout(function() {
-        controller.page_definition = content;
-    });
-
-    controller.toggleLeft = buildToggler('left');
-
-    /**
-     * Build handler to open/close a SideNav; when animation finishes
-     * report completion in console
-     */
-    function buildToggler(navID) {
-        var debounceFn =  $mdUtil.debounce(function(){
-            $mdSidenav(navID)
-                .toggle();
-        }, 200);
-        return debounceFn;
-    }
-};
-
-angular.module('gnucash-reports-view')
-    .controller('DisplayController', ['$mdUtil', '$mdSidenav', '$timeout', 'content', DisplayController])
-    .config(['$stateProvider', function($stateProvider) {
         $stateProvider.state('report', {
             url: '/report/:report',
             controller: 'DisplayController',
-            templateUrl: 'src/core/DisplayController.html',
+            templateUrl: 'src/core/display.html',
             controllerAs: 'displayController',
             resolve: {
-                content: function(ReportsService, $stateParams) {
-                    return ReportsService.loadPage($stateParams.report);
-                }
+                content: contentResolver
             }
         });
-    }]);
-
-
-var MainDisplayController = function($mdUtil, $mdSidenav, ReportsService) {
-    var controller = this;
-
-    controller.toggleLeft = buildToggler('left');
-
-    /**
-     * Build handler to open/close a SideNav; when animation finishes
-     * report completion in console
-     */
-    function buildToggler(navID) {
-        var debounceFn =  $mdUtil.debounce(function(){
-            $mdSidenav(navID)
-                .toggle();
-        }, 200);
-        return debounceFn;
-    }
-
-    ReportsService.reportsContent.then(function(results) {
-        controller.lastUpdated = results.last_updated;
-        controller.modificationDate = results.modification_time;
-    });
-};
-
-angular.module('gnucash-reports-view')
-    .controller('MainDisplay', ['$mdUtil', '$mdSidenav', 'ReportsService', MainDisplayController])
-    .config(['$stateProvider', function($stateProvider) {
 
         $stateProvider.state('main', {
             url: '/main',
             controller: 'MainDisplay',
             controllerAs: 'controller',
-            templateUrl: 'src/core/MainDisplay.html'
+            templateUrl: 'src/core/main.html'
         });
-    }]);
 
-/**
- * Directive that is responsible displaying the report data for each report.
- */
-var ReportDirectiveGenerator = function($mdDialog, ReportsManagement) {
-    return {
-        scope: {
-            report: '&'
-        },
-        templateUrl: 'src/core/reportDirective.html',
-        link: function($scope) {
+        /////////////////////////////////////////////////////////
+
+        contentResolver.$inject = ['ReportsService', '$stateParams'];
+
+        function contentResolver(ReportsService, $stateParams) {
+            return ReportsService.loadPage($stateParams.report);
+        }
+
+    }
+
+})();
+(function() {
+
+    angular.module('gnucash-reports-view')
+        .controller('DisplayController', DisplayController);
+
+    DisplayController.$inject = ['$mdUtil', '$mdSidenav', '$timeout', 'content'];
+
+    function DisplayController($mdUtil, $mdSidenav, $timeout, content) {
+
+        var controller = this;
+
+        $timeout(function() {
+            controller.page_definition = content.data;
+        });
+
+        controller.toggleLeft = buildToggler('left');
+
+        /**
+         * Build handler to open/close a SideNav; when animation finishes
+         * report completion in console
+         */
+        function buildToggler(navID) {
+            var debounceFn =  $mdUtil.debounce(function(){
+                $mdSidenav(navID).toggle();
+            }, 200);
+            return debounceFn;
+        }
+    }
+
+})();
+(function() {
+
+    angular.module('gnucash-reports-view')
+        .controller('MainDisplay', MainDisplayController);
+
+    MainDisplayController.$inject = ['$mdUtil', '$mdSidenav', 'ReportsService'];
+
+    function MainDisplayController($mdUtil, $mdSidenav, ReportsService) {
+        var controller = this;
+
+        controller.toggleLeft = buildToggler('left');
+
+        /**
+         * Build handler to open/close a SideNav; when animation finishes
+         * report completion in console
+         */
+        function buildToggler(navID) {
+            var debounceFn =  $mdUtil.debounce(function(){
+                $mdSidenav(navID).toggle();
+            }, 200);
+            return debounceFn;
+        }
+
+        ReportsService.reportsContent.then(function(results) {
+            controller.lastUpdated = results.data.last_updated;
+            controller.modificationDate = results.data.modification_time;
+        });
+    }
+
+})();
+(function() {
+
+    angular.module('gnucash-reports-view')
+        .directive('gnucashReport', ReportDirectiveGenerator);
+
+    ReportDirectiveGenerator.$inject = ['$mdDialog', 'ReportsManagement'];
+
+    /**
+     * Directive that is responsible displaying the report data for each report.
+     */
+    function ReportDirectiveGenerator($mdDialog, ReportsManagement) {
+        return {
+            restrict: 'E',
+            scope: {
+                report: '&'
+            },
+            templateUrl: 'src/core/reportDirective.html',
+            link: link
+        };
+
+        //////////////////////////////////////////////////////
+
+        function link($scope) {
 
             var report = $scope.report();
 
@@ -263,778 +168,791 @@ var ReportDirectiveGenerator = function($mdDialog, ReportsManagement) {
                 });
             };
         }
-    };
-};
+    }
 
-angular.module('gnucash-reports-view')
-    .directive('gnucashReport', ['$mdDialog', 'ReportsManagement', ReportDirectiveGenerator]);
-// Service provider responsible for loading the reports and creating the pages.
-var ReportsService = function($http, $q, reportFile) {
-
-    var service = this;
-
-    var my_data = null;
-
-    service.reportsContent = $http.get(reportFile).then(function(res) {
-        my_data = res.data;
-        return res.data;
-    });
-
-    service.loadPage = function(page) {
-
-        return $q(function(resolve, reject) {
-
-            service.reportsContent.then(function(data) {
-                var found = false;
-                angular.forEach(data.reports, function(report) {
-                    if (report.file === page) {
-                        found = true;
-                    }
-                });
-
-                if (found) {
-                    return $http.get('data/' + page).then(function(res) {
-                        console.log('res.data', res.data);
-                        resolve(res.data);
-                    });
-                } else {
-                    reject('Couldn"t find page definition');
-                }
-            });
-
-        });
-
-    };
-
-    return service;
-
-};
-
+})();
 /**
- * Provider that will create the Reports Service.
- * @constructor
+ * Graph generator that will show progress of gathering money for 401k values.  This is similar to the budget graph
+ * except excess over the days current value is shown as green, as opposed to a warning.  Excess over the years value
+ * is still shown as an error value.
  */
-var ReportsServiceProvider = function() {
+(function() {
 
-    var provider = this;
+    angular.module('gnucash-reports-view.reports')
+        .directive('gnucashContribution401k', Contribution401kDirectiveGenerator);
 
-    this.configureReportFile = function(path) {
-        provider.reportFile = path;
-    };
 
-    this.$get = ['$http', '$q', function($http, $q) {
-        return ReportsService($http, $q, provider.reportFile);
-    }];
+    Contribution401kDirectiveGenerator.$inject = ['$timeout', 'colorDefinitions', 'formatters'];
 
-};
+    function Contribution401kDirectiveGenerator($timeout, colorDefinitions, formatters) {
 
-angular.module('gnucash-reports-view')
-    .provider('ReportsService', ReportsServiceProvider);
-// Side menu controller.
-var SideMenuController = function(ReportsService) {
 
-    var controller = this;
 
-    controller.reports = [];
-
-    ReportsService.reportsContent.then(function(results) {
-        controller.reports = results.reports;
-    });
-
-};
-
-angular.module('gnucash-reports-view')
-    .controller('SideMenuController', ['ReportsService', SideMenuController]);
-/**
- * Created by rerobins on 9/29/15.
- */
-var Contribution401kDirectiveGenerator = function($timeout, colorDefinitions, formatters) {
-
-    var create401kContributionGraph = function($scope) {
-        var data = $scope.reportData();
-
-        $scope.options = {
-            chart: {
-                type: 'multiBarHorizontalChart',
-                transitionDuration: 0,
-                tooltip: {
-                    valueFormatter: formatters.currency
-                },
-                tickFormat: formatters.currencyNoParts,
-                x: function(d){return d.label;},
-                y: function(d){return d.value;},
-                showControls: false,
-                showValues: true,
-                xAxis: {
-                    showMaxMin: false
-                },
-                yAxis: {
-                    ticks: 15,
-                    axisLabel: 'USD',
-                    tickFormat: formatters.currencyNoParts
-                },
-                margin: {
-                    left: 75,
-                    right: 75
-                }
-
+        return {
+            restrict: 'E',
+            scope: {
+                reportData: '&'
+            },
+            templateUrl: 'core/reports/401k_contribution/401k_reportDirective.html',
+            link: function($scope) {
+                $timeout(create401kContributionGraph, 0, true, $scope);
             }
-
-
         };
 
-        var label = formatters.currency(data.contributionLimit);
+        function create401kContributionGraph($scope) {
+            var data = $scope.reportData();
 
-        var todayValue = (data.dayOfYear / data.daysInYear) * data.contributionLimit;
+            $scope.options = {
+                chart: {
+                    type: 'multiBarHorizontalChart',
+                    transitionDuration: 0,
+                    tooltip: {
+                        valueFormatter: formatters.currency
+                    },
+                    tickFormat: formatters.currencyNoParts,
+                    x: function(d){return d.label;},
+                    y: function(d){return d.value;},
+                    showControls: false,
+                    showValues: true,
+                    xAxis: {
+                        showMaxMin: false
+                    },
+                    yAxis: {
+                        ticks: 15,
+                        axisLabel: 'USD',
+                        tickFormat: formatters.currencyNoParts
+                    },
+                    margin: {
+                        left: 75,
+                        right: 75
+                    }
 
-        if (data.contribution > data.contributionLimit) {
-            $scope.data = [
-                {
-                    key: 'Today',
-                    color: colorDefinitions.good,
-                    values: [
-                        {
-                            label: label,
-                            value: data.contributionLimit
-                        }
-                    ]
-                },
-                {
-                    key: 'Contribution Overage',
-                    color: colorDefinitions.error,
-                    values: [
-                        {
-                            label: label,
-                            value: data.contribution - data.contributionLimit
-                        }
-                    ]
                 }
-            ];
-            $scope.options.chart.stacked = false;
-        } else if (data.contribution > todayValue) {
-            // Build underage Chart
-            $scope.data = [
-                {
-                    key: 'Today',
-                    color: colorDefinitions.good,
-                    values: [
-                        {
-                            label: label,
-                            value: todayValue
-                        }
-                    ]
-                },
-                {
-                    key: 'Today Overage',
-                    color: colorDefinitions.best,
-                    values: [
-                        {
-                            label: label,
-                            value: data.contribution - todayValue
-                        }
-                    ]
-                },
-                {
-                    key: 'Budget Remaining',
-                    color: colorDefinitions.base,
-                    values: [
-                        {
-                            label: label,
-                            value: data.contributionLimit - data.contribution
-                        }
-                    ]
-                }
-            ];
+            };
 
-            $scope.options.chart.stacked = true;
-        } else {
-            // Build underage Chart
-            $scope.data = [
-                {
-                    key: 'Balance',
-                    color: colorDefinitions.best,
-                    values : [
-                        {
-                            label: label,
-                            value: data.contribution
-                        }
-                    ]
-                },
-                {
-                    key: 'Today',
-                    color: colorDefinitions.warning,
-                    values: [
-                        {
-                            label: label,
-                            value: todayValue - data.contribution
-                        }
-                    ]
-                },
-                {
-                    key: 'Today Budget Remaining',
-                    color: colorDefinitions.base,
-                    values: [
-                        {
-                            label: label,
-                            value: data.contributionLimit - todayValue
-                        }
-                    ]
-                }
-            ];
+            var label = formatters.currency(data.contributionLimit);
 
-            $scope.options.chart.stacked = true;
+            var todayValue = (data.dayOfYear / data.daysInYear) * data.contributionLimit;
+
+            if (data.contribution > data.contributionLimit) {
+                $scope.data = [
+                    {
+                        key: 'Today',
+                        color: colorDefinitions.good,
+                        values: [
+                            {
+                                label: label,
+                                value: data.contributionLimit
+                            }
+                        ]
+                    },
+                    {
+                        key: 'Contribution Overage',
+                        color: colorDefinitions.error,
+                        values: [
+                            {
+                                label: label,
+                                value: data.contribution - data.contributionLimit
+                            }
+                        ]
+                    }
+                ];
+                $scope.options.chart.stacked = false;
+            } else if (data.contribution > todayValue) {
+                // Build underage Chart
+                $scope.data = [
+                    {
+                        key: 'Today',
+                        color: colorDefinitions.good,
+                        values: [
+                            {
+                                label: label,
+                                value: todayValue
+                            }
+                        ]
+                    },
+                    {
+                        key: 'Today Overage',
+                        color: colorDefinitions.best,
+                        values: [
+                            {
+                                label: label,
+                                value: data.contribution - todayValue
+                            }
+                        ]
+                    },
+                    {
+                        key: 'Budget Remaining',
+                        color: colorDefinitions.base,
+                        values: [
+                            {
+                                label: label,
+                                value: data.contributionLimit - data.contribution
+                            }
+                        ]
+                    }
+                ];
+
+                $scope.options.chart.stacked = true;
+            } else {
+                // Build underage Chart
+                $scope.data = [
+                    {
+                        key: 'Balance',
+                        color: colorDefinitions.best,
+                        values : [
+                            {
+                                label: label,
+                                value: data.contribution
+                            }
+                        ]
+                    },
+                    {
+                        key: 'Today',
+                        color: colorDefinitions.warning,
+                        values: [
+                            {
+                                label: label,
+                                value: todayValue - data.contribution
+                            }
+                        ]
+                    },
+                    {
+                        key: 'Today Budget Remaining',
+                        color: colorDefinitions.base,
+                        values: [
+                            {
+                                label: label,
+                                value: data.contributionLimit - todayValue
+                            }
+                        ]
+                    }
+                ];
+
+                $scope.options.chart.stacked = true;
+            }
         }
-    };
 
-    return {
-        scope: {
-            reportData: '&'
-        },
-        templateUrl: 'src/reports/401k_contribution/401k_reportDirective.html',
-        link: function($scope) {
-            $timeout(create401kContributionGraph, 0, true, $scope);
-        }
-    };
-};
+    }
 
-angular.module('gnucash-reports-view.reports.account_levels')
-    .directive('contribution401k', ['$timeout', 'colorDefinitions', 'formatters', Contribution401kDirectiveGenerator]);
-/**
- * Directive that will display the account level information on the display.
- */
-var AccountLevelDirectiveGenerator = function($timeout, colorDefinitions, formatters) {
+})();
+
+
+(function() {
 
     /**
-     * Translate the values of the data report into something that can be rendered.
-     * @param $scope
+     * Directive that will display the account level information on the display.
      */
-    var createAccountLevelGraph = function($scope) {
-        var data = $scope.reportData();
 
-        $scope.options = {
-            chart: {
-                type: 'multiBarHorizontalChart',
-                transitionDuration: 0,
-                tooltip: {
-                    valueFormatter: formatters.currency
-                },
-                tickFormat: formatters.currencyNoParts,
-                x: function(d){return d.label;},
-                y: function(d){return d.value;},
-                showControls: false,
-                showValues: true,
-                xAxis: {
-                    showMaxMin: false
-                },
-                yAxis: {
-                    ticks: 15,
-                    axisLabel: 'USD',
-                    tickFormat: formatters.currencyNoParts
-                },
-                margin: {
-                    left: 75,
-                    right: 75
-                }
+    angular.module('gnucash-reports-view.reports')
+        .directive('gnucashAccountLevel', AccountLevelDirectiveGenerator);
 
+    AccountLevelDirectiveGenerator.$inject = ['$timeout', 'colorDefinitions', 'formatters'];
+
+    function AccountLevelDirectiveGenerator($timeout, colorDefinitions, formatters) {
+
+        return {
+            restrict: 'E',
+            scope: {
+                reportData: '&'
+            },
+            templateUrl: 'core/reports/account_levels/accountLevelDirective.html',
+            link: function($scope) {
+                $timeout(createAccountLevelGraph, 0, true, $scope);
             }
-
-
         };
 
-        var label = formatters.currency(data.good_value);
+        /**
+         * Translate the values of the data report into something that can be rendered.
+         * @param $scope
+         */
+        function createAccountLevelGraph($scope) {
+            var data = $scope.reportData();
 
-        if (data.balance < data.good_value) {
-            // Build underage Chart
-            $scope.data = [
-                {
-                    key: 'Balance',
-                    color: colorDefinitions.info,
-                    values : [
-                        {
-                            label: label,
-                            value: data.balance
-                        }
-                    ]
-                },
-                {
-                    key: 'Underage',
-                    color: colorDefinitions.base,
-                    values : [
-                        {
-                            label: label,
-                            value: data.good_value - data.balance
-                        }
-                    ]
+            $scope.options = {
+                chart: {
+                    type: 'multiBarHorizontalChart',
+                    transitionDuration: 0,
+                    tooltip: {
+                        valueFormatter: formatters.currency
+                    },
+                    tickFormat: formatters.currencyNoParts,
+                    x: function(d){return d.label;},
+                    y: function(d){return d.value;},
+                    showControls: false,
+                    showValues: true,
+                    xAxis: {
+                        showMaxMin: false
+                    },
+                    yAxis: {
+                        ticks: 15,
+                        axisLabel: 'USD',
+                        tickFormat: formatters.currencyNoParts
+                    },
+                    margin: {
+                        left: 75,
+                        right: 75
+                    }
+
                 }
-            ];
-            $scope.options.chart.stacked = true;
 
-            if (data.balance < data.error_value) {
-                $scope.data[0].color = colorDefinitions.error;
-            } else if (data.balance < data.warn_value) {
-                $scope.data[0].color = colorDefinitions.warning;
+
+            };
+
+            var label = formatters.currency(data.good_value);
+
+            if (data.balance < data.good_value) {
+                // Build underage Chart
+                $scope.data = [
+                    {
+                        key: 'Balance',
+                        color: colorDefinitions.info,
+                        values : [
+                            {
+                                label: label,
+                                value: data.balance
+                            }
+                        ]
+                    },
+                    {
+                        key: 'Underage',
+                        color: colorDefinitions.base,
+                        values : [
+                            {
+                                label: label,
+                                value: data.good_value - data.balance
+                            }
+                        ]
+                    }
+                ];
+                $scope.options.chart.stacked = true;
+
+                if (data.balance < data.error_value) {
+                    $scope.data[0].color = colorDefinitions.error;
+                } else if (data.balance < data.warn_value) {
+                    $scope.data[0].color = colorDefinitions.warning;
+                }
+
+            } else {
+                // Build overage Chart
+                $scope.data = [
+                    {
+                        "key": 'Goal',
+                        "color": colorDefinitions.good,
+                        "values" : [
+                            {
+                                label: label,
+                                value: data.good_value
+                            }
+                        ]
+                    },
+                    {
+                        key: 'Overage',
+                        color: colorDefinitions.best,
+                        values : [
+                            {
+                                label: label,
+                                value: data.balance - data.good_value
+                            }
+                        ]
+                    }
+                ];
+                $scope.options.chart.stacked = false;
             }
-
-        } else {
-            // Build overage Chart
-            $scope.data = [
-                {
-                    "key": 'Goal',
-                    "color": colorDefinitions.good,
-                    "values" : [
-                        {
-                            label: label,
-                            value: data.good_value
-                        }
-                    ]
-                },
-                {
-                    key: 'Overage',
-                    color: colorDefinitions.best,
-                    values : [
-                        {
-                            label: label,
-                            value: data.balance - data.good_value
-                        }
-                    ]
-                }
-            ];
-            $scope.options.chart.stacked = false;
         }
-    };
 
-    return {
-        scope: {
-            reportData: '&'
-        },
-        templateUrl: 'src/reports/account_levels/accountLevelDirective.html',
-        link: function($scope) {
-            $timeout(createAccountLevelGraph, 0, true, $scope);
-        }
-    };
-};
+    }
 
-angular.module('gnucash-reports-view.reports.account_levels')
-    .directive('accountLevel', ['$timeout', 'colorDefinitions', 'formatters', AccountLevelDirectiveGenerator]);
-/**
- * Report Management Service
- */
-// Service provider responsible for loading the reports and creating the pages.
-var ReportsManagement = function(_templates) {
+})();
+(function() {
 
-    var service = this;
-    var templates = _templates;
+    /**
+     * Color Definition constants for all of the code.
+     */
+    angular.module('gnucash-reports-view.reports')
+        .constant('colorDefinitions', {
+            // Core Value
+            base: 'LightSteelBlue',
 
-    service.getTemplate = function(templateId) {
-        return templates[templateId];
-    };
+            // Color Scale values.
+            best: 'ForestGreen',
+            good: 'DarkSeaGreen',
+            info: 'Khaki',
+            warning: 'SandyBrown',
+            error: 'LightCoral',
 
-    return service;
+            // Total Sale Values
+            totalGood: 'LightCyan',
+            totalBad: 'LightCoral',
 
-};
+            // Credit Debit Values
+            credit: 'DarkSeaGreen',
+            debit: 'LightCoral'
+        });
 
-/**
- * Provider that will create the Reports Service.
- * @constructor
- */
-var ReportsManagementProvider = function() {
+})();
+(function() {
 
-    var provider = this;
+    angular.module('gnucash-reports-view.reports')
+        .directive('gnucashCurrencyFormat', CurrencyDirectiveGenerator);
 
-    provider.providerTemplates = {};
+    CurrencyDirectiveGenerator.$inject = [];
 
-    provider.addTemplate = function(type, template) {
-        provider.providerTemplates[type] = template;
-    };
+    function CurrencyDirectiveGenerator() {
 
-    this.$get = [function() {
-        return ReportsManagement(provider.providerTemplates);
-    }];
+        return {
+            restrict: 'E',
+            scope: {
+                value: '&'
+            },
+            template: '<span ng-class="style">{{::currencyValue|currency}}</span>',
+            link: link
+        };
 
-};
+        ////////////////////////////////////////////////////////////////////////
 
-angular.module('gnucash-reports-view.reports.base')
-    .provider('ReportsManagement', ReportsManagementProvider);
-/**
- * Color Definition constants for all of the code.
- */
-angular.module('gnucash-reports-view.reports.base')
-    .constant('colorDefinitions', {
-        // Core Value
-        base: 'LightSteelBlue',
-
-        // Color Scale values.
-        best: 'ForestGreen',
-        good: 'DarkSeaGreen',
-        info: 'Khaki',
-        warning: 'SandyBrown',
-        error: 'LightCoral',
-
-        // Total Sale Values
-        totalGood: 'LightCyan',
-        totalBad: 'LightCoral',
-
-        // Credit Debit Values
-        credit: 'DarkSeaGreen',
-        debit: 'LightCoral'
-    });
-/**
- * Created by rerobins on 10/6/15.
- */
-var CurrencyDirectiveGenerator = function(formatters) {
-
-    return {
-        scope: {
-            value: '&'
-        },
-        template: '<span ng-style="style">{{currencyValue}}</span>',
-        link: function($scope) {
-            $scope.currencyValue = formatters.currency($scope.value());
+        function link($scope) {
+            $scope.currencyValue = $scope.value();
 
             if ($scope.value() > 0.0) {
-                $scope.style = {color: 'green'};
+                $scope.style = 'currencyPositive';
             } else if ($scope.value() < 0.0) {
-                $scope.style = {color: 'red'};
+                $scope.style = 'currencyNegative';
             }
         }
+
+    }
+
+})();
+(function() {
+
+    /**
+     * Define the formatters that are going to be used by the constant.  This will prevent them from being constructed each
+     * time they are executed.
+     * @type {{currency: *, currencyNoParts: *}}
+     * @private
+     */
+    var _formatters = {
+        // Currency with parts.
+        currency: d3.format('$,.02f'),
+
+        // Currency with no parts.
+        currencyNoParts: d3.format('$,'),
+
+        // Date formatter %x
+        date: d3.time.format('%x'),
+
+        // Percentage formatter
+        percentage: d3.format('.02%')
+
     };
 
-};
+    angular.module('gnucash-reports-view.reports')
+        .constant('formatters', {
 
-angular.module('gnucash-reports-view.reports.base')
-    .directive('currencyFormat', ['formatters', CurrencyDirectiveGenerator]);
+            /**
+             * Full currency including parts.
+             * @param d decimal
+             * @returns {*}
+             */
+            currency: function(d) {
+                return _formatters.currency(d);
+            },
 
+            /**
+             * Currency String without the parts of a currency.
+             * @param d decimal
+             * @returns {*}
+             */
+            currencyNoParts: function(d) {
+                return _formatters.currencyNoParts(d);
+            },
 
-/**
- * Define the formatters that are going to be used by the constant.  This will prevent them from being constructed each
- * time they are executed.
- * @type {{currency: *, currencyNoParts: *}}
- * @private
- */
-var _formatters = {
-    // Currency with parts.
-    currency: d3.format('$,.02f'),
+            /**
+             * Converts the time in seconds into a date using the %x formatter.
+             * @param timeInSeconds
+             * @returns {*}
+             */
+            date: function(timeInSeconds) {
+                return _formatters.date(new Date(timeInSeconds*1000));
+            },
 
-    // Currency with no parts.
-    currencyNoParts: d3.format('$,'),
+            /**
+             * Converts the value into a percentage.
+             */
+            percentage: function(value) {
+                return _formatters.percentage(value);
+            }
+        });
 
-    // Date formatter %x
-    date: d3.time.format('%x'),
+})();
+(function() {
 
-    // Percentage formatter
-    percentage: d3.format('.02%')
+    angular.module('gnucash-reports-view.reports')
+        .directive('gnucashPercentageFormat', PercentageDirectiveGenerator);
 
-};
+    PercentageDirectiveGenerator.$inject = [];
 
-angular.module('gnucash-reports-view.reports.base')
-    .constant('formatters', {
+    function PercentageDirectiveGenerator() {
 
-        /**
-         * Full currency including parts.
-         * @param d decimal
-         * @returns {*}
-         */
-        currency: function(d) {
-            return _formatters.currency(d);
-        },
+        return {
+            restrict: 'E',
+            scope: {
+                value: '&'
+            },
+            template: '<span ng-class="style">{{::percentageValue | percentage}}</span>',
+            link: link
+        };
 
-        /**
-         * Currency String without the parts of a currency.
-         * @param d decimal
-         * @returns {*}
-         */
-        currencyNoParts: function(d) {
-            return _formatters.currencyNoParts(d);
-        },
+        //////////////////////////////////////////////////////////////////////////
+        function link($scope) {
 
-        /**
-         * Converts the time in seconds into a date using the %x formatter.
-         * @param timeInSeconds
-         * @returns {*}
-         */
-        date: function(timeInSeconds) {
-            return _formatters.date(new Date(timeInSeconds*1000));
-        },
+            $scope.percentageValue = $scope.value();
 
-        /**
-         * Converts the value into a percentage.
-         */
-        percentage: function(value) {
-            return _formatters.percentage(value);
+            if ($scope.value() > 0.0) {
+                $scope.style = 'percentagePositive';
+            } else if ($scope.value() < 0.0) {
+                $scope.style = 'percentageNegative';
+            }
         }
-    });
 
-/**
- * Created by rerobins on 10/6/15.
- */
-var PercentageDirectiveGenerator = function(formatters) {
+    }
 
-    return {
-        scope: {
-            value: '&'
-        },
-        template: '<span ng-style="style">{{currencyValue}}</span>',
-        link: function($scope) {
+})();
+(function() {
 
-            if (angular.isNumber($scope.value())) {
+    angular.module('gnucash-reports-view.reports')
+        .config(registerPercentageFilter);
 
-                $scope.currencyValue = formatters.percentage($scope.value());
+    registerPercentageFilter.$inject = ['$filterProvider'];
 
-                if ($scope.value() > 0.0) {
-                    $scope.style = {color: 'green'};
-                } else if ($scope.value() < 0.0) {
-                    $scope.style = {color: 'red'};
+    function registerPercentageFilter($filterProvider) {
+
+        percentageFilter.$inject = ['$filter'];
+        function percentageFilter($filter) {
+            return function(text) {
+
+                var result = text;
+                if (angular.isNumber(text)) {
+
+                    var numberFilter = $filter('number'),
+                        percentageValue = text * 100.0;
+
+                    result = numberFilter(percentageValue, 2) + '%';
+
                 }
+
+                return result;
+            };
+        }
+
+        $filterProvider.register('percentage', percentageFilter);
+
+    }
+
+})();
+(function() {
+
+    /**
+     * Report Management Service
+     */
+    angular.module('gnucash-reports-view.reports')
+        .provider('ReportsManagement', ReportsManagementProvider);
+
+    /**
+     * Provider that will create the Reports Service.
+     * @constructor
+     */
+    function ReportsManagementProvider() {
+
+        var provider = this;
+
+        provider.providerTemplates = {};
+
+        provider.addTemplate = function(type, template) {
+            provider.providerTemplates[type] = template;
+            return provider;
+        };
+
+        this.$get = function() {
+            return ReportsManagement(provider.providerTemplates);
+        };
+
+    }
+
+    // Service provider responsible for loading the reports and creating the pages.
+    function ReportsManagement(_templates) {
+
+        var service = this;
+        var templates = _templates;
+
+        service.getTemplate = function(templateId) {
+            return templates[templateId];
+        };
+
+        return service;
+
+    }
+
+})();
+(function() {
+
+    /**
+     * Created by rerobins on 9/29/15.
+     */
+    angular.module('gnucash-reports-view.reports')
+        .directive('gnucashBoxPlot', BoxPlotDirectiveGenerator);
+
+    BoxPlotDirectiveGenerator.$inject = ['$timeout', 'colorDefinitions', 'formatters'];
+
+    function BoxPlotDirectiveGenerator($timeout, colorDefinitions, formatters) {
+
+        return {
+            restrict: 'E',
+            scope: {
+                reportData: '&'
+            },
+            templateUrl: 'core/reports/box_plot/boxPlotDirective.html',
+            link: function($scope) {
+                $timeout(buildChartConfiguration, 0, true, $scope);
+            }
+        };
+
+        function buildChartConfiguration($scope) {
+            var data = $scope.reportData();
+
+            $scope.options = {
+                chart: {
+                    type: 'boxPlotChart',
+                    height: 450,
+                    margin : {
+                        top: 20,
+                        right: 20,
+                        bottom: 100,
+                        left: 100
+                    },
+                    color:[colorDefinitions.base],
+                    x: function(d){return d.label;},
+                    maxBoxWidth: 75,
+                    yDomain: [0, data.high],
+                    yAxis: {
+                        tickFormat: formatters.currencyNoParts
+                    },
+                    transitionDuration: 0
+                }
+            };
+
+            $scope.data = [
+                {
+                    label: 'Data',
+                    values: {
+                        Q1: data.q1,
+                        Q2: data.q2,
+                        Q3: data.q3,
+                        whisker_low: data.low,
+                        whisker_high: data.high,
+                        outliers: []
+                    }
+                }
+            ];
+        }
+    }
+
+})();
+(function() {
+
+    angular.module('gnucash-reports-view.reports')
+        .directive('gnucashBudgetLevel', BudgetlevelDirectiveGenerator);
+
+    BudgetlevelDirectiveGenerator.$inject = ['$timeout', 'colorDefinitions', 'formatters'];
+
+    function BudgetlevelDirectiveGenerator($timeout, colorDefinitions, formatters) {
+
+        return {
+            restrict: 'E',
+            scope: {
+                reportData: '&'
+            },
+            templateUrl: 'core/reports/budget_level/budgetLevelDirective.html',
+            link: function($scope) {
+                $timeout(createBudgetLevelGraph, 0, true, $scope);
+            }
+        };
+
+        ///////////////////////////////////////////////////////////////////////////
+
+        function createBudgetLevelGraph($scope) {
+            var data = $scope.reportData();
+
+            $scope.options = {
+                chart: {
+                    type: 'multiBarHorizontalChart',
+                    transitionDuration: 0,
+                    tooltip: {
+                        valueFormatter: formatters.currency
+                    },
+                    tickFormat: formatters.currencyNoParts,
+                    x: function(d){return d.label;},
+                    y: function(d){return d.value;},
+                    showControls: false,
+                    showValues: true,
+                    stacked: true,
+                    xAxis: {
+                        showMaxMin: false
+                    },
+                    yAxis: {
+                        ticks: 15,
+                        axisLabel: 'USD',
+                        tickFormat: formatters.currencyNoParts
+                    },
+                    margin: {
+                        left: 75,
+                        right: 75
+                    }
+                }
+            };
+
+            $scope.data = createDataSet(data.budgetValue, data.balance, data.today, data.daysInMonth);
+            $scope.yearData = createDataSet(data.budgetValue * 12, data.yearlyBalance, data.currentYearDay, data.daysInYear);
+        }
+
+        function createDataSet(budgetValue, balance, currentDay, daysInPeriod) {
+            var label = formatters.currency(budgetValue);
+
+            var todayValue = (currentDay / daysInPeriod) * budgetValue;
+
+            var data = null;
+
+            if (balance > budgetValue) {
+                data = [
+                    {
+                        key: 'Today',
+                        color: colorDefinitions.good,
+                        values : [
+                            {
+                                label: label,
+                                value: todayValue
+                            }
+                        ]
+                    },
+                    {
+                        key: 'Budget Remaining Today',
+                        color: colorDefinitions.base,
+                        values : [
+                            {
+                                label: label,
+                                value: budgetValue - todayValue
+                            }
+                        ]
+                    },
+                    {
+                        key: 'Budget Overage',
+                        color: colorDefinitions.error,
+                        values : [
+                            {
+                                label: label,
+                                value: balance - budgetValue
+                            }
+                        ]
+                    }
+                ];
+            } else if (balance > todayValue) {
+                // Build underage Chart
+                data = [
+                    {
+                        key: 'Today',
+                        color: colorDefinitions.best,
+                        values : [
+                            {
+                                label: label,
+                                value: todayValue
+                            }
+                        ]
+                    },
+                    {
+                        key: 'Today Overage',
+                        color: colorDefinitions.warning,
+                        values : [
+                            {
+                                label: label,
+                                value: balance - todayValue
+                            }
+                        ]
+                    },
+                    {
+                        key: 'Budget Remaining',
+                        color: colorDefinitions.base,
+                        values: [
+                            {
+                                label: label,
+                                value: budgetValue - balance
+                            }
+                        ]
+                    }
+                ];
+
             } else {
-                $scope.currencyValue = 'N/A';
+                // Build overage Chart
+                data = [
+                    {
+                        key: 'Balance',
+                        color: colorDefinitions.best,
+                        values : [
+                            {
+                                label: label,
+                                value: balance
+                            }
+                        ]
+                    },
+                    {
+                        key: 'Today',
+                        color: colorDefinitions.good,
+                        values : [
+                            {
+                                label: label,
+                                value: todayValue - balance
+                            }
+                        ]
+                    },
+                    {
+                        key : 'Today Budget Remaining',
+                        color: colorDefinitions.base,
+                        values: [
+                            {
+                                label: label,
+                                value: budgetValue - todayValue
+                            }
+                        ]
+                    }
+                ];
             }
 
+            return data;
         }
-    };
 
-};
+    }
 
-angular.module('gnucash-reports-view.reports.base')
-    .directive('percentageFormat', ['formatters', PercentageDirectiveGenerator]);
+})();
+(function() {
 
+    angular.module('gnucash-reports-view.reports')
+        .directive('gnucashBudgetPlanning', BudgetPlanningDirectiveGenerator);
 
-/**
- * Created by rerobins on 9/29/15.
- */
-var BoxPlotDirectiveGenerator = function($timeout, colorDefinitions, formatters) {
+    BudgetPlanningDirectiveGenerator.$inject = ['$timeout', 'colorDefinitions', 'formatters'];
 
-    var buildChartConfiguration = function($scope) {
-        var data = $scope.reportData();
-
-        $scope.options = {
-            chart: {
-                type: 'boxPlotChart',
-                height: 450,
-                margin : {
-                    top: 20,
-                    right: 20,
-                    bottom: 100,
-                    left: 100
-                },
-                color:[colorDefinitions.base],
-                x: function(d){return d.label;},
-                maxBoxWidth: 75,
-                yDomain: [0, data.high],
-                yAxis: {
-                    tickFormat: formatters.currencyNoParts
-                },
-                transitionDuration: 0
-            }
+    function BudgetPlanningDirectiveGenerator($timeout, colorDefinitions, formatters) {
+        return {
+            restrict: 'E',
+            scope: {
+                reportData: '&'
+            },
+            templateUrl: 'core/reports/budget_planning/budgetPlanningDirective.html',
+            link: link
         };
 
-        $scope.data = [
-            {
-                label: 'Data',
-                values: {
-                    Q1: data.q1,
-                    Q2: data.q2,
-                    Q3: data.q3,
-                    whisker_low: data.low,
-                    whisker_high: data.high,
-                    outliers: []
-                }
-            }
-        ];
-    };
+        ///////////////////////////////////////////////////////////////////////////////////////
 
-    return {
-        scope: {
-            reportData: '&'
-        },
-        templateUrl: 'src/reports/box_plot/boxPlotDirective.html',
-        link: function($scope) {
-            $timeout(buildChartConfiguration, 0, true, $scope);
-        }
-    };
-};
-
-angular.module('gnucash-reports-view.reports.box_plot')
-    .directive('boxPlot', ['$timeout', 'colorDefinitions', 'formatters', BoxPlotDirectiveGenerator]);
-/**
- * Created by rerobins on 9/29/15.
- */
-var BudgetlevelDirectiveGenerator = function($timeout, colorDefinitions, formatters) {
-
-    var createDataSet = function(budgetValue, balance, currentDay, daysInPeriod) {
-        var label = formatters.currency(budgetValue);
-
-        var todayValue = (currentDay / daysInPeriod) * budgetValue;
-
-        var data = null;
-
-        if (balance > budgetValue) {
-            data = [
-                {
-                    key: 'Today',
-                    color: colorDefinitions.good,
-                    values : [
-                        {
-                            label: label,
-                            value: todayValue
-                        }
-                    ]
-                },
-                {
-                    key: 'Budget Remaining Today',
-                    color: colorDefinitions.base,
-                    values : [
-                        {
-                            label: label,
-                            value: budgetValue - todayValue
-                        }
-                    ]
-                },
-                {
-                    key: 'Budget Overage',
-                    color: colorDefinitions.error,
-                    values : [
-                        {
-                            label: label,
-                            value: balance - budgetValue
-                        }
-                    ]
-                }
-            ];
-        } else if (balance > todayValue) {
-            // Build underage Chart
-            data = [
-                {
-                    key: 'Today',
-                    color: colorDefinitions.best,
-                    values : [
-                        {
-                            label: label,
-                            value: todayValue
-                        }
-                    ]
-                },
-                {
-                    key: 'Today Overage',
-                    color: colorDefinitions.warning,
-                    values : [
-                        {
-                            label: label,
-                            value: balance - todayValue
-                        }
-                    ]
-                },
-                {
-                    key: 'Budget Remaining',
-                    color: colorDefinitions.base,
-                    values: [
-                        {
-                            label: label,
-                            value: budgetValue - balance
-                        }
-                    ]
-                }
-            ];
-
-        } else {
-            // Build overage Chart
-            data = [
-                {
-                    key: 'Balance',
-                    color: colorDefinitions.best,
-                    values : [
-                        {
-                            label: label,
-                            value: balance
-                        }
-                    ]
-                },
-                {
-                    key: 'Today',
-                    color: colorDefinitions.good,
-                    values : [
-                        {
-                            label: label,
-                            value: todayValue - balance
-                        }
-                    ]
-                },
-                {
-                    key : 'Today Budget Remaining',
-                    color: colorDefinitions.base,
-                    values: [
-                        {
-                            label: label,
-                            value: budgetValue - todayValue
-                        }
-                    ]
-                }
-            ];
-        }
-
-        return data;
-    };
-
-    var createBudgetLevelGraph = function($scope) {
-        var data = $scope.reportData();
-
-        $scope.options = {
-            chart: {
-                type: 'multiBarHorizontalChart',
-                transitionDuration: 0,
-                tooltip: {
-                    valueFormatter: formatters.currency
-                },
-                tickFormat: formatters.currencyNoParts,
-                x: function(d){return d.label;},
-                y: function(d){return d.value;},
-                showControls: false,
-                showValues: true,
-                stacked: true,
-                xAxis: {
-                    showMaxMin: false
-                },
-                yAxis: {
-                    ticks: 15,
-                    axisLabel: 'USD',
-                    tickFormat: formatters.currencyNoParts
-                },
-                margin: {
-                    left: 75,
-                    right: 75
-                }
-            }
-        };
-
-        $scope.data = createDataSet(data.budgetValue, data.balance, data.today, data.daysInMonth);
-        $scope.yearData = createDataSet(data.budgetValue * 12, data.yearlyBalance, data.currentYearDay, data.daysInYear);
-
-    };
-
-
-
-    return {
-        scope: {
-            reportData: '&'
-        },
-        templateUrl: 'src/reports/budget_level/budgetLevelDirective.html',
-        link: function($scope) {
-            $timeout(createBudgetLevelGraph, 0, true, $scope);
-        }
-    };
-};
-
-angular.module('gnucash-reports-view.reports.budget_level')
-    .directive('budgetLevel', ['$timeout', 'colorDefinitions', 'formatters', BudgetlevelDirectiveGenerator]);
-/**
- * Created by rerobins on 9/29/15.
- */
-var BudgetPlanningDirectiveGenerator = function($timeout, colorDefinitions, formatters) {
-    return {
-        scope: {
-            reportData: '&'
-        },
-        templateUrl: 'src/reports/budget_planning/budgetPlanningDirective.html',
-        link: function($scope) {
+        function link($scope) {
             var data = $scope.reportData();
 
             $scope.options = {
@@ -1069,29 +987,36 @@ var BudgetPlanningDirectiveGenerator = function($timeout, colorDefinitions, form
             $scope.data = angular.copy(data.categories);
 
             // Manipulate the data set and tye style based on the amount of remaining value that is in the accounts.
-            $scope.remainingStyle = {background: colorDefinitions.totalGood};
+            $scope.remainingClass = 'total-positive';
             if ($scope.remaining < 0) {
-                $scope.remainingStyle = {background: colorDefinitions.totalBad};
+                $scope.remainingClass = 'total-negative';
             } else {
                 $scope.data.push({name: 'Remaining', value: data.remaining});
             }
-
         }
-    };
-};
+    }
 
-angular.module('gnucash-reports-view.reports.budget_planning')
-    .directive('budgetPlanning', ['$timeout', 'colorDefinitions', 'formatters', BudgetPlanningDirectiveGenerator]);
-/**
- * Created by rerobins on 9/29/15.
- */
-var CashFlowDirectiveGenerator = function($timeout, colorDefinitions, formatters) {
-    return {
-        scope: {
-            reportData: '&'
-        },
-        templateUrl: 'src/reports/cash_flow_chart/cashFlowDirective.html',
-        link: function($scope) {
+})();
+(function() {
+
+    angular.module('gnucash-reports-view.reports')
+        .directive('gnucashCashFlow', CashFlowDirectiveGenerator);
+
+    CashFlowDirectiveGenerator.$inject = ['$timeout', 'colorDefinitions', 'formatters'];
+
+    function CashFlowDirectiveGenerator($timeout, colorDefinitions, formatters) {
+        return {
+            restrict: 'E',
+            scope: {
+                reportData: '&'
+            },
+            templateUrl: 'core/reports/cash_flow_chart/cashFlowDirective.html',
+            link: link
+        };
+
+        ///////////////////////////////////////////////////////////
+
+        function link($scope) {
             var data = $scope.reportData();
 
             $timeout(function() {
@@ -1149,276 +1074,296 @@ var CashFlowDirectiveGenerator = function($timeout, colorDefinitions, formatters
                     }
                 ];
             });
-
         }
-    };
-};
+    }
 
-angular.module('gnucash-reports-view.reports.cash_flow')
-    .directive('cashFlow', ['$timeout', 'colorDefinitions', 'formatters', CashFlowDirectiveGenerator]);
-/**
- * Created by rerobins on 9/29/15.
- */
-var CategoryGraphDirectiveGenerator = function($timeout, colorDefinitions, formatters) {
+})();
+(function() {
 
-    var createCategoryChart = function($scope) {
-        var data = $scope.reportData();
-        $scope.options = {
-            chart: {
-                type: 'multiBarHorizontalChart',
-                height: 450,
-                x: function(d){return d.label;},
-                y: function(d){return d.value;},
-                showControls: false,
-                showLegend: false,
-                showValues: true,
-                transitionDuration: 500,
-                xAxis: {
-                    showMaxMin: false
-                },
-                margin: {
-                    left: 100,
-                    right: 50
-                },
-                yAxis: {
-                    axisLabel: 'Values',
-                    tickFormat: function(d){
-                        return formatters.currency(d);
-                    }
-                }
-            }
-        };
+    angular.module('gnucash-reports-view.reports')
+        .directive('gnucashCategoryGraph', CategoryGraphDirectiveGenerator);
 
-        $scope.data = [
-            {
-                key: '',
-                color: colorDefinitions.base,
-                values: function() {
-                    var result = [];
+    CategoryGraphDirectiveGenerator.$inject = ['$timeout', 'colorDefinitions', 'formatters'];
 
-                    data.categories.forEach(function(d) {
-                       result.push({
-                           label: d[0],
-                           value: d[1]
-                       });
-                    });
+    function CategoryGraphDirectiveGenerator($timeout, colorDefinitions, formatters) {
 
-                    return result;
-                }()
-            }
-        ];
-
-        $scope.tableData = data.categories;
-        $scope.total = 0;
-
-        data.categories.forEach(function(d) {
-            $scope.total += d[1];
-        });
-    };
-
-    return {
-        scope: {
-            reportData: '&'
-        },
-        templateUrl: 'src/reports/category/categoryGraphDirective.html',
-        link: function($scope) {
-            $timeout(createCategoryChart, 0, true, $scope);
-        }
-    };
-};
-
-angular.module('gnucash-reports-view.reports.category')
-    .directive('categoryGraph', ['$timeout', 'colorDefinitions', 'formatters', CategoryGraphDirectiveGenerator]);
-/**
- * Created by rerobins on 9/29/15.
- */
-var CreditUsageDirectiveGenerator = function($timeout, colorDefinitions, formatters) {
-
-    var createCreditUsageChart = function($scope) {
-        var data = $scope.reportData();
-
-        $scope.options = {
-            chart: {
-                type: 'multiBarHorizontalChart',
-                transitionDuration: 0,
-                tooltip: {
-                    valueFormatter: formatters.currency
-                },
-                tickFormat: formatters.currencyNoParts,
-                x: function(d){return d.label;},
-                y: function(d){return d.value;},
-                showControls: false,
-                showValues: true,
-                xAxis: {
-                    showMaxMin: false
-                },
-                stacked: true,
-                yAxis: {
-                    ticks: 15,
-                    axisLabel: 'USD',
-                    tickFormat: formatters.currencyNoParts
-                },
-                margin: {
-                    left: 75,
-                    right: 75
-                }
-
-            }
-        };
-
-        var label = formatters.currency(data.credit_limit);
-
-        $scope.data = [
-            {
-                key: 'Used',
-                color: colorDefinitions.debit,
-                values: [
-                    {
-                        label: label,
-                        value: data.credit_amount
-                    }
-                ]
+        return {
+            restrict: 'E',
+            scope: {
+                reportData: '&'
             },
-            {
-                key: 'Available',
-                color: colorDefinitions.credit,
-                values: [
-                    {
-                        label: label,
-                        value: data.credit_limit - data.credit_amount
-                    }
-                ]
-            }
-        ];
-    };
-
-    return {
-        scope: {
-            reportData: '&'
-        },
-        templateUrl: 'src/reports/credit_usage/creditUsageDirective.html',
-        link: function($scope) {
-            $timeout(createCreditUsageChart, 0, true, $scope);
-        }
-    };
-};
-
-angular.module('gnucash-reports-view.reports.credit_usage')
-    .directive('creditUsage', ['$timeout', 'colorDefinitions', 'formatters', CreditUsageDirectiveGenerator]);
-/**
- * Created by rerobins on 9/29/15.
- */
-var DebtLiquidAssetDirectiveGenerator = function($timeout, colorDefinitions, formatters) {
-
-    var createDebitLiquidAssetChart = function($scope) {
-        var data = $scope.reportData();
-
-        $scope.options = {
-            chart: {
-                type: 'multiBarHorizontalChart',
-                transitionDuration: 0,
-                tooltip: {
-                    valueFormatter: formatters.currency
-                },
-                tickFormat: formatters.currencyNoParts,
-                x: function(d){return d.label;},
-                y: function(d){return d.value;},
-                showControls: false,
-                showValues: true,
-                xAxis: {
-                    showMaxMin: false
-                },
-                yAxis: {
-                    ticks: 15,
-                    axisLabel: 'USD',
-                    tickFormat: formatters.currencyNoParts
-                },
-                margin: {
-                    left: 75,
-                    right: 75
-                }
-
+            templateUrl: 'core/reports/category/categoryGraphDirective.html',
+            link: function($scope) {
+                $timeout(createCategoryChart, 0, true, $scope);
             }
         };
 
-        var label = 'Credit vs. LA';
+        function createCategoryChart($scope) {
+            var data = $scope.reportData();
+            $scope.options = {
+                chart: {
+                    type: 'multiBarHorizontalChart',
+                    height: 450,
+                    x: function(d){return d.label;},
+                    y: function(d){return d.value;},
+                    showControls: false,
+                    showLegend: false,
+                    showValues: true,
+                    transitionDuration: 500,
+                    xAxis: {
+                        showMaxMin: false
+                    },
+                    margin: {
+                        left: 100,
+                        right: 50
+                    },
+                    yAxis: {
+                        axisLabel: 'Values',
+                        tickFormat: function(d){
+                            return formatters.currency(d);
+                        }
+                    }
+                }
+            };
 
-        if (data.liquid_assets > data.credit_used) {
             $scope.data = [
                 {
-                    key: 'Credit Used',
-                    color: colorDefinitions.warning,
+                    key: '',
+                    color: colorDefinitions.base,
+                    values: function() {
+                        var result = [];
+
+                        data.categories.forEach(function(d) {
+                            result.push({
+                                label: d[0],
+                                value: d[1]
+                            });
+                        });
+
+                        return result;
+                    }()
+                }
+            ];
+
+            $scope.tableData = data.categories;
+            $scope.total = 0;
+
+            data.categories.forEach(function(d) {
+                $scope.total += d[1];
+            });
+        }
+
+    }
+
+})();
+(function() {
+
+    angular.module('gnucash-reports-view.reports')
+        .directive('gnucashCreditUsage', CreditUsageDirectiveGenerator);
+
+    CreditUsageDirectiveGenerator.$inject = ['$timeout', 'colorDefinitions', 'formatters'];
+
+    function CreditUsageDirectiveGenerator($timeout, colorDefinitions, formatters) {
+
+        return {
+            restrict: 'E',
+            scope: {
+                reportData: '&'
+            },
+            templateUrl: 'core/reports/credit_usage/creditUsageDirective.html',
+            link: function($scope) {
+                $timeout(createCreditUsageChart, 0, true, $scope);
+            }
+        };
+
+        function createCreditUsageChart ($scope) {
+            var data = $scope.reportData();
+
+            $scope.options = {
+                chart: {
+                    type: 'multiBarHorizontalChart',
+                    transitionDuration: 0,
+                    tooltip: {
+                        valueFormatter: formatters.currency
+                    },
+                    tickFormat: formatters.currencyNoParts,
+                    x: function(d){return d.label;},
+                    y: function(d){return d.value;},
+                    showControls: false,
+                    showValues: true,
+                    xAxis: {
+                        showMaxMin: false
+                    },
+                    stacked: true,
+                    yAxis: {
+                        ticks: 15,
+                        axisLabel: 'USD',
+                        tickFormat: formatters.currencyNoParts
+                    },
+                    margin: {
+                        left: 75,
+                        right: 75
+                    }
+
+                }
+            };
+
+            var label = formatters.currency(data.credit_limit);
+
+            $scope.data = [
+                {
+                    key: 'Used',
+                    color: colorDefinitions.debit,
                     values: [
                         {
                             label: label,
-                            value: data.credit_used
+                            value: data.credit_amount
                         }
                     ]
                 },
                 {
-                    key: 'Liquid Assets',
-                    color: colorDefinitions.good,
+                    key: 'Available',
+                    color: colorDefinitions.credit,
                     values: [
                         {
                             label: label,
-                            value: data.liquid_assets - data.credit_used
+                            value: data.credit_limit - data.credit_amount
                         }
                     ]
                 }
             ];
-            $scope.options.chart.stacked = true;
-        } else {
-            $scope.data = [
+        }
 
-                {
-                    key: 'Liquid Assets',
-                    color: colorDefinitions.good,
-                    values: [
-                        {
-                            label: label,
-                            value: data.liquid_assets
-                        }
-                    ]
-                },
-                {
-                    key: 'Overage',
-                    color: colorDefinitions.error,
-                    values: [
-                        {
-                            label: label,
-                            value: data.credit_used - data.liquid_assets
-                        }
-                    ]
+    }
+
+})();
+(function() {
+
+    angular.module('gnucash-reports-view.reports')
+        .directive('gnucashDebtLiquidAsset', DebtLiquidAssetDirectiveGenerator);
+
+    DebtLiquidAssetDirectiveGenerator.$inject = ['$timeout', 'colorDefinitions', 'formatters'];
+
+    function DebtLiquidAssetDirectiveGenerator($timeout, colorDefinitions, formatters) {
+
+        return {
+            restrict: 'E',
+            scope: {
+                reportData: '&'
+            },
+            templateUrl: 'core/reports/debt_liquid_assets/debtLiquidAssetDirective.html',
+            link: function($scope) {
+                $timeout(createDebitLiquidAssetChart, 0, true, $scope);
+            }
+        };
+
+        function createDebitLiquidAssetChart($scope) {
+            var data = $scope.reportData();
+
+            $scope.options = {
+                chart: {
+                    type: 'multiBarHorizontalChart',
+                    transitionDuration: 0,
+                    tooltip: {
+                        valueFormatter: formatters.currency
+                    },
+                    tickFormat: formatters.currencyNoParts,
+                    x: function(d){return d.label;},
+                    y: function(d){return d.value;},
+                    showControls: false,
+                    showValues: true,
+                    xAxis: {
+                        showMaxMin: false
+                    },
+                    yAxis: {
+                        ticks: 15,
+                        axisLabel: 'USD',
+                        tickFormat: formatters.currencyNoParts
+                    },
+                    margin: {
+                        left: 75,
+                        right: 75
+                    }
+
                 }
-            ];
-            $scope.options.chart.stacked = false;
+            };
+
+            var label = 'Credit vs. LA';
+
+            if (data.liquid_assets > data.credit_used) {
+                $scope.data = [
+                    {
+                        key: 'Credit Used',
+                        color: colorDefinitions.warning,
+                        values: [
+                            {
+                                label: label,
+                                value: data.credit_used
+                            }
+                        ]
+                    },
+                    {
+                        key: 'Liquid Assets',
+                        color: colorDefinitions.good,
+                        values: [
+                            {
+                                label: label,
+                                value: data.liquid_assets - data.credit_used
+                            }
+                        ]
+                    }
+                ];
+                $scope.options.chart.stacked = true;
+            } else {
+                $scope.data = [
+
+                    {
+                        key: 'Liquid Assets',
+                        color: colorDefinitions.good,
+                        values: [
+                            {
+                                label: label,
+                                value: data.liquid_assets
+                            }
+                        ]
+                    },
+                    {
+                        key: 'Overage',
+                        color: colorDefinitions.error,
+                        values: [
+                            {
+                                label: label,
+                                value: data.credit_used - data.liquid_assets
+                            }
+                        ]
+                    }
+                ];
+                $scope.options.chart.stacked = false;
+            }
+
         }
 
-    };
+    }
 
-    return {
-        scope: {
-            reportData: '&'
-        },
-        templateUrl: 'src/reports/debt_liquid_assets/debtLiquidAssetDirective.html',
-        link: function($scope) {
-            $timeout(createDebitLiquidAssetChart, 0, true, $scope);
-        }
-    };
-};
+})();
+(function() {
 
-angular.module('gnucash-reports-view.reports.debt_liquid_assets')
-    .directive('debtLiquidAsset', ['$timeout', 'colorDefinitions', 'formatters', DebtLiquidAssetDirectiveGenerator]);
-/**
- * Created by rerobins on 9/29/15.
- */
-var ExpensesPeriodDirectiveGenerator = function($timeout, colorDefinitions, formatters) {
-    return {
-        scope: {
-            reportData: '&'
-        },
-        templateUrl: 'src/reports/expenses_period/expensesPeriodDirective.html',
-        link: function($scope) {
+    angular.module('gnucash-reports-view.reports')
+        .directive('gnucashExpensesPeriod', ExpensesPeriodDirectiveGenerator);
+
+    ExpensesPeriodDirectiveGenerator.$inject = ['$timeout', 'colorDefinitions', 'formatters'];
+
+    function ExpensesPeriodDirectiveGenerator($timeout, colorDefinitions, formatters) {
+        return {
+            restrict: 'E',
+            scope: {
+                reportData: '&'
+            },
+            templateUrl: 'core/reports/expenses_period/expensesPeriodDirective.html',
+            link: link
+        };
+
+        function link($scope) {
             var data = $scope.reportData();
 
             $timeout(function() {
@@ -1465,21 +1410,27 @@ var ExpensesPeriodDirectiveGenerator = function($timeout, colorDefinitions, form
             });
 
         }
-    };
-};
+    }
 
-angular.module('gnucash-reports-view.reports.expenses_period')
-    .directive('expensesPeriod', ['$timeout', 'colorDefinitions', 'formatters', ExpensesPeriodDirectiveGenerator]);
-/**
- * Created by rerobins on 9/29/15.
- */
-var IncomeVsExpenseDirectiveGenerator = function(colorDefinitions, formatters) {
-    return {
-        scope: {
-            reportData: '&'
-        },
-        templateUrl: 'src/reports/income_vs_expense/income_vs_expenseDirective.html',
-        link: function($scope) {
+})();
+(function() {
+
+    angular.module('gnucash-reports-view.reports')
+        .directive('gnucashIncomeVsExpense', IncomeVsExpenseDirectiveGenerator);
+
+    IncomeVsExpenseDirectiveGenerator.$inject = ['colorDefinitions', 'formatters'];
+
+    function IncomeVsExpenseDirectiveGenerator(colorDefinitions, formatters) {
+        return {
+            restrict: 'E',
+            scope: {
+                reportData: '&'
+            },
+            templateUrl: 'core/reports/income_vs_expense/income_vs_expenseDirective.html',
+            link: link
+        };
+
+        function link($scope) {
             var data = $scope.reportData();
 
             $scope.options = {
@@ -1538,21 +1489,27 @@ var IncomeVsExpenseDirectiveGenerator = function(colorDefinitions, formatters) {
 
             $scope.tableData = data;
         }
-    };
-};
+    }
 
-angular.module('gnucash-reports-view.reports.cash_flow')
-    .directive('incomeVsExpense', ['colorDefinitions', 'formatters', IncomeVsExpenseDirectiveGenerator]);
-/**
- * Created by rerobins on 9/29/15.
- */
-var InvestmentBalanceDirectiveGenerator = function(colorDefinitions, formatters) {
-    return {
-        scope: {
-            reportData: '&'
-        },
-        templateUrl: 'src/reports/investment_balance/investmentBalanceDirective.html',
-        link: function($scope) {
+})();
+(function() {
+
+    angular.module('gnucash-reports-view.reports')
+        .directive('gnucashInvestmentBalance', InvestmentBalanceDirectiveGenerator);
+
+    InvestmentBalanceDirectiveGenerator.$inject = ['colorDefinitions', 'formatters'];
+
+    function InvestmentBalanceDirectiveGenerator(colorDefinitions, formatters) {
+        return {
+            restrict: 'E',
+            scope: {
+                reportData: '&'
+            },
+            templateUrl: 'core/reports/investment_balance/investmentBalanceDirective.html',
+            link: link
+        };
+
+        function link($scope) {
             var data = $scope.reportData();
 
             $scope.options = {
@@ -1622,149 +1579,202 @@ var InvestmentBalanceDirectiveGenerator = function(colorDefinitions, formatters)
 
             ];
         }
-    };
-};
+    }
 
-angular.module('gnucash-reports-view.reports.account_levels')
-    .directive('investmentBalance', ['colorDefinitions', 'formatters', InvestmentBalanceDirectiveGenerator]);
-/**
- * Created by rerobins on 9/29/15.
- */
-var InvestmentTrendDirectiveGenerator = function($timeout, colorDefinitions, formatters) {
+})();
+(function() {
 
-    var createInvestmentTrendChart = function($scope) {
-        var data = $scope.reportData();
+    angular.module('gnucash-reports-view.reports')
+        .directive('gnucashInvestmentTrend', InvestmentTrendDirectiveGenerator);
 
-        var basisMax = 0.0;
-        var increaseMax = 0.0;
+    InvestmentTrendDirectiveGenerator.$inject = ['$timeout', 'colorDefinitions', 'formatters'];
 
-        $scope.data = [
-            {
-                type: 'bar',
-                yAxis: 1,
-                key: 'Basis',
-                values: function() {
-                    var results = [];
-                    data.basis.forEach(function(element) {
-                        results.push({x: element[0], y: element[1]});
-                        basisMax = Math.max(basisMax, element[1]);
-                    });
-                    return results;
-                }()
+    function InvestmentTrendDirectiveGenerator($timeout, colorDefinitions, formatters) {
+
+        return {
+            restrict: 'E',
+            scope: {
+                reportData: '&'
             },
-            {
-                type: 'bar',
-                yAxis: 2,
-                key: 'Purchase',
-                values: function() {
-                    var results = [];
-                    data.money_in.forEach(function(element) {
-                        results.push({x: element[0], y: element[1]});
-                        increaseMax = Math.max(increaseMax, element[1]);
-                    });
-                    return results;
-                }()
-            },
-            {
-                type: 'bar',
-                yAxis: 2,
-                key: 'Dividends',
-                values : function() {
-                    var results = [];
-                    data.income.forEach(function(element) {
-                        results.push({x: element[0], y: element[1]});
-                        increaseMax = Math.max(increaseMax, element[1]);
-                    });
-                    return results;
-                }()
-            },
-            {
-                type: 'bar',
-                yAxis: 2,
-                key: 'Expenses',
-                values : function() {
-                    var results = [];
-                    data.expense.forEach(function(element) {
-                        results.push({x: element[0], y: -element[1]});
-                        increaseMax = Math.max(increaseMax, element[1]);
-                    });
-                    return results;
-                }()
-            },
-            {
-                type: 'line',
-                yAxis: 1,
-                key : 'Value',
-                values : function() {
-                    var results = [];
-                    data.value.forEach(function(element) {
-                        results.push({x: element[0], y: element[1]});
-                        basisMax = Math.max(basisMax, element[1]);
-                    });
-                    return results;
-                }()
-            }
-
-        ];
-
-        $scope.options = {
-            chart: {
-                type: 'multiChart',
-                height: 450,
-                margin : {
-                    top: 30,
-                    right: 100,
-                    bottom: 100,
-                    left: 100
-                },
-                color: [
-                    colorDefinitions.good, colorDefinitions.best,
-                    colorDefinitions.info, colorDefinitions.error, '#000000'],
-                useInteractiveGuideline: true,
-                useVoronoi: false,
-                interpolate: false,
-                transitionDuration: 0,
-                toolTips: true,
-                yDomain1: [0, basisMax],
-                yDomain2: [0, increaseMax],
-                xAxis: {
-                    showMaxMin: false,
-                    tickFormat: formatters.date
-                },
-                yAxis1: {
-                    tickFormat: formatters.currency
-                },
-                yAxis2: {
-                    tickFormat: formatters.currency
-                }
+            templateUrl: 'core/reports/investment_trend/investment_trendDirective.html',
+            link: function($scope) {
+                $timeout(createInvestmentTrendChart, 0, true, $scope);
             }
         };
-    };
 
-    return {
-        scope: {
-            reportData: '&'
-        },
-        templateUrl: 'src/reports/investment_trend/investment_trendDirective.html',
-        link: function($scope) {
-            $timeout(createInvestmentTrendChart, 0, true, $scope);
+        function createInvestmentTrendChart($scope) {
+            var data = $scope.reportData();
+
+            var basisMax = 0.0;
+            var increaseMax = 0.0;
+
+            $scope.data = [
+                {
+                    type: 'bar',
+                    yAxis: 1,
+                    key: 'Basis',
+                    values: function() {
+                        var results = [];
+                        data.basis.forEach(function(element) {
+                            results.push({x: element[0], y: element[1]});
+                            basisMax = Math.max(basisMax, element[1]);
+                        });
+                        return results;
+                    }()
+                },
+                {
+                    type: 'bar',
+                    yAxis: 2,
+                    key: 'Purchase',
+                    values: function() {
+                        var results = [];
+                        data.money_in.forEach(function(element) {
+                            results.push({x: element[0], y: element[1]});
+                            increaseMax = Math.max(increaseMax, element[1]);
+                        });
+                        return results;
+                    }()
+                },
+                {
+                    type: 'bar',
+                    yAxis: 2,
+                    key: 'Dividends',
+                    values : function() {
+                        var results = [];
+                        data.income.forEach(function(element) {
+                            results.push({x: element[0], y: element[1]});
+                            increaseMax = Math.max(increaseMax, element[1]);
+                        });
+                        return results;
+                    }()
+                },
+                {
+                    type: 'bar',
+                    yAxis: 2,
+                    key: 'Expenses',
+                    values : function() {
+                        var results = [];
+                        data.expense.forEach(function(element) {
+                            results.push({x: element[0], y: -element[1]});
+                            increaseMax = Math.max(increaseMax, element[1]);
+                        });
+                        return results;
+                    }()
+                },
+                {
+                    type: 'line',
+                    yAxis: 1,
+                    key : 'Value',
+                    values : function() {
+                        var results = [];
+                        data.value.forEach(function(element) {
+                            results.push({x: element[0], y: element[1]});
+                            basisMax = Math.max(basisMax, element[1]);
+                        });
+                        return results;
+                    }()
+                }
+
+            ];
+
+            $scope.options = {
+                chart: {
+                    type: 'multiChart',
+                    height: 450,
+                    margin : {
+                        top: 30,
+                        right: 100,
+                        bottom: 100,
+                        left: 100
+                    },
+                    color: [
+                        colorDefinitions.good, colorDefinitions.best,
+                        colorDefinitions.info, colorDefinitions.error, '#000000'],
+                    useInteractiveGuideline: true,
+                    useVoronoi: false,
+                    interpolate: false,
+                    transitionDuration: 0,
+                    toolTips: true,
+                    yDomain1: [0, basisMax],
+                    yDomain2: [0, increaseMax],
+                    xAxis: {
+                        showMaxMin: false,
+                        tickFormat: formatters.date
+                    },
+                    yAxis1: {
+                        tickFormat: formatters.currency
+                    },
+                    yAxis2: {
+                        tickFormat: formatters.currency
+                    }
+                }
+            };
         }
-    };
-};
 
-angular.module('gnucash-reports-view.reports.investment_trend')
-    .directive('investmentTrend', ['$timeout', 'colorDefinitions', 'formatters', InvestmentTrendDirectiveGenerator]);
-/**
- * Created by rerobins on 9/29/15.
- */
-var NetworthDirectiveGenerator = function($timeout, formatters) {
-    return {
-        restrict: 'E',
-        scope: {
-            reportData: '&'
-        },
-        templateUrl: 'src/reports/net_worth/net_worthDirective.html',
-        link: function($scope) {
+    }
+
+})();
+(function() {
+
+    angular.module('gnucash-reports-view.reports')
+        .directive('gnucashNetWorthBreakdown', NetworthBreakdownDirectiveGenerator);
+
+    NetworthBreakdownDirectiveGenerator.$inject = ['formatters'];
+
+    function NetworthBreakdownDirectiveGenerator(formatters) {
+        return {
+            restrict: 'E',
+            scope: {
+                data: '&',
+                deltas: '&',
+                trends: '&',
+                header: '&'
+            },
+            templateUrl: 'core/reports/net_worth_table/net_worth_breakdown.html'
+        };
+    }
+
+})();
+(function() {
+
+    angular.module('gnucash-reports-view.reports')
+        .directive('gnucashNetWorthSummary', NetworthSummaryDirectiveGenerator);
+
+    NetworthSummaryDirectiveGenerator.$inject = [];
+
+    function NetworthSummaryDirectiveGenerator() {
+        return {
+            restrict: 'E',
+            scope: {
+                assets: '&',
+                liabilities: '&',
+                netWorth: '&',
+                deltas: '&',
+                trends: '&'
+            },
+            templateUrl: 'core/reports/net_worth_table/net_worth_summary.html'
+        };
+    }
+
+})();
+(function() {
+
+    angular.module('gnucash-reports-view.reports')
+        .directive('gnucashNetWorth', NetworthDirectiveGenerator);
+
+    NetworthDirectiveGenerator.$inject = ['$timeout', 'formatters'];
+
+    function NetworthDirectiveGenerator($timeout, formatters) {
+        return {
+            restrict: 'E',
+            scope: {
+                reportData: '&'
+            },
+            templateUrl: 'core/reports/net_worth/net_worthDirective.html',
+            link: link
+        };
+
+        function link($scope) {
             var data = $scope.reportData();
 
             $timeout(function() {
@@ -1817,265 +1827,384 @@ var NetworthDirectiveGenerator = function($timeout, formatters) {
                 ];
             });
         }
-    };
-};
+    }
 
-angular.module('gnucash-reports-view.reports.net_worth')
-    .directive('netWorth', ['$timeout', 'formatters', NetworthDirectiveGenerator]);
-/**
- * Created by rerobins on 10/6/15.
- */
-var NetworthBreakdownDirectiveGenerator = function(formatters) {
-    return {
-        restrict: 'E',
-        scope: {
-            data: '&',
-            deltas: '&',
-            trends: '&',
-            header: '&'
-        },
-        templateUrl: 'src/reports/net_worth_table/net_worth_breakdown.html'
-    };
-};
+})();
+(function() {
 
-angular.module('gnucash-reports-view.reports.net_worth_table')
-    .directive('netWorthBreakdown', ['formatters', NetworthBreakdownDirectiveGenerator]);
-/**
- * Created by rerobins on 10/6/15.
- */
-var NetworthSummaryDirectiveGenerator = function() {
-    return {
-        restrict: 'E',
-        scope: {
-            assets: '&',
-            liabilities: '&',
-            netWorth: '&',
-            deltas: '&',
-            trends: '&'
-        },
-        templateUrl: 'src/reports/net_worth_table/net_worth_summary.html'
-    };
-};
+    /**
+     * Register all of the core reports into the data system.
+     */
+    angular.module('gnucash-reports-view.reports')
+        .config(['ReportsManagementProvider', function(provider) {
+            provider.addTemplate('401k_report', 'core/reports/401k_contribution/401k_report.html')
+                .addTemplate('account_levels', 'core/reports/account_levels/account_levels.html')
+                .addTemplate('expenses_box', 'core/reports/box_plot/box_plot.html')
+                .addTemplate('budget_level', 'core/reports/budget_level/budget_level.html')
+                .addTemplate('category_budget_level', 'core/reports/budget_level/budget_level.html')
+                .addTemplate('budget_planning', 'core/reports/budget_planning/budget_planning.html')
+                .addTemplate('cash_flow_chart', 'core/reports/cash_flow_chart/cash_flow.html')
+                .addTemplate('account_usage_categories', 'core/reports/category/category.html')
+                .addTemplate('expenses_categories', 'core/reports/category/category.html')
+                .addTemplate('investment_allocation', 'core/reports/category/category.html')
+                .addTemplate('expense_accounts', 'core/reports/category/category.html')
+                .addTemplate('credit_usage', 'core/reports/credit_usage/credit_usage.html')
+                .addTemplate('debt_vs_liquid_assets', 'core/reports/debt_liquid_assets/debt_liquid_assets.html')
+                .addTemplate('expenses_period', 'core/reports/expenses_period/expenses_period.html')
+                .addTemplate('income_vs_expense', 'core/reports/income_vs_expense/income_vs_expense.html')
+                .addTemplate('investment_balance', 'core/reports/investment_balance/investment_balance.html')
+                .addTemplate('investment_trend', 'core/reports/investment_trend/investment_trend.html')
+                .addTemplate('multi_report', 'core/reports/multi_report/multi_report.html')
+                .addTemplate('net_worth', 'core/reports/net_worth/net_worth.html')
+                .addTemplate('net_worth_table', 'core/reports/net_worth_table/net_worth_table.html')
+                .addTemplate('savings_goal', 'core/reports/savings_goal/savings_goal.html')
+                .addTemplate('income_tax', 'core/reports/taxes_paid/taxes_paid.html');
+        }]);
 
-angular.module('gnucash-reports-view.reports.net_worth_table')
-    .directive('netWorthSummary', [NetworthSummaryDirectiveGenerator]);
-/**
- * Created by rerobins on 9/29/15.
- */
-var SavingsGoalDirectiveGenerator = function($timeout, colorDefinitions, formatters) {
+})();
+(function() {
 
-    var createSavingsGoalChart = function($scope) {
-        var data = $scope.reportData();
+    angular.module('gnucash-reports-view.reports')
+        .directive('gnucashSavingsGoal', SavingsGoalDirectiveGenerator);
 
-        $scope.options = {
-            chart: {
-                type: 'multiBarHorizontalChart',
-                transitionDuration: 0,
-                tooltip: {
-                    valueFormatter: formatters.currency
-                },
-                tickFormat: formatters.currencyNoParts,
-                x: function(d){return d.label;},
-                y: function(d){return d.value;},
-                showControls: false,
-                showValues: true,
-                xAxis: {
-                    showMaxMin: false
-                },
-                yAxis: {
-                    ticks: 15,
-                    axisLabel: 'USD',
-                    tickFormat: formatters.currencyNoParts
-                },
-                margin: {
-                    left: 75,
-                    right: 75
-                }
+    SavingsGoalDirectiveGenerator.$inject = ['$timeout', 'colorDefinitions', 'formatters'];
 
-            }
+    function SavingsGoalDirectiveGenerator($timeout, colorDefinitions, formatters) {
 
-
-        };
-
-        var label = formatters.currency(data.goal);
-
-        if (data.balance < data.goal) {
-            // Build underage Chart
-            $scope.data = [
-                {
-                    key: 'Balance',
-                    color: colorDefinitions.good,
-                    values : [
-                        {
-                            label: label,
-                            value: data.balance
-                        }
-                    ]
-                },
-                {
-                    key: 'To Go',
-                    color: colorDefinitions.error,
-                    values : [
-                        {
-                            label: label,
-                            value: data.goal - data.balance
-                        }
-                    ]
-                }
-            ];
-            $scope.options.chart.stacked = true;
-        } else {
-            // Build overage Chart
-            $scope.data = [
-                {
-                    key: 'Goal',
-                    color: colorDefinitions.good,
-                    values: [
-                        {
-                            label: label,
-                            value: data.goal
-                        }
-                    ]
-                },
-                {
-                    key: 'Overage',
-                    color: colorDefinitions.best,
-                    values: [
-                        {
-                            label: label,
-                            value: data.balance - data.goal
-                        }
-                    ]
-                }
-            ];
-            $scope.options.chart.stacked = false;
-        }
-
-    };
-
-    return {
-        scope: {
-            reportData: '&'
-        },
-        templateUrl: 'src/reports/savings_goal/savingsGoalDirective.html',
-        link: function($scope) {
-            $timeout(createSavingsGoalChart, 0, true, $scope);
-        }
-    };
-};
-
-angular.module('gnucash-reports-view.reports.savings_goal')
-    .directive('savingsGoal', ['$timeout', 'colorDefinitions', 'formatters', SavingsGoalDirectiveGenerator]);
-/**
- * Created by rerobins on 9/29/15.
- */
-var TaxesPaidDirectiveGenerator = function($timeout, colorDefinitions, formatters) {
-
-    var createTaxesPaidGraph = function($scope) {
-        var data = $scope.reportData();
-
-        $scope.options = {
-            chart: {
-                type: 'multiBarHorizontalChart',
-                transitionDuration: 0,
-                tooltip: {
-                    valueFormatter: formatters.currency
-                },
-                tickFormat: formatters.currencyNoParts,
-                x: function(d){return d.label;},
-                y: function(d){return d.value;},
-                showControls: false,
-                showValues: true,
-                xAxis: {
-                    showMaxMin: false
-                },
-                yAxis: {
-                    ticks: 15,
-                    axisLabel: 'USD',
-                    tickFormat: formatters.currencyNoParts
-                },
-                margin: {
-                    left: 75,
-                    right: 75
-                }
-
+        return {
+            restrict: 'E',
+            scope: {
+                reportData: '&'
+            },
+            templateUrl: 'core/reports/savings_goal/savingsGoalDirective.html',
+            link: function($scope) {
+                $timeout(createSavingsGoalChart, 0, true, $scope);
             }
         };
 
-        var label = formatters.currency(data.tax_value);
+        function createSavingsGoalChart($scope) {
+            var data = $scope.reportData();
 
-        if (data.taxes_paid > data.tax_value) {
-            $scope.data = [
-                {
-                    key: 'Taxes Owed',
-                    color: colorDefinitions.good,
-                    values: [
-                        {
-                            label: label,
-                            value: data.tax_value
-                        }
-                    ]
-                },
-                {
-                    key: 'Overpayment',
-                    color: colorDefinitions.error,
-                    values: [
-                        {
-                            label: label,
-                            value: data.taxes_paid - data.tax_value
-                        }
-                    ]
+            $scope.options = {
+                chart: {
+                    type: 'multiBarHorizontalChart',
+                    transitionDuration: 0,
+                    tooltip: {
+                        valueFormatter: formatters.currency
+                    },
+                    tickFormat: formatters.currencyNoParts,
+                    x: function (d) {
+                        return d.label;
+                    },
+                    y: function (d) {
+                        return d.value;
+                    },
+                    showControls: false,
+                    showValues: true,
+                    xAxis: {
+                        showMaxMin: false
+                    },
+                    yAxis: {
+                        ticks: 15,
+                        axisLabel: 'USD',
+                        tickFormat: formatters.currencyNoParts
+                    },
+                    margin: {
+                        left: 75,
+                        right: 75
+                    }
+
                 }
-            ];
-            $scope.options.chart.stacked = false;
-        } else {
-            // Build underage Chart
-            $scope.data = [
-                {
-                    key: 'Taxes Paid',
-                    color: colorDefinitions.good,
-                    values: [
-                        {
-                            label: label,
-                            value: data.taxes_paid
-                        }
-                    ]
-                }];
 
-            if (data.tax_value > data.taxes_paid)
-            {
-                $scope.data.push({
-                    key: 'Taxes Owed',
-                    color: colorDefinitions.warning,
-                    values: [
-                        {
-                            label: label,
-                            value: data.tax_value - data.taxes_paid
+
+            };
+
+            var label = formatters.currency(data.goal);
+
+            if (data.balance < data.goal) {
+                // Build underage Chart
+                $scope.data = [
+                    {
+                        key: 'Balance',
+                        color: colorDefinitions.good,
+                        values: [
+                            {
+                                label: label,
+                                value: data.balance
+                            }
+                        ]
+                    },
+                    {
+                        key: 'To Go',
+                        color: colorDefinitions.error,
+                        values: [
+                            {
+                                label: label,
+                                value: data.goal - data.balance
+                            }
+                        ]
+                    }
+                ];
+                $scope.options.chart.stacked = true;
+            } else {
+                // Build overage Chart
+                $scope.data = [
+                    {
+                        key: 'Goal',
+                        color: colorDefinitions.good,
+                        values: [
+                            {
+                                label: label,
+                                value: data.goal
+                            }
+                        ]
+                    },
+                    {
+                        key: 'Overage',
+                        color: colorDefinitions.best,
+                        values: [
+                            {
+                                label: label,
+                                value: data.balance - data.goal
+                            }
+                        ]
+                    }
+                ];
+                $scope.options.chart.stacked = false;
+            }
+
+        }
+    }
+})();
+(function() {
+
+    angular.module('gnucash-reports-view.reports')
+        .directive('gnucashTaxesPaid', TaxesPaidDirectiveGenerator);
+
+    TaxesPaidDirectiveGenerator.$inject = ['$timeout', 'colorDefinitions', 'formatters'];
+
+    function TaxesPaidDirectiveGenerator($timeout, colorDefinitions, formatters) {
+
+        return {
+            restrict: 'E',
+            scope: {
+                reportData: '&'
+            },
+            templateUrl: 'core/reports/taxes_paid/taxes_paidDirective.html',
+            link: function($scope) {
+                $timeout(createTaxesPaidGraph, 0, true, $scope);
+            }
+        };
+
+        function createTaxesPaidGraph($scope) {
+            var data = $scope.reportData();
+
+            $scope.options = {
+                chart: {
+                    type: 'multiBarHorizontalChart',
+                    transitionDuration: 0,
+                    tooltip: {
+                        valueFormatter: formatters.currency
+                    },
+                    tickFormat: formatters.currencyNoParts,
+                    x: function(d){return d.label;},
+                    y: function(d){return d.value;},
+                    showControls: false,
+                    showValues: true,
+                    xAxis: {
+                        showMaxMin: false
+                    },
+                    yAxis: {
+                        ticks: 15,
+                        axisLabel: 'USD',
+                        tickFormat: formatters.currencyNoParts
+                    },
+                    margin: {
+                        left: 75,
+                        right: 75
+                    }
+
+                }
+            };
+
+            var label = formatters.currency(data.tax_value);
+
+            if (data.taxes_paid > data.tax_value) {
+                $scope.data = [
+                    {
+                        key: 'Taxes Owed',
+                        color: colorDefinitions.good,
+                        values: [
+                            {
+                                label: label,
+                                value: data.tax_value
+                            }
+                        ]
+                    },
+                    {
+                        key: 'Overpayment',
+                        color: colorDefinitions.error,
+                        values: [
+                            {
+                                label: label,
+                                value: data.taxes_paid - data.tax_value
+                            }
+                        ]
+                    }
+                ];
+                $scope.options.chart.stacked = false;
+            } else {
+                // Build underage Chart
+                $scope.data = [
+                    {
+                        key: 'Taxes Paid',
+                        color: colorDefinitions.good,
+                        values: [
+                            {
+                                label: label,
+                                value: data.taxes_paid
+                            }
+                        ]
+                    }];
+
+                if (data.tax_value > data.taxes_paid)
+                {
+                    $scope.data.push({
+                        key: 'Taxes Owed',
+                        color: colorDefinitions.warning,
+                        values: [
+                            {
+                                label: label,
+                                value: data.tax_value - data.taxes_paid
+                            }
+                        ]
+                    });
+                }
+
+                $scope.options.chart.stacked = true;
+            }
+        }
+
+    }
+
+})();
+(function() {
+
+    angular.module('gnucash-reports-view')
+        .provider('ReportsService', ReportsServiceProvider);
+
+    /**
+     * Provider that will create the Reports Service.
+     * @constructor
+     */
+    function ReportsServiceProvider() {
+
+        var provider = this;
+
+        this.configureReportFile = function(path) {
+            provider.reportFile = path;
+        };
+
+        this.$get = ReportsService;
+
+        /////////////////////////////////////////////////////////////
+
+        ReportsService.$inject = ['$http'];
+
+        // Service provider responsible for loading the reports and creating the pages.
+        function ReportsService($http) {
+
+            var reportsContent = $http.get(provider.reportFile);
+
+            return {
+                reportsContent: reportsContent,
+                loadPage: loadPage
+            };
+
+            function loadPage(page) {
+
+                return reportsContent.then(function(results) {
+                    var found = false,
+                        data = results.data;
+
+                    angular.forEach(data.reports, function(report) {
+                        if (report.file === page) {
+                            found = true;
                         }
-                    ]
+                    });
+
+                    if (found) {
+                        return $http.get('data/' + page);
+                    } else {
+                        throw 'Couldn"t find page definition';
+                    }
                 });
             }
 
-
-            $scope.options.chart.stacked = true;
         }
-    };
 
-    return {
-        scope: {
-            reportData: '&'
-        },
-        templateUrl: 'src/reports/taxes_paid/taxes_paidDirective.html',
-        link: function($scope) {
-            $timeout(createTaxesPaidGraph, 0, true, $scope);
-        }
-    };
-};
+    }
 
-angular.module('gnucash-reports-view.reports.account_levels')
-    .directive('taxesPaid', ['$timeout', 'colorDefinitions', 'formatters', TaxesPaidDirectiveGenerator]);
-/**
- * Function call for js.prefix file.
- */
+})();
+(function() {
 
-}(window, window.angular));
+    angular.module('gnucash-reports-view')
+        .controller('SideMenuController', SideMenuController);
+
+    SideMenuController.$inject = ['ReportsService'];
+
+    // Side menu controller.
+    function SideMenuController(ReportsService) {
+
+        var controller = this;
+
+        controller.reports = [];
+
+        ReportsService.reportsContent.then(function(results) {
+            controller.reports = results.data.reports;
+        });
+
+    }
+
+})();
+angular.module('gnucash-reports-view').run(['$templateCache', function($templateCache) {$templateCache.put('core/descriptionDialog.html','<md-dialog aria-label="Mango (Fruit)" ng-cloak>\n    <form>\n        <md-toolbar>\n            <div class="md-toolbar-tools">\n                <h2>Description: {{name}}</h2>\n                <span flex></span>\n                <md-button class="md-icon-button" ng-click="cancel()">\n                    <ng-md-icon icon="close"></ng-md-icon>\n                </md-button>\n            </div>\n        </md-toolbar>\n        <md-dialog-content style="max-width:800px;max-height:810px">\n            <div>\n                <p>\n                   {{description}}\n                </p>\n            </div>\n        </md-dialog-content>\n    </form>\n</md-dialog>\n');
+$templateCache.put('core/display.html','<md-toolbar class="md-toolbar-tools md-primary md-hue-3">\n    <md-button class="md-icon-button" aria-label="Settings" ng-click="displayController.toggleLeft()" hide-gt-lg>\n        <ng-md-icon icon="menu" style="fill: white"></ng-md-icon>\n    </md-button>\n    <h2>\n        <span>\n            {{displayController.page_definition.name}}\n        </span>\n    </h2>\n</md-toolbar>\n\n<md-content layout-padding flex layout-fill>\n    <gnucash-report ng-repeat="report in displayController.page_definition.reports" report="report"></gnucash-report>\n</md-content>\n');
+$templateCache.put('core/main.html','<md-toolbar class="md-toolbar-tools">\n    <md-button class="md-icon-button" aria-label="Settings" ng-click="controller.toggleLeft()" hide-gt-lg>\n        <ng-md-icon icon="menu" style="fill: white"></ng-md-icon>\n    </md-button>\n    <h2>\n        <span>\n            Main Display\n        </span>\n    </h2>\n</md-toolbar>\n\n<md-content layout-padding flex layout-fill>\n\n    <p>Gnucash File Modified: {{controller.modificationDate}}</p>\n    <p>Last Updated: {{controller.lastUpdated}}</p>\n\n</md-content>');
+$templateCache.put('core/reportDirective.html','<div layout="column">\n    <div layout="row">\n        <div flex>\n            <h2>{{report().name}}</h2>\n        </div>\n        <div>\n            <md-button aria-label="Description" ng-if="report().description">\n                <ng-md-icon icon="info_outline" size="36" ng-click="displayDescription()"></ng-md-icon>\n            </md-button>\n        </div>\n    </div>\n\n    <div ng-include="template"></div>\n</div>\n\n');
+$templateCache.put('core/reports/401k_contribution/401k_report.html','<div flex>\n    <gnucash-contribution401k report-data="reportData()"></gnucash-contribution401k>\n</div>');
+$templateCache.put('core/reports/401k_contribution/401k_reportDirective.html','<div flex>\n    <nvd3 options="options" data="data" ng-if="data"></nvd3>\n    <div layout="row" layout-sm="column" layout-align="space-around" ng-hide="data">\n        <md-progress-circular md-mode="indeterminate"></md-progress-circular>\n    </div>\n</div>');
+$templateCache.put('core/reports/account_levels/account_levels.html','<div flex>\n    <gnucash-account-level report-data="reportData()"></gnucash-account-level>\n</div>');
+$templateCache.put('core/reports/account_levels/accountLevelDirective.html','<div flex>\n    <nvd3 options="options" data="data" ng-if="data"></nvd3>\n</div>');
+$templateCache.put('core/reports/box_plot/box_plot.html','<div flex>\n    <gnucash-box-plot report-data="::reportData()"></gnucash-box-plot>\n</div>');
+$templateCache.put('core/reports/box_plot/boxPlotDirective.html','<div flex>\n    <nvd3 options="::options" data="::data" ng-if="data"></nvd3>\n    <div layout="row" layout-sm="column" layout-align="space-around" ng-hide="data">\n        <md-progress-circular md-mode="indeterminate"></md-progress-circular>\n    </div>\n</div>');
+$templateCache.put('core/reports/budget_level/budget_level.html','<div flex>\n    <gnucash-budget-level report-data="reportData()"></gnucash-budget-level>\n</div>');
+$templateCache.put('core/reports/budget_level/budgetLevelDirective.html','<div flex>\n\n    <md-tabs md-dynamic-height md-border-bottom>\n        <md-tab label="monthly">\n            <md-content class="md-padding">\n                <nvd3 options="options" data="data" ng-if="data"></nvd3>\n                <div layout="row" layout-sm="column" layout-align="space-around" ng-hide="data">\n                    <md-progress-circular md-mode="indeterminate"></md-progress-circular>\n                </div>\n            </md-content>\n        </md-tab>\n\n        <md-tab label="yearly" ng-if="yearData">\n            <md-content class="md-padding">\n                <nvd3 options="options" data="yearData" ng-if="yearData"></nvd3>\n                <div layout="row" layout-sm="column" layout-align="space-around" ng-hide="data">\n                    <md-progress-circular md-mode="indeterminate"></md-progress-circular>\n                </div>\n            </md-content>\n        </md-tab>\n\n    </md-tabs>\n\n</div>');
+$templateCache.put('core/reports/budget_planning/budget_planning.html','<div flex>\n    <gnucash-budget-planning report-data="reportData()"></gnucash-budget-planning>\n</div>');
+$templateCache.put('core/reports/budget_planning/budgetPlanningDirective.html','<div flex layout="row">\n\n    <div flex>\n        <nvd3 options="options" data="data"></nvd3>\n    </div>\n\n    <div style="height: 400px; overflow-y: scroll; overflow-x: hidden">\n        <md-table-container>\n            <table md-table>\n                <thead md-head>\n                    <tr md-row>\n                        <th md-column>Category</th>\n                        <th md-column>Value</th>\n                    </tr>\n                </thead>\n                <tbody md-body>\n                    <tr md-row ng-repeat="item in budget track by $index">\n                        <td md-cell>{{item.name}}</td>\n                        <td md-cell>{{item.value | currency}}</td>\n                    </tr>\n\n                    <tr md-row class="totals">\n                        <td md-cell>Total</td>\n                        <td md-cell>{{total | currency}}</td>\n                    </tr>\n                    <tr md-row>\n                        <td md-cell>Income</td>\n                        <td md-cell>{{income | currency}}</td>\n                    </tr>\n                    <tr md-row ng-class="remainingClass">\n                        <td md-cell>Remaining</td>\n                        <td md-cell>{{remaining | currency}}</td>\n                    </tr>\n                </tbody>\n            </table>\n        </md-table-container>\n    </div>\n</div>');
+$templateCache.put('core/reports/cash_flow_chart/cash_flow.html','<div flex>\n    <gnucash-cash-flow report-data="reportData()"></gnucash-cash-flow>\n</div>');
+$templateCache.put('core/reports/cash_flow_chart/cashFlowDirective.html','\n<div flex>\n    <md-tabs md-dynamic-height md-border-bottom>\n        <md-tab label="graph">\n            <md-content class="md-padding">\n                <nvd3 options="options" data="data" ng-if="data"></nvd3>\n                <div layout="row" layout-sm="column" layout-align="space-around" ng-hide="data">\n                    <md-progress-circular md-mode="indeterminate"></md-progress-circular>\n                </div>\n            </md-content>\n        </md-tab>\n\n        <md-tab label="table" ng-if="data">\n            <md-content class="md-padding">\n\n                <md-table-container>\n                    <table md-table>\n                        <thead md-head>\n                            <tr md-row>\n                                <th md-column>Date</th>\n                                <th md-column ng-repeat="dataset in data track by $index">{{::dataset.key}}</th>\n                                <th md-column>Net</th>\n                            </tr>\n                        </thead>\n                        <tbody md-body>\n                            <tr md-row ng-repeat="firstDataSet in data[0].values track by $index" ng-init="i = $index">\n                                <td md-cell>{{::firstDataSet.date * 1000 | date}}</td>\n                                <td md-cell ng-repeat="dataSet in data track by $index">{{::dataSet.values[i].value | currency}}</td>\n                                <td md-cell>\n                                    <gnucash-currency-format value="data[0].values[i].value + data[1].values[i].value"></gnucash-currency-format>\n                                </td>\n                            </tr>\n                        </tbody>\n                    </table>\n                </md-table-container>\n\n            </md-content>\n        </md-tab>\n\n    </md-tabs>\n</div>');
+$templateCache.put('core/reports/category/category.html','<div flex>\n    <gnucash-category-graph report-data="::reportData()"></gnucash-category-graph>\n</div>');
+$templateCache.put('core/reports/category/categoryGraphDirective.html','\n<div flex>\n    <md-tabs md-dynamic-height md-border-bottom>\n        <md-tab label="graph">\n            <md-content class="md-padding">\n                <nvd3 options="options" data="data" ng-if="data"></nvd3>\n                <div layout="row" layout-sm="column" layout-align="space-around" ng-hide="data">\n                    <md-progress-circular md-mode="indeterminate"></md-progress-circular>\n                </div>\n            </md-content>\n        </md-tab>\n\n        <md-tab label="table" ng-if="data">\n            <md-content class="md-padding">\n\n\n                <md-table-container>\n                    <table md-table>\n                        <thead md-head>\n                            <tr md-row>\n                                <th md-column>Category</th>\n                                <th md-column>Value</th>\n                                <th md-column>Percentage</th>\n                            </tr>\n                        </thead>\n                        <tbody md-body>\n                            <tr md-row ng-repeat="dataset in tableData track by dataset[0]">\n                                <td md-cell style="text-transform: uppercase">{{::dataset[0]}}</td>\n                                <td md-cell>{{::dataset[1] | currency}}</td>\n                                <td md-cell><gnucash-percentage-format value="dataset[1] / total"></gnucash-percentage-format></td>\n                            </tr>\n                            <tr md-row class="summaryTotals">\n                                <td md-cell class="rowHeader">Total</td>\n                                <td md-cell>{{::total | currency}}</td>\n                                <td md-cell>&nbsp;</td>\n                            </tr>\n                        </tbody>\n                    </table>\n                </md-table-container>\n\n            </md-content>\n        </md-tab>\n\n    </md-tabs>\n</div>');
+$templateCache.put('core/reports/credit_usage/credit_usage.html','<div flex>\n    <gnucash-credit-usage report-data="reportData()"></gnucash-credit-usage>\n</div>');
+$templateCache.put('core/reports/credit_usage/creditUsageDirective.html','<div flex>\n    <nvd3 options="options" data="data" ng-if="data"></nvd3>\n    <div layout="row" layout-sm="column" layout-align="space-around" ng-hide="data">\n        <md-progress-circular md-mode="indeterminate"></md-progress-circular>\n    </div>\n</div>');
+$templateCache.put('core/reports/debt_liquid_assets/debt_liquid_assets.html','<div flex>\n    <gnucash-debt-liquid-asset report-data="reportData()"></gnucash-debt-liquid-asset>\n</div>');
+$templateCache.put('core/reports/debt_liquid_assets/debtLiquidAssetDirective.html','<div flex>\n    <nvd3 options="options" data="data" ng-if="data"></nvd3>\n    <div layout="row" layout-sm="column" layout-align="space-around" ng-hide="data">\n        <md-progress-circular md-mode="indeterminate"></md-progress-circular>\n    </div>\n</div>');
+$templateCache.put('core/reports/expenses_period/expenses_period.html','<div flex>\n    <gnucash-expenses-period report-data="::reportData()"></gnucash-expenses-period>\n</div>');
+$templateCache.put('core/reports/expenses_period/expensesPeriodDirective.html','<div flex>\n    <md-tabs md-dynamic-height md-border-bottom>\n        <md-tab label="graph">\n            <md-content class="md-padding">\n                <nvd3 options="options" data="data" ng-if="data"></nvd3>\n                <div layout="row" layout-sm="column" layout-align="space-around" ng-hide="data">\n                    <md-progress-circular md-mode="indeterminate"></md-progress-circular>\n                </div>\n            </md-content>\n        </md-tab>\n\n        <md-tab label="table" ng-if="data">\n            <md-content class="md-padding">\n\n\n                <md-table-container>\n                    <table md-table>\n                        <thead md-head>\n                            <tr md-row>\n                                <th md-column>Date</th>\n                                <th md-column ng-repeat="dataset in data track by $index">{{::dataset.key}}</th>\n                            </tr>\n                        </thead>\n                        <tbody md-body>\n                            <tr md-row ng-repeat="firstDataSet in data[0].values track by $index" ng-init="i = $index">\n                                <td md-cell>{{::firstDataSet.date * 1000 | date}}</td>\n                                <td md-cell ng-repeat="dataSet in data track by $index">{{::dataSet.values[i].value | currency}}</td>\n                            </tr>\n                        </tbody>\n                    </table>\n                </md-table-container>\n\n            </md-content>\n        </md-tab>\n\n    </md-tabs>\n</div>');
+$templateCache.put('core/reports/income_vs_expense/income_vs_expense.html','<div flex>\n    <gnucash-income-vs-expense report-data="reportData()"></gnucash-income-vs-expense>\n</div>');
+$templateCache.put('core/reports/income_vs_expense/income_vs_expenseDirective.html','\n<div flex>\n    <md-tabs md-dynamic-height md-border-bottom>\n        <md-tab label="graph">\n            <md-content class="md-padding">\n                <nvd3 options="options" data="data"></nvd3>\n            </md-content>\n        </md-tab>\n\n        <md-tab label="table">\n            <md-content class="md-padding">\n\n                <md-table-container>\n                    <table md-table>\n                        <thead md-head>\n                            <tr md-row>\n                                <th md-column>Date</th>\n                                <th md-column>Income</th>\n                                <th md-column>Expenses</th>\n                                <th md-column>Net</th>\n                            </tr>\n                        </thead>\n                        <tbody md-body>\n                            <tr md-row ng-repeat="firstDataSet in reportData().net track by $index" ng-init="i = $index">\n                                <td md-cell>{{firstDataSet.date * 1000 | date}}</td>\n                                <td md-cell><gnucash-currency-format value="reportData().income[i].value"></gnucash-currency-format></td>\n                                <td md-cell><gnucash-currency-format value="reportData().expenses[i].value"></gnucash-currency-format></td>\n                                <td md-cell><gnucash-currency-format value="reportData().net[i].value"></gnucash-currency-format></td>\n                            </tr>\n                        </tbody>\n                    </table>\n                </md-table-container>\n\n            </md-content>\n        </md-tab>\n\n    </md-tabs>\n</div>');
+$templateCache.put('core/reports/investment_balance/investment_balance.html','<div flex>\n    <gnucash-investment-balance report-data="reportData()"></gnucash-investment-balance>\n</div>');
+$templateCache.put('core/reports/investment_balance/investmentBalanceDirective.html','<div flex>\n    <nvd3 options="options" data="data"></nvd3>\n</div>');
+$templateCache.put('core/reports/investment_trend/investment_trend.html','<div flex>\n    <gnucash-investment-trend report-data="reportData()"></gnucash-investment-trend>\n</div>');
+$templateCache.put('core/reports/investment_trend/investment_trendDirective.html','<div flex>\n    <md-tabs md-dynamic-height md-border-bottom>\n        <md-tab label="graph">\n            <md-content class="md-padding">\n                <nvd3 options="options" data="data" ng-if="data"></nvd3>\n                <div layout="row" layout-sm="column" layout-align="space-around" ng-hide="data">\n                    <md-progress-circular md-mode="indeterminate"></md-progress-circular>\n                </div>\n            </md-content>\n        </md-tab>\n\n        <md-tab label="table" ng-if="data">\n            <md-content class="md-padding">\n\n                <md-table-container>\n                    <table md-table>\n                        <thead md-head>\n                            <tr md-row>\n                                <th md-column>Date</th>\n                                <th md-column ng-repeat="dataset in data track by $index">{{::dataset.key}}</th>\n                                <th md-column>Value Difference</th>\n                            </tr>\n                        </thead>\n                        <tbody md-body>\n                            <tr md-row ng-repeat="firstDataSet in data[0].values track by $index" ng-init="i = $index">\n                                <td md-cell>{{::firstDataSet.x * 1000 | date}}</td>\n                                <td md-cell ng-repeat="dataSet in data track by $index">{{::dataSet.values[i].y | currency}}</td>\n                                <td md-cell>\n                                    <gnucash-currency-format value="data[4].values[i].y-data[0].values[i].y"></gnucash-currency-format>\n                                </td>\n                            </tr>\n                        </tbody>\n                    </table>\n                </md-table-container>\n\n            </md-content>\n        </md-tab>\n\n    </md-tabs>\n</div>');
+$templateCache.put('core/reports/multi_report/multi_report.html','<div flex layout="row">\n    <gnucash-report report="report" ng-repeat="report in reportData().reports" flex>\n\n    </gnucash-report>\n</div>');
+$templateCache.put('core/reports/net_worth_table/net_worth_breakdown.html','\n<md-table-container>\n    <table md-table>\n        <thead md-head>\n            <tr md-row>\n                <th md-column width="30%">{{header()}}</th>\n                <th md-column ng-repeat="date in trends() track by $index">{{date*1000 | date : \'MMM yyyy\'}}</th>\n                <th md-column class="current">Current</th>\n                <th md-column ng-repeat="delta in deltas() track by $index">&Delta; {{-delta}} Months</th>\n            </tr>\n        </thead>\n        <tbody md-body>\n            <tr md-row ng-repeat="row in data().records">\n                <td md-cell class="rowHeader">{{row.name}}</td>\n                <td md-cell ng-repeat="value in row.trend track by $index">\n                    <gnucash-currency-format value="value"></gnucash-currency-format>\n                </td>\n                <td md-cell class="current">\n                    <gnucash-currency-format value="row.current_data"></gnucash-currency-format>\n                </td>\n                <td md-cell ng-repeat="value in row.deltas track by $index">\n                    <gnucash-percentage-format value="value"></gnucash-percentage-format>\n                </td>\n            </tr>\n\n            <tr md-row class="totals">\n                <td md-cell class="rowHeader"><strong>Totals</strong></td>\n                <td md-cell ng-repeat="value in data().trend track by $index">\n                    <gnucash-currency-format value="value"></gnucash-currency-format>\n                </td>\n                <td md-cell>\n                    <gnucash-currency-format value="data().current_data"></gnucash-currency-format>\n                </td>\n                <td md-cell ng-repeat="value in data().deltas track by $index">\n                    <gnucash-percentage-format value="value"></gnucash-percentage-format>\n                </td>\n            </tr>\n        </tbody>\n    </table>\n</md-table-container>\n');
+$templateCache.put('core/reports/net_worth_table/net_worth_summary.html','\n<md-table-container>\n    <table md-table>\n        <thead md-head>\n            <tr md-row>\n                <th md-column width="30%">{{header()}}</th>\n                <th md-column ng-repeat="date in trends() track by $index">{{date*1000 | date : \'MMM yyyy\'}}</th>\n                <th md-column class="current">Current</th>\n                <th md-column ng-repeat="delta in deltas() track by $index">&Delta; {{-delta}} Months</th>\n            </tr>\n        </thead>\n        <tbody md-body>\n            <tr md-row>\n                <td md-cell width="30%" class="rowHeader">Assets</td>\n                <td md-cell ng-repeat="value in assets().trend track by $index">\n                    <gnucash-currency-format value="value"></gnucash-currency-format>\n                </td>\n                <td md-cell class="current">\n                    <gnucash-currency-format value="assets().current_data"></gnucash-currency-format>\n                </td>\n                <td md-cell ng-repeat="value in assets().deltas track by $index">\n                    <gnucash-percentage-format value="value"></gnucash-percentage-format>\n                </td>\n            </tr>\n\n            <tr md-row>\n                <td md-cell class="rowHeader">Liabilities</td>\n                <td md-cell ng-repeat="value in liabilities().trend track by $index">\n                    <gnucash-currency-format value="value"></gnucash-currency-format>\n                </td>\n                <td md-cell class="current">\n                    <gnucash-currency-format value="liabilities().current_data"></gnucash-currency-format>\n                </td>\n                <td md-cell ng-repeat="value in liabilities().deltas track by $index">\n                    <gnucash-percentage-format value="value"></gnucash-percentage-format>\n                </td>\n            </tr>\n\n\n            <tr md-row class="summaryTotals">\n                <td md-cell class="rowHeader"><strong>Totals</strong></td>\n                <td md-cell ng-repeat="value in netWorth().trend track by $index">\n                    <gnucash-currency-format value="value"></gnucash-currency-format>\n                </td>\n                <td md-cell>\n                    <gnucash-currency-format value="netWorth().current_data"></gnucash-currency-format>\n                </td>\n                <td md-cell ng-repeat="value in netWorth().deltas track by $index">\n                    <gnucash-percentage-format value="value"></gnucash-percentage-format>\n                </td>\n            </tr>\n        </tbody>\n    </table>\n</md-table-container>\n');
+$templateCache.put('core/reports/net_worth_table/net_worth_table.html','<gnucash-net-worth-breakdown header="\'Assets\'" data="reportData().assets" deltas="reportData().deltas" trends="reportData().trend"></gnucash-net-worth-breakdown>\n\n<div><p>&nbsp;</p></div>\n\n<gnucash-net-worth-breakdown header="\'Liabilities\'" data="reportData().liability" deltas="reportData().deltas" trends="reportData().trend"></gnucash-net-worth-breakdown>\n\n<div><p>&nbsp;</p></div>\n\n<gnucash-net-worth-summary assets="reportData().assets" liabilities="reportData().liability" deltas="reportData().deltas" trends="reportData().trend" net-worth="reportData().net_worth"></gnucash-net-worth-summary>');
+$templateCache.put('core/reports/net_worth/net_worth.html','<div flex>\n    <gnucash-net-worth report-data="reportData()"></gnucash-net-worth>\n</div>');
+$templateCache.put('core/reports/net_worth/net_worthDirective.html','<div flex>\n    <md-tabs md-dynamic-height md-border-bottom>\n        <md-tab label="graph">\n            <md-content class="md-padding">\n                <nvd3 options="options" data="data" ng-if="data"></nvd3>\n                <div layout="row" layout-sm="column" layout-align="space-around" ng-hide="data">\n                    <md-progress-circular md-mode="indeterminate"></md-progress-circular>\n                </div>\n            </md-content>\n        </md-tab>\n\n        <md-tab label="table" ng-if="data">\n            <md-content class="md-padding">\n\n\n                <md-table-container>\n                    <table md-table>\n                        <thead md-head>\n                            <tr md-row>\n                                <th md-column>Date</th>\n                                <th md-column ng-repeat="dataset in data track by $index">{{::dataset.key}}</th>\n                            </tr>\n                        </thead>\n                        <tbody md-body>\n                            <tr md-row ng-repeat="firstDataSet in data[0].values track by $index" ng-init="i = $index">\n                                <td md-cell>{{::firstDataSet.date * 1000 | date}}</td>\n                                <td md-cell ng-repeat="dataSet in data track by $index">{{::dataSet.values[i].value | currency}}</td>\n                            </tr>\n                        </tbody>\n                    </table>\n                </md-table-container>\n\n            </md-content>\n        </md-tab>\n\n    </md-tabs>\n</div>');
+$templateCache.put('core/reports/savings_goal/savings_goal.html','<div flex>\n    <gnucash-savings-goal report-data="::reportData()"></gnucash-savings-goal>\n</div>');
+$templateCache.put('core/reports/savings_goal/savingsGoalDirective.html','<div flex>\n    <nvd3 options="options" data="data" ng-if="data"></nvd3>\n    <div layout="row" layout-sm="column" layout-align="space-around" ng-hide="data">\n        <md-progress-circular md-mode="indeterminate"></md-progress-circular>\n    </div>\n</div>');
+$templateCache.put('core/reports/taxes_paid/taxes_paid.html','<div flex>\n    <gnucash-taxes-paid report-data="reportData()"></gnucash-taxes-paid>\n</div>');
+$templateCache.put('core/reports/taxes_paid/taxes_paidDirective.html','<div flex>\n    <nvd3 options="options" data="data" ng-if="data"></nvd3>\n    <div layout="row" layout-sm="column" layout-align="space-around" ng-hide="data">\n        <md-progress-circular md-mode="indeterminate"></md-progress-circular>\n    </div>\n</div>');
+$templateCache.put('core/sidemenu.html','\n<md-toolbar class="md-theme-indigo">\n    <h1 class="md-toolbar-tools">Reports</h1>\n</md-toolbar>\n<md-content layout="column" flex>\n    <div layout="column" flex>\n        <md-button class="md-raised" md-no-ink ui-sref="main" ui-sref-active="md-primary">\n            <ng-md-icon icon="home" style="fill: gray"></ng-md-icon>\n            Home\n        </md-button>\n        <md-button class="md-raised" md-no-ink ng-repeat="report in controller.reports" ui-sref="report({report: report.file})" ui-sref-active="md-primary">\n            {{report.name}}\n        </md-button>\n    </div>\n</md-content>\n');}]);

@@ -1,0 +1,54 @@
+
+<md-table-container>
+    <table md-table>
+        <thead md-head>
+            <tr md-row>
+                <th md-column width="30%">{{header()}}</th>
+                <th md-column ng-repeat="date in trends() track by $index">{{date*1000 | date : 'MMM yyyy'}}</th>
+                <th md-column class="current">Current</th>
+                <th md-column ng-repeat="delta in deltas() track by $index">&Delta; {{-delta}} Months</th>
+            </tr>
+        </thead>
+        <tbody md-body>
+            <tr md-row>
+                <td md-cell width="30%" class="rowHeader">Assets</td>
+                <td md-cell ng-repeat="value in assets().trend track by $index">
+                    <gnucash-currency-format value="value"></gnucash-currency-format>
+                </td>
+                <td md-cell class="current">
+                    <gnucash-currency-format value="assets().current_data"></gnucash-currency-format>
+                </td>
+                <td md-cell ng-repeat="value in assets().deltas track by $index">
+                    <gnucash-percentage-format value="value"></gnucash-percentage-format>
+                </td>
+            </tr>
+
+            <tr md-row>
+                <td md-cell class="rowHeader">Liabilities</td>
+                <td md-cell ng-repeat="value in liabilities().trend track by $index">
+                    <gnucash-currency-format value="value"></gnucash-currency-format>
+                </td>
+                <td md-cell class="current">
+                    <gnucash-currency-format value="liabilities().current_data"></gnucash-currency-format>
+                </td>
+                <td md-cell ng-repeat="value in liabilities().deltas track by $index">
+                    <gnucash-percentage-format value="value"></gnucash-percentage-format>
+                </td>
+            </tr>
+
+
+            <tr md-row class="summaryTotals">
+                <td md-cell class="rowHeader"><strong>Totals</strong></td>
+                <td md-cell ng-repeat="value in netWorth().trend track by $index">
+                    <gnucash-currency-format value="value"></gnucash-currency-format>
+                </td>
+                <td md-cell>
+                    <gnucash-currency-format value="netWorth().current_data"></gnucash-currency-format>
+                </td>
+                <td md-cell ng-repeat="value in netWorth().deltas track by $index">
+                    <gnucash-percentage-format value="value"></gnucash-percentage-format>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</md-table-container>

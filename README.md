@@ -5,15 +5,13 @@ An example viewer that works with the data files created by [GNUCashReporting](h
 ## Requirements
 
 * NPM
-* Bower
-* Grunt
+* Gulp
 
 ## Setup 
 
 ```bash
 npm install
-bower install
-grunt default
+gulp
 npm start
 ```
 

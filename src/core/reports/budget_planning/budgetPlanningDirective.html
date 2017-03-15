@@ -1,0 +1,38 @@
+<div flex layout="row">
+
+    <div flex>
+        <nvd3 options="options" data="data"></nvd3>
+    </div>
+
+    <div style="height: 400px; overflow-y: scroll; overflow-x: hidden">
+        <md-table-container>
+            <table md-table>
+                <thead md-head>
+                    <tr md-row>
+                        <th md-column>Category</th>
+                        <th md-column>Value</th>
+                    </tr>
+                </thead>
+                <tbody md-body>
+                    <tr md-row ng-repeat="item in budget track by $index">
+                        <td md-cell>{{item.name}}</td>
+                        <td md-cell>{{item.value | currency}}</td>
+                    </tr>
+
+                    <tr md-row class="totals">
+                        <td md-cell>Total</td>
+                        <td md-cell>{{total | currency}}</td>
+                    </tr>
+                    <tr md-row>
+                        <td md-cell>Income</td>
+                        <td md-cell>{{income | currency}}</td>
+                    </tr>
+                    <tr md-row ng-class="remainingClass">
+                        <td md-cell>Remaining</td>
+                        <td md-cell>{{remaining | currency}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </md-table-container>
+    </div>
+</div>

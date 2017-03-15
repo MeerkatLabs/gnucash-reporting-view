@@ -1,0 +1,24 @@
+
+td.rowHeader {
+  text-transform: uppercase;
+}
+
+td.current, th.current {
+  background-color: $current-column-background;
+}
+
+tr.totals {
+  background-color: $totals-row-background;
+}
+
+tr.summaryTotals {
+  background-color: $summary-totals-row-background;
+}
+
+tr.total-positive {
+  background-color: $currency-backgroundcolor-positive;
+}
+
+tr.total-negative {
+  background-color: $currency-backgroundcolor-negative;
+}
