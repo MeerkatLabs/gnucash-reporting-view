@@ -1,14 +1,14 @@
-.currency-positive {
-  color: #006600; }
+.currencyPositive {
+  color: #006600 !important; }
 
-.currency-negative {
-  color: #F00; }
+.currencyNegative {
+  color: #F00 !important; }
 
-.percentage-positive {
-  color: #006600; }
+.percentagePositive {
+  color: #006600 !important; }
 
-.percentage-negative {
-  color: #F00; }
+.percentageNegative {
+  color: #F00 !important; }
 
 td.rowHeader {
   text-transform: uppercase; }

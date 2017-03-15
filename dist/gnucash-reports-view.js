@@ -493,27 +493,27 @@
     angular.module('gnucash-reports-view.reports')
         .directive('gnucashCurrencyFormat', CurrencyDirectiveGenerator);
 
-    CurrencyDirectiveGenerator.$inject = ['formatters'];
+    CurrencyDirectiveGenerator.$inject = [];
 
-    function CurrencyDirectiveGenerator(formatters) {
+    function CurrencyDirectiveGenerator() {
 
         return {
             scope: {
                 value: '&'
             },
-            template: '<span ng-class="style">{{currencyValue}}</span>',
+            template: '<span ng-class="style">{{::currencyValue|currency}}</span>',
             link: link
         };
 
         ////////////////////////////////////////////////////////////////////////
 
         function link($scope) {
-            $scope.currencyValue = formatters.currency($scope.value());
+            $scope.currencyValue = $scope.value();
 
             if ($scope.value() > 0.0) {
-                $scope.style = 'currency-positive';
+                $scope.style = 'currencyPositive';
             } else if ($scope.value() < 0.0) {
-                $scope.style = 'currency-negative';
+                $scope.style = 'currencyNegative';
             }
         }
 
@@ -587,33 +587,61 @@
     angular.module('gnucash-reports-view.reports')
         .directive('gnucashPercentageFormat', PercentageDirectiveGenerator);
 
-    PercentageDirectiveGenerator.$inject = ['formatters'];
+    PercentageDirectiveGenerator.$inject = [];
 
-    function PercentageDirectiveGenerator(formatters) {
+    function PercentageDirectiveGenerator() {
 
         return {
             scope: {
                 value: '&'
             },
-            template: '<span ng-class="style">{{::percentageValue}}</span>',
+            template: '<span ng-class="style">{{::percentageValue | percentage}}</span>',
             link: link
         };
 
         //////////////////////////////////////////////////////////////////////////
         function link($scope) {
-            if (angular.isNumber($scope.value())) {
 
-                $scope.percentageValue = formatters.percentage($scope.value());
+            $scope.percentageValue = $scope.value();
 
-                if ($scope.value() > 0.0) {
-                    $scope.style = 'percentage-positive';
-                } else if ($scope.value() < 0.0) {
-                    $scope.style = 'percentage-negative';
-                }
-            } else {
-                $scope.percentageValue = 'N/A';
+            if ($scope.value() > 0.0) {
+                $scope.style = 'percentagePositive';
+            } else if ($scope.value() < 0.0) {
+                $scope.style = 'percentageNegative';
             }
         }
+
+    }
+
+})();
+(function() {
+
+    angular.module('gnucash-reports-view.reports')
+        .config(registerPercentageFilter);
+
+    registerPercentageFilter.$inject = ['$filterProvider'];
+
+    function registerPercentageFilter($filterProvider) {
+
+        percentageFilter.$inject = ['$filter'];
+        function percentageFilter($filter) {
+            return function(text) {
+
+                var result = text;
+                if (angular.isNumber(text)) {
+
+                    var numberFilter = $filter('number'),
+                        percentageValue = text * 100.0;
+
+                    result = numberFilter(percentageValue, 2) + '%';
+
+                }
+
+                return result;
+            };
+        }
+
+        $filterProvider.register('percentage', percentageFilter);
 
     }
 
