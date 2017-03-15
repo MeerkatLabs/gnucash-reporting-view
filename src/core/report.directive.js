@@ -14,7 +14,7 @@
             scope: {
                 report: '&'
             },
-            templateUrl: 'src/core/reportDirective.html',
+            templateUrl: 'core/reportDirective.html',
             link: link
         };
 
