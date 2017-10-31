@@ -2151,18 +2151,26 @@
     angular.module('gnucash-reports-view')
         .controller('SideMenuController', SideMenuController);
 
-    SideMenuController.$inject = ['ReportsService'];
+    SideMenuController.$inject = ['$mdSidenav', 'ReportsService'];
 
     // Side menu controller.
-    function SideMenuController(ReportsService) {
+    function SideMenuController($mdSidenav, ReportsService) {
 
         var controller = this;
 
         controller.reports = [];
+        controller.displayReport = displayReport;
 
         ReportsService.reportsContent.then(function(results) {
             controller.reports = results.data.reports;
         });
+
+        /**
+         * Fire off a signal that will toggle the closing of the side bar when the button is pressed.
+         */
+        function displayReport() {
+            $mdSidenav('left').close();
+        }
 
     }
 
@@ -2207,4 +2215,4 @@ $templateCache.put('core/reports/savings_goal/savings_goal.html','<div flex>\n  
 $templateCache.put('core/reports/savings_goal/savingsGoalDirective.html','<div flex>\n    <nvd3 options="options" data="data" ng-if="data"></nvd3>\n    <div layout="row" layout-sm="column" layout-align="space-around" ng-hide="data">\n        <md-progress-circular md-mode="indeterminate"></md-progress-circular>\n    </div>\n</div>');
 $templateCache.put('core/reports/taxes_paid/taxes_paid.html','<div flex>\n    <gnucash-taxes-paid report-data="reportData()"></gnucash-taxes-paid>\n</div>');
 $templateCache.put('core/reports/taxes_paid/taxes_paidDirective.html','<div flex>\n    <nvd3 options="options" data="data" ng-if="data"></nvd3>\n    <div layout="row" layout-sm="column" layout-align="space-around" ng-hide="data">\n        <md-progress-circular md-mode="indeterminate"></md-progress-circular>\n    </div>\n</div>');
-$templateCache.put('core/sidemenu.html','\n<md-toolbar class="md-theme-indigo">\n    <h1 class="md-toolbar-tools">Reports</h1>\n</md-toolbar>\n<md-content layout="column" flex>\n    <div layout="column" flex>\n        <md-button class="md-raised" md-no-ink ui-sref="main" ui-sref-active="md-primary">\n            <ng-md-icon icon="home" style="fill: gray"></ng-md-icon>\n            Home\n        </md-button>\n        <md-button class="md-raised" md-no-ink ng-repeat="report in controller.reports" ui-sref="report({report: report.file})" ui-sref-active="md-primary">\n            {{report.name}}\n        </md-button>\n    </div>\n</md-content>\n');}]);
+$templateCache.put('core/sidemenu.html','\n<md-toolbar class="md-theme-indigo">\n    <h1 class="md-toolbar-tools">Reports</h1>\n</md-toolbar>\n<md-content layout="column" flex>\n    <div layout="column" flex>\n        <md-button class="md-raised" md-no-ink ui-sref="main" ui-sref-active="md-primary" ng-click="controller.displayReport()">\n            <ng-md-icon icon="home" style="fill: gray"></ng-md-icon>\n            Home\n        </md-button>\n        <md-button class="md-raised" md-no-ink ng-repeat="report in controller.reports" ui-sref="report({report: report.file})" ui-sref-active="md-primary" ng-click="controller.displayReport()">\n            {{report.name}}\n        </md-button>\n    </div>\n</md-content>\n');}]);
