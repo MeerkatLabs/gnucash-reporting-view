@@ -11,7 +11,7 @@
                 .addTemplate('budget_level', 'core/reports/budget_level/budget_level.html')
                 .addTemplate('category_budget_level', 'core/reports/budget_level/budget_level.html')
                 .addTemplate('budget_planning', 'core/reports/budget_planning/budget_planning.html')
-                .addTemplate('cash_flow_chart', 'core/reports/cash_flow_chart/cash_flow.html')
+                .addTemplate('cash_flow', 'core/reports/cash_flow_chart/cash_flow.html')
                 .addTemplate('account_usage_categories', 'core/reports/category/category.html')
                 .addTemplate('expenses_categories', 'core/reports/category/category.html')
                 .addTemplate('investment_allocation', 'core/reports/category/category.html')
