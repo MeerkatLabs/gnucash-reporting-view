@@ -22,10 +22,10 @@
                         </thead>
                         <tbody md-body>
                             <tr md-row ng-repeat="firstDataSet in reportData().net track by $index" ng-init="i = $index">
-                                <td md-cell>{{firstDataSet.date * 1000 | date}}</td>
-                                <td md-cell><gnucash-currency-format value="reportData().income[i].value"></gnucash-currency-format></td>
-                                <td md-cell><gnucash-currency-format value="reportData().expenses[i].value"></gnucash-currency-format></td>
-                                <td md-cell><gnucash-currency-format value="reportData().net[i].value"></gnucash-currency-format></td>
+                                <td md-cell>{{firstDataSet[0] * 1000 | date}}</td>
+                                <td md-cell><gnucash-currency-format value="reportData().income[i][1]"></gnucash-currency-format></td>
+                                <td md-cell><gnucash-currency-format value="reportData().expenses[i][1]"></gnucash-currency-format></td>
+                                <td md-cell><gnucash-currency-format value="reportData().net[i][1]"></gnucash-currency-format></td>
                             </tr>
                         </tbody>
                     </table>

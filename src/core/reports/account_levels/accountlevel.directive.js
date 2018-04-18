@@ -59,7 +59,7 @@
 
             };
 
-            var label = formatters.currency(data.good_value);
+            var label = formatters.currency(data.goal);
 
             if (data.balance < data.good_value) {
                 // Build underage Chart
@@ -80,7 +80,7 @@
                         values : [
                             {
                                 label: label,
-                                value: data.good_value - data.balance
+                                value: data.goal - data.balance
                             }
                         ]
                     }
@@ -102,7 +102,7 @@
                         "values" : [
                             {
                                 label: label,
-                                value: data.good_value
+                                value: data.goal
                             }
                         ]
                     },
@@ -112,7 +112,7 @@
                         values : [
                             {
                                 label: label,
-                                value: data.balance - data.good_value
+                                value: data.balance - data.goal
                             }
                         ]
                     }

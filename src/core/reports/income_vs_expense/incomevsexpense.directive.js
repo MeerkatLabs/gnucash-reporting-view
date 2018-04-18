@@ -28,8 +28,8 @@
                         bottom: 100,
                         left: 100
                     },
-                    x: function(d){return d.date;},
-                    y: function(d){return d.value;},
+                    x: function(d){return d[0];},
+                    y: function(d){return d[1];},
                     showControls: false,
                     showValues: true,
                     valueFormat: formatters.currency,
@@ -50,9 +50,9 @@
             };
 
             data.expenses.forEach(function(dataValue) {
-                if (dataValue.value === 0) {
+                if (dataValue[1] === 0) {
                     // TODO: Figure out how to do this so that it doesn't display as -0.0001 in the graph.
-                    dataValue.value = -0.00001;
+                    dataValue[1] = -0.00001;
                 }
             });
 

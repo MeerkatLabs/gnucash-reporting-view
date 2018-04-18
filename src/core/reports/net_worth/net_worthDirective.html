@@ -23,8 +23,8 @@
                         </thead>
                         <tbody md-body>
                             <tr md-row ng-repeat="firstDataSet in data[0].values track by $index" ng-init="i = $index">
-                                <td md-cell>{{::firstDataSet.date * 1000 | date}}</td>
-                                <td md-cell ng-repeat="dataSet in data track by $index">{{::dataSet.values[i].value | currency}}</td>
+                                <td md-cell>{{::firstDataSet[0] * 1000 | date}}</td>
+                                <td md-cell ng-repeat="dataSet in data track by $index">{{::dataSet.values[i][1] | currency}}</td>
                             </tr>
                         </tbody>
                     </table>
