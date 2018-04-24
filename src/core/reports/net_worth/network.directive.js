@@ -30,8 +30,8 @@
                             bottom: 100,
                             left: 100
                         },
-                        x: function(d){return d.date;},
-                        y: function(d){return d.value;},
+                        x: function(d){return d[0];},
+                        y: function(d){return d[1];},
                         color: d3.scale.category10().range(),
                         useInteractiveGuideline: true,
                         useVoronoi: false,
